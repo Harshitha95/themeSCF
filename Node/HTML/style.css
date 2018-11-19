@@ -1,0 +1,21 @@
+
+body {background-color: white;}
+h1 { text-align: center  }
+.nav {
+    
+    list-style-type: none;
+    height:75px;
+    width: 100%;   
+    margin-top: 50px;
+    margin-left: 100px;
+}
+.nav1 {
+    
+    list-style-type: none;
+    height:auto;
+    width: 84%;
+    text-indent: 10px;
+    background-color: #99ddff;
+    margin-top: -16px;
+    margin-left: 100px;
+}

@@ -1,0 +1,50 @@
+<html>
+ <head>
+ 	<title>Business Wallets</title>
+	<script src="jquery-3.1.0.min.js"></script>
+	<script src="jquery-3.1.0.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src='tc-admin.js'></script>
+	<script>
+		function getBusinessNo() {
+			$.ajax({  
+			url: "http://14.192.17.63:6002/composer/admin/getBusiness",  
+			datatype: "JSON",  
+			type: "P",  
+			success: function (data) {  
+			//debugger; 
+				console.log("data "+data );
+			//	console.log("data.length "+data.length )
+				console.log("data.length "+ data.length);
+				let len=data.length;
+			for(var i=0;i<len; i++)  
+			{  
+				var opt = new Option(data[i]);  
+				$("#businessNo").append(opt);  
+				console.log("opt "+opt);
+			}  
+			}  
+			});  
+		}
+		window.onload = getBusinessNo();
+	</script> 
+ </head>
+ 
+ <body>
+	<h1>Business Wallet</h1>
+    <table width=75% id="instrument">
+		<tr>
+        <td class = "select">Business ID
+        <select id="businessNo">        
+                <option value="">Business</option>
+        </select>
+        </td>
+      </tr>
+		</table>
+	</body>
+	 <button class-"wide" onclick="mainPage()"  id="back">Back</button>
+	 <button class-"wide" onclick="getBusinessDetails()"  id="submit">Submit</button>
+	 <div id="messages"></div>
+	  <div id="valuetable"></div>
+</html>

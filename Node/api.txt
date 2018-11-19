@@ -1,0 +1,69 @@
+invoke JS query url
+
+localhost:3000/invoke?arguments=[]
+
+eg: 
+    http://localhost:3000/invoke?arguments=["loancc", "newLoanInfo", "1loan", "1ins", "1bus", "1prg", "900", "pragadeesh", "5", "23/10/2018", "25/09/2018:20:45:01", "sanctioned", "0", "0", "0", "1bus", "2bus"]
+
+
+# creating bank:
+http://localhost:3000/invoke?arguments=["bankcc", "writeBankInfo", "1bank", "kvb", "chennai", "40A", "1000", "1000", "1000", "1000", "1000"]
+
+# creating business:
+http://localhost:3000/invoke?arguments=["businesscc", "putNewBusinessInfo", "1bus", "tata", "12348901", "4000000", "1000", "1000", "1000", "12", "8", "1000", "1000"]
+http://localhost:3000/invoke?arguments=["businesscc", "putNewBusinessInfo", "2bus", "mrf", "12348902", "4000000", "1000", "1000", "1000", "12", "8", "1000", "1000"]
+
+# creating Program
+http://localhost:3000/invoke?arguments=["programcc", "writeProgram", "1prg", "program1", "1bus", "Accounts_Payable", "10/04/2019", "10000", "6", "buyer", "4", "100", "pragadeesh", "123452"]
+
+# creating PPR
+http://localhost:3000/invoke?arguments=["pprcc", "createPPR", "1ppr", "1prg", "2bus", "seller", "12000", "10", "90", "90", "40", "34tf2"]
+
+# cerating instrument
+http://localhost:3000/invoke?arguments=["instrumentcc" , "enterInstrument" , "1ins" , "23/10/2018" , "2bus" , "1bus" , "1000" , "23/07/2019" , "1prg" , "1ppr" , "34" , "04/01/2019:12:43:59"]  
+
+# creating loan
+http://localhost:3000/invoke?arguments=["loancc" , "newLoanInfo" , "1loan" , "1ins" , "1bus" , "1prg" , "900" , "pragadeesh" , "5" , "23/10/2018" , "25/09/2018:20:45:01" , "0", "0", "0", "1bus" , "2bus"]
+
+# invoking disbursement transaction
+http://localhost:3000/invoke?arguments=["txncc", "newTxnInfo", "1txn", "disbursement", "23/04/2018", "1loan", "1inst", "300", "1bank", "1bus", "pragadeesh"] 
+
+# invoking accrual transaction 
+    http://localhost:3000/invoke?arguments=["accrual.cc", "newAccrualInfo", "1txn", "accrual", "23/04/2018", "1loan", "1inst", "10", "1bank", "1bus", "pragadeesh","1ppr"]
+
+# invoking charges transaction
+    http://localhost:3000/invoke?arguments=["chargescc", "newChargesInfo", "1txn", "charges", "23/04/2018", "1loan", "1inst", "100", "1bank", "1bus", "pragadeesh","1ppr"] 
+
+# invoking interest_accrued_charge transaction 
+    http://localhost:3000/invoke?arguments=["interestAcc.cc", "newInterestAccruedInfo", "1txn", "charges", "23/04/2018", "1loan", "1inst", "30", "1bank", "1bus", "pragadeesh","1ppr"]
+
+# invoking interest_in_advance transaction
+http://localhost:3000/invoke?arguments=["interestAdv.cc", "newInterestAdvInfo", "1txn", "charges", "23/04/2018", "1loan", "1inst", "100", "1bank", "1bus", "pragadeesh","1ppr"]
+
+# invoking interest_refund transaction
+http://localhost:3000/invoke?arguments=["interestrefundcc", "newInterestInfo", "1txn", "interest_refund", "23/04/2018", "1loan", "1inst", "100", "1bank", "1bus", "pragadeesh","1ppr"]
+
+# invoking margin_refund transaction
+http://localhost:3000/invoke?arguments=["marginrefundcc", "newMarginInfo", "1txn", "margin_refund", "23/04/2018", "1loan", "1inst", "100", "1bank", "1bus", "pragadeesh","1ppr"]
+# invoking penal_charges transaction
+
+http://localhost:3000/invoke?arguments=["penalCharges.cc", "newPenalChargesInfo", "1txn", "charges", "23/04/2018", "1loan", "1inst", "100", "1bank", "1bus", "pragadeesh","1ppr"]
+# invoking penal_interest_collection transaction
+
+http://localhost:3000/invoke?arguments=["penalCharges.cc", "newPICinfo", "1txn", "charges", "23/04/2018", "1loan", "1inst", "100", "1bank", "1bus", "pragadeesh","1ppr"]
+
+# invoking tds transaction
+http://localhost:3000/invoke?arguments=["tds.cc", "newTDSInfo", "1txn", "charges", "23/04/2018", "1loan", "1inst", "100", "1bank", "1bus", "pragadeesh","1ppr"]
+
+# invoking transaction Balance
+//pass the values , have given variable names 
+http://localhost:3000/invoke?arguments=["txnbalcc.cc", "putTxnBalInfo", "1txn", "23/04/2018", "1loan", "1inst", "walletId", "OpeningBalance", "1bus", "TxnType","Amount","CAmt","DAmt","TxnBal", "By"]
+
+# invoking repayment transaction
+http://localhost:3000/invoke?arguments=["repaymentcc","newRepayInfo","1txn","repayment","23/04/2018","1loan","1inst","800","1bank","1bus", "2bus","pragadeesh"]
+
+http://localhost:3000/query
+
+query JS query url
+
+localhost:3000/query?arguments=[]

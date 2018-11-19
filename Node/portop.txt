@@ -1,0 +1,968 @@
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 ettchain1-Verito:domain *:*                     LISTEN      -               
+tcp        0      0 localhost:ipp           *:*                     LISTEN      -               
+tcp        0      0 *:5900                  *:*                     LISTEN      4287/vino-server
+tcp        0      0 192.168.168.177:38056   ec2-54-149-189-12:https ESTABLISHED 4503/firefox    
+tcp        0      0 192.168.168.177:42480   maa03s26-in-f14.1:https ESTABLISHED 4503/firefox    
+tcp        1      0 192.168.168.177:52180   mistletoe.canonica:http CLOSE_WAIT  4202/ubuntu-geoip-p
+tcp        0      0 192.168.168.177:5900    192.168.168.186:48468   ESTABLISHED 4287/vino-server
+tcp        0      0 192.168.168.177:58680   ec2-35-161-32-245:https ESTABLISHED 4503/firefox    
+tcp        0      0 192.168.168.177:33090   sc-in-f189.1e100.:https ESTABLISHED 4503/firefox    
+tcp        0      0 192.168.168.177:52256   maa05s05-in-f10.1:https ESTABLISHED 4503/firefox    
+tcp        0      0 192.168.168.177:37716   maa05s02-in-f14.1:https ESTABLISHED 4503/firefox    
+tcp        0      0 192.168.168.177:46620   maa05s02-in-f3.1e:https ESTABLISHED 4503/firefox    
+tcp6       0      0 [::]:8051               [::]:*                  LISTEN      -               
+tcp6       0      0 [::]:8053               [::]:*                  LISTEN      -               
+tcp6       0      0 ip6-localhost:ipp       [::]:*                  LISTEN      -               
+tcp6       0      0 [::]:9051               [::]:*                  LISTEN      -               
+tcp6       0      0 [::]:9053               [::]:*                  LISTEN      -               
+tcp6       0      0 [::]:zabbix-trapper     [::]:*                  LISTEN      -               
+tcp6       0      0 [::]:10053              [::]:*                  LISTEN      -               
+tcp6       0      0 [::]:7050               [::]:*                  LISTEN      -               
+tcp6       0      0 [::]:7051               [::]:*                  LISTEN      -               
+tcp6       0      0 [::]:5900               [::]:*                  LISTEN      4287/vino-server
+tcp6       0      0 [::]:7053               [::]:*                  LISTEN      -               
+udp        0      0 *:52686                 *:*                                 -               
+udp     8448      0 ettchain1-Verito:domain *:*                                 -               
+udp    51200      0 *:bootpc                *:*                                 -               
+udp        0      0 *:ipp                   *:*                                 -               
+udp     2560      0 localhost:58137         ettchain1-Verito:domain ESTABLISHED 27905/code      
+udp    29184      0 *:mdns                  *:*                                 -               
+udp    10240      0 *:59047                 *:*                                 -               
+udp6       0      0 [::]:59236              [::]:*                              -               
+udp6   40000      0 [::]:mdns               [::]:*                              -               
+Active UNIX domain sockets (servers and established)
+Proto RefCnt Flags       Type       State         I-Node   PID/Program name    Path
+unix  2      [ ]         DGRAM                    32219    3797/systemd        /run/user/1000/systemd/notify
+unix  2      [ ACC ]     STREAM     LISTENING     32220    3797/systemd        /run/user/1000/systemd/private
+unix  2      [ ACC ]     SEQPACKET  LISTENING     394      -                   /run/udev/control
+unix  2      [ ACC ]     STREAM     LISTENING     32821    -                   /run/user/1000/keyring/control
+unix  2      [ ACC ]     STREAM     LISTENING     20732    -                   /tmp/.X11-unix/X0
+unix  2      [ ACC ]     STREAM     LISTENING     32893    3946/ibus-daemon    @/tmp/ibus/dbus-vlwyuw0L
+unix  2      [ ACC ]     STREAM     LISTENING     32448    4033/gnome-session- /tmp/.ICE-unix/4033
+unix  2      [ ACC ]     STREAM     LISTENING     32877    -                   /run/user/1000/keyring/pkcs11
+unix  2      [ ACC ]     STREAM     LISTENING     32879    -                   /run/user/1000/keyring/ssh
+unix  2      [ ACC ]     STREAM     LISTENING     34023    4123/pulseaudio     /run/user/1000/pulse/native
+unix  2      [ ACC ]     STREAM     LISTENING     32447    4033/gnome-session- @/tmp/.ICE-unix/4033
+unix  2      [ ACC ]     STREAM     LISTENING     34864    3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  2      [ ACC ]     STREAM     LISTENING     45358    5111/code --unity-l /run/user/1000/vscode-eb5606cf-1.27.2-main.sock
+unix  2      [ ACC ]     STREAM     LISTENING     45429    5351/app --node-int /run/user/1000/vscode-eb5606cf-1.27.2-shared.sock
+unix  2      [ ACC ]     STREAM     LISTENING     45476    5397/code           /run/user/1000/vscode-git-askpass-7d9486d17a48a566c36192e76a61b7ec9d137618.sock
+unix  2      [ ACC ]     STREAM     LISTENING     17848    -                   /var/run/dbus/system_bus_socket
+unix  2      [ ACC ]     STREAM     LISTENING     17849    -                   /var/run/docker.sock
+unix  2      [ ACC ]     STREAM     LISTENING     362      -                   /run/systemd/private
+unix  2      [ ACC ]     STREAM     LISTENING     20731    -                   @/tmp/.X11-unix/X0
+unix  2      [ ACC ]     STREAM     LISTENING     17850    -                   /var/run/cups/cups.sock
+unix  2      [ ACC ]     STREAM     LISTENING     1372107  -                   @/containerd-shim/moby/728301b4250b6fe256b0b77adaf33679d95e5cfb05cb29674c21f6538fe97bce/shim.sock@
+unix  2      [ ACC ]     STREAM     LISTENING     17851    -                   /var/run/avahi-daemon/socket
+unix  2      [ ACC ]     STREAM     LISTENING     17852    -                   /run/snapd.socket
+unix  16     [ ]         DGRAM                    369      -                   /run/systemd/journal/dev-log
+unix  2      [ ACC ]     STREAM     LISTENING     17853    -                   /run/snapd-snap.socket
+unix  2      [ ACC ]     STREAM     LISTENING     375      -                   /run/systemd/fsck.progress
+unix  2      [ ACC ]     STREAM     LISTENING     17854    -                   /run/acpid.socket
+unix  2      [ ACC ]     STREAM     LISTENING     376      -                   /run/systemd/journal/stdout
+unix  8      [ ]         DGRAM                    377      -                   /run/systemd/journal/socket
+unix  2      [ ACC ]     STREAM     LISTENING     17855    -                   /run/uuidd/request
+unix  2      [ ]         DGRAM                    391      -                   /run/systemd/journal/syslog
+unix  2      [ ACC ]     STREAM     LISTENING     155681   27423/unity-scope-h @ettchain1-com.canonical.Unity.Master.Scope.files.T4811171157864
+unix  2      [ ACC ]     STREAM     LISTENING     696515   16406/speech-dispat /run/user/1000/speech-dispatcher/speechd.sock
+unix  2      [ ACC ]     STREAM     LISTENING     152378   27037/soffice.bin   /tmp/OSL_PIPE_1000_SingleOfficeIPC_b4268e4d59fb24541b5b15644d1ebb
+unix  2      [ ACC ]     STREAM     LISTENING     1327715  -                   @/containerd-shim/moby/aafb8be440c5afc502bddf727e43f4c92d472ef471184abd82852ecbaee45785/shim.sock@
+unix  2      [ ACC ]     STREAM     LISTENING     155680   27423/unity-scope-h @ettchain1-com.canonical.Unity.Master.Scope.applications.T481117109132124
+unix  2      [ ACC ]     STREAM     LISTENING     21780    -                   /var/run/NetworkManager/private-dhcp
+unix  2      [ ACC ]     STREAM     LISTENING     155286   27434/unity-scope-l @ettchain1-com.canonical.Unity.Scope.scopes.T481121890447029
+unix  2      [ ACC ]     STREAM     LISTENING     1335505  -                   @/containerd-shim/moby/933f857ba06c9372daeffaf4fe78cf1cead5f073d48cf7c5308e439f13a27c49/shim.sock@
+unix  2      [ ACC ]     STREAM     LISTENING     143812   25267/gocode        /tmp/gocode-daemon.ettchain1
+unix  2      [ ACC ]     STREAM     LISTENING     23763    -                   /var/run/docker/containerd/docker-containerd-debug.sock
+unix  2      [ ACC ]     STREAM     LISTENING     23764    -                   /var/run/docker/containerd/docker-containerd.sock
+unix  2      [ ACC ]     STREAM     LISTENING     23771    -                   /var/run/docker/metrics.sock
+unix  2      [ ACC ]     STREAM     LISTENING     1363643  -                   @/containerd-shim/moby/8cb12622a1bf27b69c16e3107600f66f464fd9c3576c9ace1c228676b783e9dc/shim.sock@
+unix  2      [ ACC ]     STREAM     LISTENING     1307015  -                   @/containerd-shim/moby/2db7f84558ddd3e6fca6b9530bff83cd14620a73be077ebbecd7f76a967a24eb/shim.sock@
+unix  2      [ ACC ]     STREAM     LISTENING     1308526  -                   @/containerd-shim/moby/d592687917c95da5e17e3913f815bb72f7a404c8d2682421e4ad7f4303c6b666/shim.sock@
+unix  2      [ ACC ]     STREAM     LISTENING     1309044  -                   @/containerd-shim/moby/9b2fa81a73d28b252a7853ffd8a7b075c331f3f725b3e7d8b4f2537762da8301/shim.sock@
+unix  3      [ ]         SEQPACKET  CONNECTED     41866    5111/code --unity-l @0001c
+unix  2      [ ACC ]     STREAM     LISTENING     1340118  -                   @/containerd-shim/moby/1d66bfeb3992731aa9da9e753b5462c4a8481326096eb4be5d9b091f9ac4d4e5/shim.sock@
+unix  2      [ ACC ]     STREAM     LISTENING     30709    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  2      [ ACC ]     STREAM     LISTENING     32251    3805/upstart        @/com/ubuntu/upstart-session/1000/3805
+unix  2      [ ACC ]     STREAM     LISTENING     26899    -                   /run/docker/libnetwork/ea0553118326cb5223f0252fd70eae575549bb21ea6edd852869a0c2bb35c72a.sock
+unix  2      [ ACC ]     STREAM     LISTENING     1307062  -                   @/containerd-shim/moby/cc0230c192a6714fa3e29cc14701dbc24a98bf0a7b75291154e148a103c85c02/shim.sock@
+unix  2      [ ACC ]     STREAM     LISTENING     155287   27434/unity-scope-l @ettchain1-com.canonical.Unity.Scope.applications.T481121896569423
+unix  2      [ ACC ]     STREAM     LISTENING     1350535  -                   @/containerd-shim/moby/4b5f63f3b35b53f52fc49d46def3d03e48fd3f6cb675623e583043307132733b/shim.sock@
+unix  2      [ ACC ]     STREAM     LISTENING     155698   27436/unity-files-d @ettchain1-com.canonical.Unity.Scope.files.T481117907846864
+unix  2      [ ACC ]     STREAM     LISTENING     679003   15937/unity-music-d @ettchain1-com.canonical.Unity.Scope.rhythmbox.T1534207822524187
+unix  2      [ ACC ]     STREAM     LISTENING     1306286  -                   @/containerd-shim/moby/1da51936787f75d4e695d8f70c256946ab155d134201b976442097168e0293ba/shim.sock@
+unix  2      [ ACC ]     STREAM     LISTENING     678986   27423/unity-scope-h @ettchain1-com.canonical.Unity.Master.Scope.music.T1534207293148374
+unix  3      [ ]         DGRAM                    361      -                   /run/systemd/notify
+unix  2      [ ACC ]     STREAM     LISTENING     1308340  -                   @/containerd-shim/moby/f74d9ff1e215d9128b89b1e232eaa4dba13ad4123e9e2ea8907e863ed7a1b770/shim.sock@
+unix  2      [ ACC ]     STREAM     LISTENING     1358940  -                   @/containerd-shim/moby/28b09cbdd01cb25e3ecd19529e5aa767395dda1de791b158190c6a280fff138b/shim.sock@
+unix  2      [ ACC ]     STREAM     LISTENING     33911    -                   /home/ettchain1/.gnupg/S.gpg-agent
+unix  3      [ ]         STREAM     CONNECTED     35913    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     34896    3903/window-stack-b 
+unix  3      [ ]         STREAM     CONNECTED     34835    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     44758    5160/app --node-int 
+unix  3      [ ]         STREAM     CONNECTED     36902    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35626    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     19895    -                   
+unix  3      [ ]         STREAM     CONNECTED     1363647  -                   
+unix  3      [ ]         STREAM     CONNECTED     142976   5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     36473    4755/zeitgeist-daem 
+unix  3      [ ]         STREAM     CONNECTED     36465    4743/zeitgeist-data 
+unix  3      [ ]         STREAM     CONNECTED     35460    4022/hud-service    
+unix  3      [ ]         STREAM     CONNECTED     32410    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     233268   10827/gvfsd-http    @/dbus-vfs-daemon/socket-EXUZbOFF
+unix  3      [ ]         STREAM     CONNECTED     153301   -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     34320    4303/compiz         
+unix  3      [ ]         STREAM     CONNECTED     32746    4321/gvfs-udisks2-v 
+unix  3      [ ]         STREAM     CONNECTED     32320    3946/ibus-daemon    @/tmp/ibus/dbus-vlwyuw0L
+unix  3      [ ]         STREAM     CONNECTED     23772    -                   
+unix  3      [ ]         STREAM     CONNECTED     153837   27037/soffice.bin   
+unix  3      [ ]         STREAM     CONNECTED     45687    3946/ibus-daemon    @/tmp/ibus/dbus-vlwyuw0L
+unix  3      [ ]         STREAM     CONNECTED     44755    5397/code           
+unix  3      [ ]         STREAM     CONNECTED     36888    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34214    4207/evolution-cale 
+unix  3      [ ]         STREAM     CONNECTED     19830    -                   
+unix  3      [ ]         STREAM     CONNECTED     513815   4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     155693   3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     36486    4767/zeitgeist-fts  
+unix  3      [ ]         STREAM     CONNECTED     38264    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     37945    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35730    3946/ibus-daemon    @/tmp/ibus/dbus-vlwyuw0L
+unix  3      [ ]         STREAM     CONNECTED     35464    4306/nautilus       
+unix  3      [ ]         STREAM     CONNECTED     19834    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     34259    4427/evolution-addr 
+unix  3      [ ]         STREAM     CONNECTED     32679    4033/gnome-session- @/tmp/.ICE-unix/4033
+unix  3      [ ]         STREAM     CONNECTED     34894    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     17936    -                   
+unix  3      [ ]         STREAM     CONNECTED     1336439  -                   @/containerd-shim/moby/933f857ba06c9372daeffaf4fe78cf1cead5f073d48cf7c5308e439f13a27c49/shim.sock@
+unix  3      [ ]         STREAM     CONNECTED     44737    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     34444    4583/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34247    4306/nautilus       
+unix  3      [ ]         STREAM     CONNECTED     47344    3946/ibus-daemon    @/tmp/ibus/dbus-vlwyuw0L
+unix  3      [ ]         STREAM     CONNECTED     33423    4451/evolution-addr 
+unix  3      [ ]         STREAM     CONNECTED     33412    4416/evolution-cale 
+unix  3      [ ]         STREAM     CONNECTED     32422    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1223846  -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     234885   4294/gnome-software 
+unix  3      [ ]         STREAM     CONNECTED     40929    5089/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35677    4303/compiz         
+unix  3      [ ]         STREAM     CONNECTED     31716    3893/upstart-udev-b 
+unix  3      [ ]         STREAM     CONNECTED     1222927  -                   
+unix  3      [ ]         STREAM     CONNECTED     155621   5397/code           
+unix  3      [ ]         STREAM     CONNECTED     34892    3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     33885    3970/ibus-ui-gtk3   
+unix  3      [ ]         STREAM     CONNECTED     19835    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     152399   4033/gnome-session- @/tmp/.ICE-unix/4033
+unix  3      [ ]         STREAM     CONNECTED     44711    5351/app --node-int 
+unix  3      [ ]         STREAM     CONNECTED     45364    5151/code --type=gp 
+unix  3      [ ]         STREAM     CONNECTED     36903    4651/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34228    4410/gvfs-goa-volum 
+unix  3      [ ]         STREAM     CONNECTED     34177    4298/polkit-gnome-a 
+unix  3      [ ]         STREAM     CONNECTED     33957    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     137491   3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     40940    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     37751    5034/update-notifie 
+unix  3      [ ]         STREAM     CONNECTED     33424    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     34938    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     32273    3805/upstart        @/com/ubuntu/upstart-session/1000/3805
+unix  3      [ ]         STREAM     CONNECTED     170252   -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     155617   5397/code           
+unix  3      [ ]         STREAM     CONNECTED     34371    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     32454    4139/geoclue-master 
+unix  3      [ ]         STREAM     CONNECTED     32915    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     32305    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     45359    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     33418    4303/compiz         
+unix  3      [ ]         STREAM     CONNECTED     33086    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     33993    4082/indicator-prin 
+unix  3      [ ]         STREAM     CONNECTED     1365965  -                   @/containerd-shim/moby/8cb12622a1bf27b69c16e3107600f66f464fd9c3576c9ace1c228676b783e9dc/shim.sock@
+unix  3      [ ]         STREAM     CONNECTED     513814   3595/firefox        
+unix  3      [ ]         STREAM     CONNECTED     135813   23963/gedit         
+unix  3      [ ]         STREAM     CONNECTED     136592   3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     40414    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     33407    4405/gvfs-gphoto2-v 
+unix  3      [ ]         STREAM     CONNECTED     32575    4207/evolution-cale 
+unix  3      [ ]         STREAM     CONNECTED     33959    4072/indicator-mess 
+unix  3      [ ]         STREAM     CONNECTED     17908    -                   
+unix  3      [ ]         STREAM     CONNECTED     1223830  -                   
+unix  3      [ ]         STREAM     CONNECTED     34260    4427/evolution-addr 
+unix  3      [ ]         STREAM     CONNECTED     34121    4123/pulseaudio     
+unix  3      [ ]         STREAM     CONNECTED     33006    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     32433    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     44759    5397/code           
+unix  3      [ ]         STREAM     CONNECTED     38469    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         SEQPACKET  CONNECTED     36898    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     33406    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     16049    -                   
+unix  3      [ ]         STREAM     CONNECTED     514200   4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     135805   23963/gedit         
+unix  3      [ ]         STREAM     CONNECTED     34814    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     34985    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     34947    4081/indicator-soun 
+unix  3      [ ]         STREAM     CONNECTED     19831    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     1224786  -                   
+unix  3      [ ]         STREAM     CONNECTED     40928    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35947    4462/gvfsd-trash    @/dbus-vfs-daemon/socket-IGlIwvex
+unix  3      [ ]         STREAM     CONNECTED     1222265  -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     155618   27915/code          
+unix  3      [ ]         STREAM     CONNECTED     35914    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     34891    3993/at-spi2-regist 
+unix  3      [ ]         STREAM     CONNECTED     33890    3976/ibus-x11       
+unix  3      [ ]         STREAM     CONNECTED     44710    5351/app --node-int 
+unix  3      [ ]         STREAM     CONNECTED     36900    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35903    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     19829    -                   
+unix  3      [ ]         STREAM     CONNECTED     1223851  -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     155692   27434/unity-scope-l 
+unix  3      [ ]         STREAM     CONNECTED     153287   27423/unity-scope-h 
+unix  3      [ ]         STREAM     CONNECTED     37946    4651/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34250    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     34944    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     34818    -                   /run/systemd/journal/stdout
+unix  2      [ ]         DGRAM                    17902    -                   
+unix  3      [ ]         STREAM     CONNECTED     1344583  -                   @/containerd-shim/moby/1d66bfeb3992731aa9da9e753b5462c4a8481326096eb4be5d9b091f9ac4d4e5/shim.sock@
+unix  3      [ ]         SEQPACKET  CONNECTED     40938    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     32289    3805/upstart        @/com/ubuntu/upstart-session/1000/3805
+unix  3      [ ]         STREAM     CONNECTED     20668    -                   
+unix  3      [ ]         STREAM     CONNECTED     155620   27915/code          
+unix  3      [ ]         STREAM     CONNECTED     38208    4651/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34263    4429/evolution-cale 
+unix  3      [ ]         STREAM     CONNECTED     32456    4139/geoclue-master 
+unix  3      [ ]         STREAM     CONNECTED     34901    4005/bamfdaemon     
+unix  3      [ ]         STREAM     CONNECTED     34872    3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     46598    5523/gnome-terminal 
+unix  3      [ ]         STREAM     CONNECTED     44752    5160/app --node-int 
+unix  3      [ ]         STREAM     CONNECTED     36901    4651/firefox        
+unix  3      [ ]         STREAM     CONNECTED     33419    4427/evolution-addr 
+unix  3      [ ]         STREAM     CONNECTED     35444    3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     32397    4073/indicator-blue 
+unix  3      [ ]         STREAM     CONNECTED     135807   23963/gedit         
+unix  3      [ ]         STREAM     CONNECTED     37749    5034/update-notifie 
+unix  3      [ ]         STREAM     CONNECTED     33480    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34187    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     153300   27436/unity-files-d 
+unix  3      [ ]         STREAM     CONNECTED     40933    5089/firefox        
+unix  3      [ ]         STREAM     CONNECTED     32310    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     1308778  -                   @/containerd-shim/moby/cc0230c192a6714fa3e29cc14701dbc24a98bf0a7b75291154e148a103c85c02/shim.sock@
+unix  3      [ ]         STREAM     CONNECTED     35937    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     32455    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     33881    3970/ibus-ui-gtk3   
+unix  3      [ ]         STREAM     CONNECTED     44757    5397/code           
+unix  3      [ ]         STREAM     CONNECTED     45427    5351/app --node-int 
+unix  3      [ ]         STREAM     CONNECTED     39295    4294/gnome-software 
+unix  3      [ ]         STREAM     CONNECTED     36891    4651/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35904    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     34945    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     40942    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     38270    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     33962    4078/indicator-keyb 
+unix  3      [ ]         STREAM     CONNECTED     35654    4306/nautilus       
+unix  3      [ ]         STREAM     CONNECTED     34833    3976/ibus-x11       
+unix  3      [ ]         STREAM     CONNECTED     614951   23482/gvfsd-network @/dbus-vfs-daemon/socket-eSo4nGfg
+unix  3      [ ]         STREAM     CONNECTED     171010   31679/gvfsd-recent  
+unix  3      [ ]         STREAM     CONNECTED     35936    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     34895    3993/at-spi2-regist 
+unix  3      [ ]         STREAM     CONNECTED     45462    5410/code           
+unix  3      [ ]         STREAM     CONNECTED     44756    5160/app --node-int 
+unix  3      [ ]         STREAM     CONNECTED     36889    4651/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35637    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     34936    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     19050    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     1310824  3673/docker         
+unix  3      [ ]         STREAM     CONNECTED     155691   27436/unity-files-d 
+unix  3      [ ]         STREAM     CONNECTED     40417    3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     36471    4751/sh             
+unix  3      [ ]         STREAM     CONNECTED     35459    4022/hud-service    
+unix  3      [ ]         STREAM     CONNECTED     21290    -                   /var/run/docker/containerd/docker-containerd.sock
+unix  3      [ ]         STREAM     CONNECTED     19456    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     614950   23963/gedit         
+unix  3      [ ]         STREAM     CONNECTED     169209   4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35996    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34028    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     32984    4078/indicator-keyb 
+unix  3      [ ]         STREAM     CONNECTED     34842    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     154951   3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     45360    5151/code --type=gp 
+unix  3      [ ]         STREAM     CONNECTED     36893    4651/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35638    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     1310825  3673/docker         
+unix  3      [ ]         SEQPACKET  CONNECTED     514206   4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     135814   3946/ibus-daemon    @/tmp/ibus/dbus-vlwyuw0L
+unix  3      [ ]         STREAM     CONNECTED     37021    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     33994    4024/unity-settings 
+unix  3      [ ]         STREAM     CONNECTED     18115    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     40930    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     31735    3931/upstart-dbus-b 
+unix  3      [ ]         STREAM     CONNECTED     155619   5397/code           
+unix  3      [ ]         STREAM     CONNECTED     36032    4583/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34321    4303/compiz         
+unix  3      [ ]         STREAM     CONNECTED     32999    4075/indicator-date 
+unix  3      [ ]         STREAM     CONNECTED     33886    3984/at-spi-bus-lau 
+unix  3      [ ]         STREAM     CONNECTED     45430    5351/app --node-int /run/user/1000/vscode-eb5606cf-1.27.2-shared.sock
+unix  3      [ ]         STREAM     CONNECTED     45365    5151/code --type=gp 
+unix  3      [ ]         STREAM     CONNECTED     35902    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     34176    4298/polkit-gnome-a 
+unix  3      [ ]         STREAM     CONNECTED     32890    3955/gvfsd          
+unix  3      [ ]         STREAM     CONNECTED     135809   23963/gedit         
+unix  3      [ ]         STREAM     CONNECTED     44763    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     38263    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     34443    4583/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35461    4022/hud-service    
+unix  3      [ ]         STREAM     CONNECTED     21820    -                   
+unix  3      [ ]         STREAM     CONNECTED     1340122  -                   
+unix  3      [ ]         SEQPACKET  CONNECTED     40939    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34328    4462/gvfsd-trash    @/dbus-vfs-daemon/socket-BW0OSP3b
+unix  3      [ ]         STREAM     CONNECTED     34893    3993/at-spi2-regist 
+unix  3      [ ]         STREAM     CONNECTED     32315    3984/at-spi-bus-lau 
+unix  3      [ ]         STREAM     CONNECTED     34832    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     1336438  -                   
+unix  3      [ ]         STREAM     CONNECTED     44754    5160/app --node-int 
+unix  3      [ ]         STREAM     CONNECTED     35860    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     33975    4074/indicator-powe 
+unix  3      [ ]         STREAM     CONNECTED     1308627  -                   /var/run/docker.sock
+unix  3      [ ]         STREAM     CONNECTED     153303   3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     40941    5089/firefox        
+unix  3      [ ]         STREAM     CONNECTED     36484    4767/zeitgeist-fts  
+unix  3      [ ]         STREAM     CONNECTED     34821    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     22616    -                   /var/run/dbus/system_bus_socket
+unix  2      [ ]         DGRAM                    18187    -                   
+unix  3      [ ]         STREAM     CONNECTED     35652    4462/gvfsd-trash    
+unix  3      [ ]         STREAM     CONNECTED     35636    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     34027    4139/geoclue-master 
+unix  3      [ ]         STREAM     CONNECTED     32321    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     33889    3946/ibus-daemon    @/tmp/ibus/dbus-vlwyuw0L
+unix  3      [ ]         STREAM     CONNECTED     32303    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     20194    -                   
+unix  3      [ ]         STREAM     CONNECTED     45461    5410/code           
+unix  3      [ ]         SEQPACKET  CONNECTED     36899    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34445    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34199    4321/gvfs-udisks2-v 
+unix  3      [ ]         STREAM     CONNECTED     514201   3595/firefox        
+unix  3      [ ]         STREAM     CONNECTED     36485    4767/zeitgeist-fts  
+unix  3      [ ]         STREAM     CONNECTED     35462    4022/hud-service    
+unix  2      [ ]         DGRAM                    32742    4033/gnome-session- 
+unix  3      [ ]         STREAM     CONNECTED     19360    -                   
+unix  3      [ ]         STREAM     CONNECTED     40932    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34885    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     34831    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  2      [ ]         DGRAM                    21790    -                   
+unix  3      [ ]         STREAM     CONNECTED     168688   -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     38209    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35651    3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     33897    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     32319    3970/ibus-ui-gtk3   
+unix  3      [ ]         STREAM     CONNECTED     33882    3976/ibus-x11       
+unix  3      [ ]         STREAM     CONNECTED     44753    5397/code           
+unix  3      [ ]         STREAM     CONNECTED     45452    5160/app --node-int 
+unix  3      [ ]         STREAM     CONNECTED     36892    4503/firefox        
+unix  2      [ ]         DGRAM                    34206    -                   
+unix  3      [ ]         STREAM     CONNECTED     32408    4083/indicator-sess 
+unix  2      [ ]         DGRAM                    19826    -                   
+unix  3      [ ]         SEQPACKET  CONNECTED     514207   3595/firefox        
+unix  3      [ ]         STREAM     CONNECTED     155674   -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     138274   -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     40943    5089/firefox        
+unix  3      [ ]         STREAM     CONNECTED     36470    4751/sh             
+unix  3      [ ]         STREAM     CONNECTED     35901    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     17309    -                   
+unix  3      [ ]         STREAM     CONNECTED     40931    5089/firefox        
+unix  3      [ ]         STREAM     CONNECTED     38265    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     34830    3976/ibus-x11       
+unix  3      [ ]         STREAM     CONNECTED     1222251  -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     36031    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34323    4303/compiz         
+unix  3      [ ]         STREAM     CONNECTED     33888    3976/ibus-x11       
+unix  3      [ ]         STREAM     CONNECTED     45426    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     36890    4503/firefox        
+unix  2      [ ]         SEQPACKET  CONNECTED     36881    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34229    4410/gvfs-goa-volum 
+unix  3      [ ]         STREAM     CONNECTED     15091    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     1309887  -                   /var/run/docker.sock
+unix  3      [ ]         STREAM     CONNECTED     1222302  -                   
+unix  3      [ ]         STREAM     CONNECTED     145568   23482/gvfsd-network @/dbus-vfs-daemon/socket-VH0LexF0
+unix  3      [ ]         STREAM     CONNECTED     34813    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     32754    3946/ibus-daemon    @/tmp/ibus/dbus-vlwyuw0L
+unix  3      [ ]         STREAM     CONNECTED     23800    -                   
+unix  3      [ ]         STREAM     CONNECTED     1222928  -                   /run/systemd/journal/stdout
+unix  2      [ ]         DGRAM                    37024    4123/pulseaudio     
+unix  3      [ ]         STREAM     CONNECTED     33444    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     33908    4005/bamfdaemon     
+unix  3      [ ]         STREAM     CONNECTED     132075   23482/gvfsd-network 
+unix  3      [ ]         STREAM     CONNECTED     19395    -                   
+unix  2      [ ]         DGRAM                    19002    -                   
+unix  3      [ ]         STREAM     CONNECTED     17292    -                   
+unix  3      [ ]         STREAM     CONNECTED     153043   27037/soffice.bin   
+unix  3      [ ]         STREAM     CONNECTED     47268    5351/app --node-int 
+unix  3      [ ]         STREAM     CONNECTED     35440    4305/nm-applet      
+unix  3      [ ]         STREAM     CONNECTED     35630    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     32673    3946/ibus-daemon    @/tmp/ibus/dbus-vlwyuw0L
+unix  3      [ ]         STREAM     CONNECTED     33930    4033/gnome-session- 
+unix  3      [ ]         STREAM     CONNECTED     1350539  -                   
+unix  3      [ ]         STREAM     CONNECTED     32967    3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     19799    -                   
+unix  3      [ ]         STREAM     CONNECTED     34827    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     47278    5151/code --type=gp 
+unix  3      [ ]         STREAM     CONNECTED     33391    4388/gvfs-mtp-volum 
+unix  3      [ ]         STREAM     CONNECTED     32728    3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     34868    3991/dbus-daemon    
+unix  3      [ ]         STREAM     CONNECTED     35943    4485/gvfsd-metadata 
+unix  3      [ ]         STREAM     CONNECTED     33120    -                   
+unix  3      [ ]         STREAM     CONNECTED     34952    3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     32584    4123/pulseaudio     /run/user/1000/pulse/native
+unix  2      [ ]         DGRAM                    19797    -                   
+unix  3      [ ]         STREAM     CONNECTED     696514   4123/pulseaudio     /run/user/1000/pulse/native
+unix  2      [ ]         DGRAM                    169020   4303/compiz         
+unix  3      [ ]         STREAM     CONNECTED     45354    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     33201    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     32889    3955/gvfsd          
+unix  3      [ ]         DGRAM                    545      -                   
+unix  3      [ ]         STREAM     CONNECTED     695658   4123/pulseaudio     /run/user/1000/pulse/native
+unix  2      [ ]         SEQPACKET  CONNECTED     41199    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     33479    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     153306   27423/unity-scope-h 
+unix  3      [ ]         STREAM     CONNECTED     33102    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     32393    4040/unity-panel-se 
+unix  3      [ ]         STREAM     CONNECTED     1306419  -                   
+unix  3      [ ]         STREAM     CONNECTED     1306290  -                   
+unix  3      [ ]         STREAM     CONNECTED     155685   -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     34975    4140/indicator-appl 
+unix  3      [ ]         STREAM     CONNECTED     32350    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     134799   23515/gvfsd-dnssd   
+unix  3      [ ]         STREAM     CONNECTED     45343    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     32707    3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     21046    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     45346    3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     32747    4321/gvfs-udisks2-v 
+unix  3      [ ]         STREAM     CONNECTED     33181    4024/unity-settings 
+unix  3      [ ]         STREAM     CONNECTED     32983    4078/indicator-keyb 
+unix  3      [ ]         STREAM     CONNECTED     154952   3946/ibus-daemon    @/tmp/ibus/dbus-vlwyuw0L
+unix  3      [ ]         STREAM     CONNECTED     152379   27037/soffice.bin   
+unix  3      [ ]         STREAM     CONNECTED     32367    4024/unity-settings 
+unix  3      [ ]         STREAM     CONNECTED     514198   4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     153294   27434/unity-scope-l 
+unix  3      [ ]         STREAM     CONNECTED     132045   23495/gvfsd-smb-bro 
+unix  3      [ ]         STREAM     CONNECTED     34981    4123/pulseaudio     
+unix  3      [ ]         STREAM     CONNECTED     34976    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         DGRAM                    823      -                   
+unix  3      [ ]         STREAM     CONNECTED     152385   -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     41897    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     34183    4294/gnome-software 
+unix  3      [ ]         STREAM     CONNECTED     34140    4287/vino-server    
+unix  2      [ ]         DGRAM                    32815    3797/systemd        
+unix  3      [ ]         STREAM     CONNECTED     34603    4699/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35644    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     35456    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     35441    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     34044    4022/hud-service    
+unix  3      [ ]         STREAM     CONNECTED     155684   -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     33012    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     41781    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35893    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     32876    -                   
+unix  3      [ ]         STREAM     CONNECTED     35817    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34218    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     34174    4298/polkit-gnome-a 
+unix  3      [ ]         STREAM     CONNECTED     153305   27423/unity-scope-h 
+unix  3      [ ]         STREAM     CONNECTED     36003    4583/firefox        
+unix  3      [ ]         STREAM     CONNECTED     33231    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     693081   16406/speech-dispat /run/user/1000/speech-dispatcher/speechd.sock
+unix  3      [ ]         STREAM     CONNECTED     153298   27436/unity-files-d 
+unix  3      [ ]         STREAM     CONNECTED     136262   23495/gvfsd-smb-bro @/dbus-vfs-daemon/socket-De9ouVGX
+unix  3      [ ]         STREAM     CONNECTED     17235    -                   
+unix  3      [ ]         STREAM     CONNECTED     33198    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     34602    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35818    4583/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34231    4410/gvfs-goa-volum 
+unix  3      [ ]         STREAM     CONNECTED     35898    4388/gvfs-mtp-volum 
+unix  3      [ ]         STREAM     CONNECTED     135804   23963/gedit         
+unix  3      [ ]         STREAM     CONNECTED     34047    4202/ubuntu-geoip-p 
+unix  3      [ ]         STREAM     CONNECTED     34884    3993/at-spi2-regist 
+unix  2      [ ]         STREAM     CONNECTED     1371336  4082/indicator-prin 
+unix  3      [ ]         STREAM     CONNECTED     34978    4082/indicator-prin 
+unix  3      [ ]         STREAM     CONNECTED     33884    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     19785    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     41782    5089/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34139    4287/vino-server    
+unix  3      [ ]         STREAM     CONNECTED     1328285  -                   @/containerd-shim/moby/aafb8be440c5afc502bddf727e43f4c92d472ef471184abd82852ecbaee45785/shim.sock@
+unix  3      [ ]         STREAM     CONNECTED     34209    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     33242    4303/compiz         
+unix  3      [ ]         STREAM     CONNECTED     35432    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     33929    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     1308872  -                   @/containerd-shim/moby/1da51936787f75d4e695d8f70c256946ab155d134201b976442097168e0293ba/shim.sock@
+unix  3      [ ]         STREAM     CONNECTED     136260   3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     32307    3963/ibus-dconf     
+unix  3      [ ]         STREAM     CONNECTED     19188    -                   
+unix  3      [ ]         DGRAM                    821      -                   
+unix  3      [ ]         STREAM     CONNECTED     35437    4305/nm-applet      
+unix  3      [ ]         STREAM     CONNECTED     23608    -                   
+unix  3      [ ]         STREAM     CONNECTED     1327719  -                   
+unix  3      [ ]         STREAM     CONNECTED     132019   3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     35942    4485/gvfsd-metadata 
+unix  3      [ ]         STREAM     CONNECTED     34074    -                   /var/run/dbus/system_bus_socket
+unix  2      [ ]         DGRAM                    15589    -                   
+unix  2      [ ]         SEQPACKET  CONNECTED     243237   4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     33386    4378/gvfs-afc-volum 
+unix  3      [ ]         STREAM     CONNECTED     32368    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     155675   3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         DGRAM                    822      -                   
+unix  3      [ ]         STREAM     CONNECTED     47269    5351/app --node-int 
+unix  3      [ ]         STREAM     CONNECTED     34182    4303/compiz         
+unix  3      [ ]         STREAM     CONNECTED     33226    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     34970    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     35658    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     35439    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     1351798  -                   @/containerd-shim/moby/4b5f63f3b35b53f52fc49d46def3d03e48fd3f6cb675623e583043307132733b/shim.sock@
+unix  3      [ ]         STREAM     CONNECTED     155699   27436/unity-files-d @ettchain1-com.canonical.Unity.Scope.files.T481117907846864
+unix  3      [ ]         STREAM     CONNECTED     32732    4305/nm-applet      
+unix  3      [ ]         STREAM     CONNECTED     19800    -                   
+unix  3      [ ]         STREAM     CONNECTED     153299   -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     32309    3970/ibus-ui-gtk3   
+unix  3      [ ]         DGRAM                    824      -                   
+unix  3      [ ]         STREAM     CONNECTED     136270   -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     46140    5127/gconfd-2       
+unix  3      [ ]         STREAM     CONNECTED     35908    4416/evolution-cale 
+unix  3      [ ]         STREAM     CONNECTED     33924    4024/unity-settings 
+unix  3      [ ]         STREAM     CONNECTED     138273   -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     154030   27423/unity-scope-h 
+unix  3      [ ]         STREAM     CONNECTED     34900    3946/ibus-daemon    @/tmp/ibus/dbus-vlwyuw0L
+unix  2      [ ]         DGRAM                    22623    -                   
+unix  3      [ ]         STREAM     CONNECTED     47277    5351/app --node-int 
+unix  3      [ ]         STREAM     CONNECTED     34135    4290/unity-fallback 
+unix  3      [ ]         STREAM     CONNECTED     34442    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     33239    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     32933    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1358945  -                   @/containerd-shim/moby/28b09cbdd01cb25e3ecd19529e5aa767395dda1de791b158190c6a280fff138b/shim.sock@
+unix  2      [ ]         STREAM     CONNECTED     1222989  -                   
+unix  3      [ ]         STREAM     CONNECTED     32372    4040/unity-panel-se 
+unix  3      [ ]         STREAM     CONNECTED     695709   16398/sd_espeak     
+unix  3      [ ]         STREAM     CONNECTED     34973    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     19783    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     33194    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     32291    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     694992   16395/sd_generic    
+unix  3      [ ]         STREAM     CONNECTED     35889    4321/gvfs-udisks2-v 
+unix  3      [ ]         STREAM     CONNECTED     35458    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  2      [ ]         STREAM     CONNECTED     1222263  -                   
+unix  3      [ ]         STREAM     CONNECTED     155289   27434/unity-scope-l @ettchain1-com.canonical.Unity.Scope.applications.T481121896569423
+unix  3      [ ]         STREAM     CONNECTED     33098    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     153293   27434/unity-scope-l 
+unix  3      [ ]         STREAM     CONNECTED     34869    3991/dbus-daemon    
+unix  3      [ ]         STREAM     CONNECTED     20040    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     46141    5127/gconfd-2       
+unix  3      [ ]         STREAM     CONNECTED     34133    4290/unity-fallback 
+unix  3      [ ]         STREAM     CONNECTED     34108    4123/pulseaudio     
+unix  3      [ ]         STREAM     CONNECTED     33243    4022/hud-service    
+unix  3      [ ]         STREAM     CONNECTED     1358944  -                   
+unix  3      [ ]         STREAM     CONNECTED     34055    4024/unity-settings 
+unix  3      [ ]         STREAM     CONNECTED     1307245  -                   @/containerd-shim/moby/9b2fa81a73d28b252a7853ffd8a7b075c331f3f725b3e7d8b4f2537762da8301/shim.sock@
+unix  3      [ ]         STREAM     CONNECTED     33001    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     34870    3970/ibus-ui-gtk3   
+unix  3      [ ]         STREAM     CONNECTED     145581   4462/gvfsd-trash    @/dbus-vfs-daemon/socket-8zZHyxLI
+unix  3      [ ]         STREAM     CONNECTED     34137    4287/vino-server    
+unix  3      [ ]         STREAM     CONNECTED     44635    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     35932    4451/evolution-addr 
+unix  3      [ ]         STREAM     CONNECTED     33228    4305/nm-applet      
+unix  3      [ ]         STREAM     CONNECTED     153040   -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     34048    4202/ubuntu-geoip-p 
+unix  3      [ ]         STREAM     CONNECTED     514208   4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     32464    3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     32460    4140/indicator-appl 
+unix  3      [ ]         STREAM     CONNECTED     32314    3984/at-spi-bus-lau 
+unix  3      [ ]         STREAM     CONNECTED     171012   31679/gvfsd-recent  @/dbus-vfs-daemon/socket-S1ZSizHr
+unix  3      [ ]         STREAM     CONNECTED     145580   5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     46133    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     33197    3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         DGRAM                    546      -                   
+unix  3      [ ]         STREAM     CONNECTED     134735   23482/gvfsd-network 
+unix  3      [ ]         STREAM     CONNECTED     34421    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34922    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     152384   27037/soffice.bin   
+unix  3      [ ]         STREAM     CONNECTED     35024    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     33474    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     34871    3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     155623   5397/code           
+unix  3      [ ]         STREAM     CONNECTED     35413    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     32419    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     22804    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     1307019  -                   
+unix  3      [ ]         STREAM     CONNECTED     154261   27915/code          
+unix  3      [ ]         STREAM     CONNECTED     156129   27905/code          
+unix  3      [ ]         STREAM     CONNECTED     32755    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     33084    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     33926    3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     514197   3595/firefox        
+unix  3      [ ]         STREAM     CONNECTED     224107   23482/gvfsd-network @/dbus-vfs-daemon/socket-7l9WynVP
+unix  3      [ ]         STREAM     CONNECTED     45361    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         SEQPACKET  CONNECTED     35824    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34330    4306/nautilus       
+unix  3      [ ]         STREAM     CONNECTED     21213    -                   
+unix  3      [ ]         STREAM     CONNECTED     35433    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     35020    4123/pulseaudio     /run/user/1000/pulse/native
+unix  3      [ ]         STREAM     CONNECTED     32870    3929/upstart-dbus-b 
+unix  3      [ ]         STREAM     CONNECTED     1307020  -                   @/containerd-shim/moby/2db7f84558ddd3e6fca6b9530bff83cd14620a73be077ebbecd7f76a967a24eb/shim.sock@
+unix  3      [ ]         STREAM     CONNECTED     233240   3946/ibus-daemon    @/tmp/ibus/dbus-vlwyuw0L
+unix  3      [ ]         STREAM     CONNECTED     153289   27423/unity-scope-h 
+unix  3      [ ]         STREAM     CONNECTED     33085    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     514196   4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     136269   23515/gvfsd-dnssd   
+unix  2      [ ]         SEQPACKET  CONNECTED     39313    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34982    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     155627   27923/code          
+unix  3      [ ]         STREAM     CONNECTED     33380    4378/gvfs-afc-volum 
+unix  3      [ ]         STREAM     CONNECTED     34883    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     134585   -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     44851    5523/gnome-terminal 
+unix  3      [ ]         STREAM     CONNECTED     34043    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     32405    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     32369    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     22372    -                   
+unix  3      [ ]         STREAM     CONNECTED     154262   27915/code          
+unix  3      [ ]         STREAM     CONNECTED     41907    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     35453    4022/hud-service    
+unix  3      [ ]         STREAM     CONNECTED     614171   4462/gvfsd-trash    @/dbus-vfs-daemon/socket-5tZqVxmz
+unix  3      [ ]         STREAM     CONNECTED     225780   4306/nautilus       
+unix  3      [ ]         STREAM     CONNECTED     48933    6401/deja-dup-monit 
+unix  3      [ ]         STREAM     CONNECTED     33238    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     34372    4033/gnome-session- @/tmp/.ICE-unix/4033
+unix  3      [ ]         STREAM     CONNECTED     34986    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     155624   27915/code          
+unix  3      [ ]         STREAM     CONNECTED     37182    3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     32981    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     1307066  -                   
+unix  3      [ ]         STREAM     CONNECTED     233239   4294/gnome-software 
+unix  3      [ ]         STREAM     CONNECTED     154273   27923/code          
+unix  3      [ ]         STREAM     CONNECTED     35023    4202/ubuntu-geoip-p 
+unix  3      [ ]         STREAM     CONNECTED     18010    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     615485   23963/gedit         
+unix  3      [ ]         STREAM     CONNECTED     513539   4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     37183    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     35194    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     35819    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     33804    3935/upstart-file-b 
+unix  3      [ ]         STREAM     CONNECTED     155683   27423/unity-scope-h @ettchain1-com.canonical.Unity.Master.Scope.files.T4811171157864
+unix  3      [ ]         STREAM     CONNECTED     34184    4303/compiz         
+unix  3      [ ]         STREAM     CONNECTED     22482    -                   /var/run/docker/containerd/docker-containerd.sock
+unix  3      [ ]         STREAM     CONNECTED     22464    -                   
+unix  3      [ ]         STREAM     CONNECTED     156121   5397/code           
+unix  3      [ ]         STREAM     CONNECTED     153285   27423/unity-scope-h 
+unix  2      [ ]         DGRAM                    35449    -                   
+unix  3      [ ]         STREAM     CONNECTED     32582    3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     48934    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     33091    4139/geoclue-master 
+unix  3      [ ]         SEQPACKET  CONNECTED     44633    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     35612    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     35446    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     156118   27905/code          
+unix  3      [ ]         STREAM     CONNECTED     32576    4207/evolution-cale 
+unix  2      [ ]         DGRAM                    23704    -                   
+unix  3      [ ]         STREAM     CONNECTED     170731   31679/gvfsd-recent  
+unix  3      [ ]         STREAM     CONNECTED     35021    4139/geoclue-master 
+unix  3      [ ]         STREAM     CONNECTED     170067   4123/pulseaudio     /run/user/1000/pulse/native
+unix  3      [ ]         STREAM     CONNECTED     136275   4306/nautilus       
+unix  3      [ ]         STREAM     CONNECTED     33096    4202/ubuntu-geoip-p 
+unix  3      [ ]         STREAM     CONNECTED     35720    4503/firefox        
+unix  3      [ ]         DGRAM                    22772    -                   
+unix  3      [ ]         STREAM     CONNECTED     156120   27905/code          
+unix  3      [ ]         STREAM     CONNECTED     34153    4287/vino-server    
+unix  3      [ ]         STREAM     CONNECTED     23001    -                   /var/run/docker/containerd/docker-containerd.sock
+unix  3      [ ]         STREAM     CONNECTED     615491   4462/gvfsd-trash    @/dbus-vfs-daemon/socket-jG9TPHIU
+unix  3      [ ]         STREAM     CONNECTED     35026    4022/hud-service    
+unix  3      [ ]         STREAM     CONNECTED     167442   4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     47128    5151/code --type=gp 
+unix  3      [ ]         STREAM     CONNECTED     34983    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     35891    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     32552    -                   
+unix  3      [ ]         STREAM     CONNECTED     155283   27423/unity-scope-h 
+unix  3      [ ]         STREAM     CONNECTED     34249    4306/nautilus       
+unix  3      [ ]         STREAM     CONNECTED     35892    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     34937    4072/indicator-mess 
+unix  3      [ ]         STREAM     CONNECTED     32872    3929/upstart-dbus-b 
+unix  2      [ ]         DGRAM                    224906   -                   
+unix  3      [ ]         STREAM     CONNECTED     34061    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     47126    5151/code --type=gp 
+unix  3      [ ]         STREAM     CONNECTED     34031    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     168690   4306/nautilus       
+unix  3      [ ]         STREAM     CONNECTED     33414    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     32290    3805/upstart        @/com/ubuntu/upstart-session/1000/3805
+unix  3      [ ]         STREAM     CONNECTED     694979   4123/pulseaudio     /run/user/1000/pulse/native
+unix  3      [ ]         STREAM     CONNECTED     168687   31679/gvfsd-recent  
+unix  3      [ ]         STREAM     CONNECTED     32706    4287/vino-server    
+unix  3      [ ]         STREAM     CONNECTED     32569    4081/indicator-soun 
+unix  3      [ ]         STREAM     CONNECTED     32977    4033/gnome-session- 
+unix  3      [ ]         STREAM     CONNECTED     32916    3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     155712   27423/unity-scope-h 
+unix  3      [ ]         STREAM     CONNECTED     41908    5151/code --type=gp 
+unix  3      [ ]         STREAM     CONNECTED     35003    4192/dconf-service  
+unix  3      [ ]         STREAM     CONNECTED     1308345  -                   @/containerd-shim/moby/f74d9ff1e215d9128b89b1e232eaa4dba13ad4123e9e2ea8907e863ed7a1b770/shim.sock@
+unix  3      [ ]         STREAM     CONNECTED     513540   3595/firefox        
+unix  3      [ ]         STREAM     CONNECTED     132078   3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     47131    5151/code --type=gp 
+unix  3      [ ]         STREAM     CONNECTED     35820    4583/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35656    4462/gvfsd-trash    @/dbus-vfs-daemon/socket-QFsQzgEs
+unix  3      [ ]         STREAM     CONNECTED     33801    3931/upstart-dbus-b 
+unix  3      [ ]         STREAM     CONNECTED     30594    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     135546   4306/nautilus       
+unix  3      [ ]         STREAM     CONNECTED     35595    -                   
+unix  2      [ ]         DGRAM                    32613    -                   
+unix  3      [ ]         STREAM     CONNECTED     32975    4033/gnome-session- 
+unix  3      [ ]         STREAM     CONNECTED     155682   27423/unity-scope-h @ettchain1-com.canonical.Unity.Master.Scope.applications.T481117109132124
+unix  3      [ ]         STREAM     CONNECTED     35659    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     540      -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     135585   23515/gvfsd-dnssd   @/dbus-vfs-daemon/socket-XEnxFpRp
+unix  3      [ ]         STREAM     CONNECTED     33016    4151/evolution-sour 
+unix  3      [ ]         STREAM     CONNECTED     33390    4388/gvfs-mtp-volum 
+unix  3      [ ]         STREAM     CONNECTED     32348    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     34882    3993/at-spi2-regist 
+unix  3      [ ]         STREAM     CONNECTED     44852    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     32583    4022/hud-service    
+unix  3      [ ]         STREAM     CONNECTED     32566    4123/pulseaudio     
+unix  3      [ ]         STREAM     CONNECTED     33002    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     34972    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     170732   4306/nautilus       
+unix  3      [ ]         STREAM     CONNECTED     35454    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     35120    -                   
+unix  3      [ ]         STREAM     CONNECTED     39299    4294/gnome-software 
+unix  3      [ ]         STREAM     CONNECTED     35629    3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     34036    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     35724    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     33905    4000/ibus-engine-si 
+unix  3      [ ]         STREAM     CONNECTED     32285    -                   /var/run/dbus/system_bus_socket
+unix  2      [ ]         SEQPACKET  CONNECTED     481592   4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     169467   3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     156119   5397/code           
+unix  3      [ ]         STREAM     CONNECTED     35457    4033/gnome-session- @/tmp/.ICE-unix/4033
+unix  3      [ ]         STREAM     CONNECTED     34943    4083/indicator-sess 
+unix  3      [ ]         STREAM     CONNECTED     32288    3805/upstart        @/com/ubuntu/upstart-session/1000/3805
+unix  3      [ ]         STREAM     CONNECTED     1224752  -                   
+unix  3      [ ]         STREAM     CONNECTED     156123   5397/code           
+unix  3      [ ]         STREAM     CONNECTED     153286   -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     33105    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     34919    4024/unity-settings 
+unix  3      [ ]         STREAM     CONNECTED     1308344  -                   
+unix  3      [ ]         STREAM     CONNECTED     132085   23482/gvfsd-network @/dbus-vfs-daemon/socket-4Y1gRsSE
+unix  3      [ ]         STREAM     CONNECTED     45363    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     33097    4202/ubuntu-geoip-p 
+unix  3      [ ]         STREAM     CONNECTED     36002    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     31668    -                   
+unix  3      [ ]         STREAM     CONNECTED     694982   4123/pulseaudio     /run/user/1000/pulse/native
+unix  3      [ ]         STREAM     CONNECTED     155622   27915/code          
+unix  3      [ ]         STREAM     CONNECTED     33371    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     32704    4290/unity-fallback 
+unix  3      [ ]         STREAM     CONNECTED     32427    4081/indicator-soun 
+unix  3      [ ]         STREAM     CONNECTED     32941    4040/unity-panel-se 
+unix  3      [ ]         STREAM     CONNECTED     23701    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     171015   31679/gvfsd-recent  @/dbus-vfs-daemon/socket-aS0BodOl
+unix  3      [ ]         STREAM     CONNECTED     154272   27923/code          
+unix  3      [ ]         STREAM     CONNECTED     156122   27905/code          
+unix  3      [ ]         STREAM     CONNECTED     145414   4462/gvfsd-trash    @/dbus-vfs-daemon/socket-kVcMqVkg
+unix  3      [ ]         STREAM     CONNECTED     35022    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     15659    -                   
+unix  3      [ ]         STREAM     CONNECTED     136274   23482/gvfsd-network 
+unix  3      [ ]         SEQPACKET  CONNECTED     35825    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35613    -                   /run/systemd/journal/stdout
+unix  3      [ ]         DGRAM                    22773    -                   
+unix  3      [ ]         STREAM     CONNECTED     694627   4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     156117   5397/code           
+unix  3      [ ]         STREAM     CONNECTED     34042    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     34021    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     32976    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     169468   3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     144831   5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     47132    5151/code --type=gp 
+unix  3      [ ]         STREAM     CONNECTED     34440    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     155626   27915/code          
+unix  3      [ ]         STREAM     CONNECTED     695657   16392/sd_dummy      
+unix  3      [ ]         STREAM     CONNECTED     514199   3595/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34050    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     35019    4123/pulseaudio     /run/user/1000/pulse/native
+unix  3      [ ]         STREAM     CONNECTED     33979    4082/indicator-prin 
+unix  3      [ ]         STREAM     CONNECTED     31731    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     614191   23963/gedit         
+unix  3      [ ]         STREAM     CONNECTED     35443    4298/polkit-gnome-a 
+unix  3      [ ]         STREAM     CONNECTED     33017    4151/evolution-sour 
+unix  3      [ ]         SEQPACKET  CONNECTED     44632    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     33381    4378/gvfs-afc-volum 
+unix  3      [ ]         STREAM     CONNECTED     695652   16388/sd_cicero     
+unix  3      [ ]         STREAM     CONNECTED     39297    4294/gnome-software 
+unix  3      [ ]         STREAM     CONNECTED     32567    4081/indicator-soun 
+unix  3      [ ]         STREAM     CONNECTED     33000    4075/indicator-date 
+unix  3      [ ]         STREAM     CONNECTED     21155    -                   
+unix  3      [ ]         STREAM     CONNECTED     156130   27905/code          
+unix  3      [ ]         STREAM     CONNECTED     156124   27905/code          
+unix  3      [ ]         STREAM     CONNECTED     155288   27434/unity-scope-l @ettchain1-com.canonical.Unity.Scope.scopes.T481121890447029
+unix  3      [ ]         STREAM     CONNECTED     33230    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     35002    4192/dconf-service  
+unix  3      [ ]         STREAM     CONNECTED     34037    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     49398    6401/deja-dup-monit 
+unix  3      [ ]         STREAM     CONNECTED     41180    4123/pulseaudio     /run/user/1000/pulse/native
+unix  3      [ ]         STREAM     CONNECTED     36906    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35899    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     44640    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     32466    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     514209   3595/firefox        
+unix  3      [ ]         STREAM     CONNECTED     152381   27037/soffice.bin   
+unix  3      [ ]         STREAM     CONNECTED     46223    5397/code           
+unix  3      [ ]         STREAM     CONNECTED     44655    4123/pulseaudio     /run/user/1000/pulse/native
+unix  2      [ ]         DGRAM                    30682    -                   
+unix  3      [ ]         STREAM     CONNECTED     44854    3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     41895    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     36909    4699/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34334    4485/gvfsd-metadata 
+unix  3      [ ]         STREAM     CONNECTED     35900    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     45347    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     32272    3889/dbus-daemon    
+unix  3      [ ]         STREAM     CONNECTED     46145    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     20246    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     20760    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     45357    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     38283    4755/zeitgeist-daem 
+unix  3      [ ]         STREAM     CONNECTED     45348    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     33010    4082/indicator-prin 
+unix  3      [ ]         STREAM     CONNECTED     678998   3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     46255    5160/app --node-int 
+unix  3      [ ]         STREAM     CONNECTED     46154    5160/app --node-int 
+unix  3      [ ]         STREAM     CONNECTED     32467    4151/evolution-sour 
+unix  3      [ ]         STREAM     CONNECTED     18583    -                   
+unix  3      [ ]         STREAM     CONNECTED     47446    5523/gnome-terminal 
+unix  3      [ ]         STREAM     CONNECTED     39590    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     36480    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     34342    4303/compiz         
+unix  3      [ ]         STREAM     CONNECTED     32276    3805/upstart        
+unix  3      [ ]         STREAM     CONNECTED     1309281  -                   
+unix  3      [ ]         STREAM     CONNECTED     679005   15937/unity-music-d @ettchain1-com.canonical.Unity.Scope.rhythmbox.T1534207822524187
+unix  3      [ ]         STREAM     CONNECTED     46213    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     46142    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     32450    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     19782    -                   
+unix  2      [ ]         DGRAM                    817      -                   
+unix  3      [ ]         STREAM     CONNECTED     20751    -                   
+unix  3      [ ]         STREAM     CONNECTED     51249    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     46262    5397/code           
+unix  3      [ ]         STREAM     CONNECTED     46135    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     34768    4699/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35635    4429/evolution-cale 
+unix  3      [ ]         STREAM     CONNECTED     17916    -                   
+unix  3      [ ]         STREAM     CONNECTED     678993   -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     152382   27037/soffice.bin   
+unix  3      [ ]         STREAM     CONNECTED     46155    5160/app --node-int 
+unix  3      [ ]         STREAM     CONNECTED     30676    3797/systemd        
+unix  3      [ ]         STREAM     CONNECTED     22800    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     44848    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     36911    4699/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35663    3946/ibus-daemon    @/tmp/ibus/dbus-vlwyuw0L
+unix  3      [ ]         STREAM     CONNECTED     35624    4405/gvfs-gphoto2-v 
+unix  3      [ ]         STREAM     CONNECTED     19478    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     44643    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     46222    5397/code           
+unix  3      [ ]         STREAM     CONNECTED     46148    5111/code --unity-l 
+unix  3      [ ]         SEQPACKET  CONNECTED     34426    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     33018    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     678990   15937/unity-music-d 
+unix  3      [ ]         STREAM     CONNECTED     36919    4699/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35634    4306/nautilus       
+unix  3      [ ]         STREAM     CONNECTED     17111    -                   
+unix  3      [ ]         STREAM     CONNECTED     44639    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     34008    -                   
+unix  3      [ ]         STREAM     CONNECTED     1224782  -                   
+unix  3      [ ]         STREAM     CONNECTED     514210   4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     33906    4000/ibus-engine-si 
+unix  3      [ ]         STREAM     CONNECTED     34819    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     19804    -                   
+unix  3      [ ]         STREAM     CONNECTED     44572    5089/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34441    4583/firefox        
+unix  3      [ ]         STREAM     CONNECTED     233266   3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     36907    4699/firefox        
+unix  3      [ ]         STREAM     CONNECTED     33413    -                   @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     40416    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     34996    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     32271    3889/dbus-daemon    
+unix  3      [ ]         STREAM     CONNECTED     1309772  -                   @/containerd-shim/moby/d592687917c95da5e17e3913f815bb72f7a404c8d2682421e4ad7f4303c6b666/shim.sock@
+unix  3      [ ]         STREAM     CONNECTED     678995   27423/unity-scope-h @ettchain1-com.canonical.Unity.Master.Scope.music.T1534207293148374
+unix  3      [ ]         STREAM     CONNECTED     41898    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     33863    3960/gvfsd-fuse     
+unix  3      [ ]         STREAM     CONNECTED     31677    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     19536    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     47443    5523/gnome-terminal 
+unix  3      [ ]         STREAM     CONNECTED     41903    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     36910    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     1372112  -                   @/containerd-shim/moby/728301b4250b6fe256b0b77adaf33679d95e5cfb05cb29674c21f6538fe97bce/shim.sock@
+unix  3      [ ]         STREAM     CONNECTED     678991   -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     46151    5160/app --node-int 
+unix  3      [ ]         SEQPACKET  CONNECTED     34422    3595/firefox        
+unix  3      [ ]         STREAM     CONNECTED     33910    4005/bamfdaemon     
+unix  2      [ ]         DGRAM                    30589    -                   
+unix  3      [ ]         STREAM     CONNECTED     18526    -                   
+unix  3      [ ]         STREAM     CONNECTED     47448    5523/gnome-terminal 
+unix  3      [ ]         STREAM     CONNECTED     41902    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     34769    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35660    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     35632    4303/compiz         
+unix  3      [ ]         STREAM     CONNECTED     1223835  -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     678997   15937/unity-music-d 
+unix  3      [ ]         STREAM     CONNECTED     46168    5160/app --node-int 
+unix  3      [ ]         STREAM     CONNECTED     20785    -                   
+unix  3      [ ]         STREAM     CONNECTED     19833    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     44749    5351/app --node-int /run/user/1000/vscode-eb5606cf-1.27.2-shared.sock
+unix  3      [ ]         SEQPACKET  CONNECTED     41867    5115/code --type=zy 
+unix  3      [ ]         STREAM     CONNECTED     36920    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35625    4405/gvfs-gphoto2-v 
+unix  3      [ ]         STREAM     CONNECTED     22376    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     1372111  -                   
+unix  3      [ ]         STREAM     CONNECTED     19832    -                   /var/run/dbus/system_bus_socket
+unix  2      [ ]         DGRAM                    521      -                   
+unix  3      [ ]         STREAM     CONNECTED     46157    5160/app --node-int 
+unix  3      [ ]         SEQPACKET  CONNECTED     34423    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     33865    3963/ibus-dconf     
+unix  3      [ ]         STREAM     CONNECTED     32895    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     32885    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     45593    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     36921    4699/firefox        
+unix  3      [ ]         STREAM     CONNECTED     44642    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     32252    3805/upstart        
+unix  3      [ ]         STREAM     CONNECTED     678992   15937/unity-music-d 
+unix  3      [ ]         STREAM     CONNECTED     154950   3991/dbus-daemon    @/tmp/dbus-3vFrU1Nm9p
+unix  3      [ ]         STREAM     CONNECTED     46143    5111/code --unity-l 
+unix  2      [ ]         DGRAM                    401      -                   
+unix  3      [ ]         STREAM     CONNECTED     47444    5523/gnome-terminal 
+unix  3      [ ]         STREAM     CONNECTED     46267    5160/app --node-int /tmp/vscode-ipc-ecc8a7df-7e3e-4b31-adae-0fdeacb521bf.sock
+unix  3      [ ]         STREAM     CONNECTED     36908    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34338    4303/compiz         
+unix  3      [ ]         STREAM     CONNECTED     44653    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     514211   3595/firefox        
+unix  3      [ ]         STREAM     CONNECTED     46214    5351/app --node-int 
+unix  3      [ ]         STREAM     CONNECTED     46158    5160/app --node-int 
+unix  3      [ ]         SEQPACKET  CONNECTED     34425    3595/firefox        
+unix  3      [ ]         STREAM     CONNECTED     32910    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     33816    3946/ibus-daemon    
+unix  3      [ ]         STREAM     CONNECTED     44573    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     45594    -                   /run/systemd/journal/stdout
+unix  3      [ ]         SEQPACKET  CONNECTED     36916    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     34261    3946/ibus-daemon    @/tmp/ibus/dbus-vlwyuw0L
+unix  3      [ ]         STREAM     CONNECTED     32449    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     30710    3889/dbus-daemon    @/tmp/dbus-xmjONKZo3k
+unix  3      [ ]         STREAM     CONNECTED     679004   27423/unity-scope-h 
+unix  3      [ ]         STREAM     CONNECTED     46161    5160/app --node-int 
+unix  3      [ ]         STREAM     CONNECTED     34834    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     34826    3946/ibus-daemon    @/tmp/ibus/dbus-vlwyuw0L
+unix  3      [ ]         STREAM     CONNECTED     33819    3955/gvfsd          
+unix  3      [ ]         STREAM     CONNECTED     22122    -                   
+unix  3      [ ]         STREAM     CONNECTED     17178    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     32398    4073/indicator-blue 
+unix  3      [ ]         STREAM     CONNECTED     20182    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     234129   10827/gvfsd-http    
+unix  3      [ ]         STREAM     CONNECTED     41901    5111/code --unity-l 
+unix  3      [ ]         SEQPACKET  CONNECTED     36917    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     35680    4462/gvfsd-trash    @/dbus-vfs-daemon/socket-awIzhg2t
+unix  3      [ ]         STREAM     CONNECTED     44652    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     32827    -                   /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     678994   27423/unity-scope-h 
+unix  3      [ ]         STREAM     CONNECTED     46169    5151/code --type=gp 
+unix  3      [ ]         STREAM     CONNECTED     46150    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     34971    4074/indicator-powe 
+unix  3      [ ]         STREAM     CONNECTED     19535    -                   /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     36918    4503/firefox        
+unix  3      [ ]         STREAM     CONNECTED     42126    5034/update-notifie 
+unix  3      [ ]         STREAM     CONNECTED     46256    5410/code           
+unix  3      [ ]         STREAM     CONNECTED     46160    5111/code --unity-l 
+unix  3      [ ]         STREAM     CONNECTED     34017    4192/dconf-service  
+unix  3      [ ]         STREAM     CONNECTED     32912    3963/ibus-dconf     

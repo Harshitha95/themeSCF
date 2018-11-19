@@ -1,0 +1,29 @@
+{
+    "name": "fabcar",
+    "version": "1.0.0",
+    "description": "Hyperledger Fabric Car Sample Application",
+    "main": "fabcar.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "@grpc/proto-loader": "^0.3.0",
+        "cfenv": "^1.1.0",
+        "connect-busboy": "0.0.2",
+        "ejs": "^2.6.1",
+        "express": "^4.16.3",
+        "fabric-ca-client": "~1.1.0",
+        "fabric-client": "~1.1.0",
+        "grpc": "^1.6.0",
+        "vcap_services": "^0.5.1"
+    },
+    "author": "Anthony O'Dowd",
+    "license": "Apache-2.0",
+    "keywords": [
+        "Hyperledger",
+        "Fabric",
+        "Car",
+        "Sample",
+        "Application"
+    ]
+}
