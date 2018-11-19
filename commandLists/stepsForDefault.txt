@@ -1,0 +1,58 @@
+
+
+
+STEP 1	
+
+	- go to first-network inside this directory
+	
+	- run
+			./byfn -m  down
+
+
+STEP 2
+
+	- in the same directory run
+		
+			./byfn -m generate -c myc
+
+
+STEP 3
+
+	- after that run
+
+		docker-compose -f docker-compose-cli.yaml up -d
+		
+		docker exec -it cli bash
+
+
+STEP 4
+
+	- now you're inside the cli container
+	- type 'ls' and you'll see a directory called scripts
+	- in that 'scripts/' there are two bash scripts :
+
+		
+		chan.sh	:	this is used to create channel, join peers to channel and specify anchor peer etc...
+
+		installCC.sh :	this'll install AND instantiate all chaincodes need for "Disbursement Transaction" ONLY
+
+		invokeCC.sh : this'll invoke all necessary ledgers
+
+	- run these two :
+
+		cd scripts/
+		./chain.sh
+		./installCC.sh
+
+
+	- come back to peer/	(scripts# cd ../)
+
+		invoke all the needed chaincodes :	the invoke cmds can be found at EncoreBlockchain/commandLists/dummyArgs.txt
+
+			ie.
+					bankcc
+					businesscc
+					walletcc (4times)
+
+
+	- FINALLY invoke the transaction ( here is the problem, debug and find the error)
