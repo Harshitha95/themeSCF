@@ -9,6 +9,7 @@ import (
 	"errors"
 	"strings"
 	"time"
+	"math"
 	"math/rand"
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	pb "github.com/hyperledger/fabric/protos/peer"
@@ -289,6 +290,11 @@ println("Got Opening Balance",openBalString)
 //amt, _ = strconv.ParseInt(args[5], 10, 64)
 
 bal := openBalance + amt
+i := float64(bal)
+	
+	if math.Signbit(i) {
+		return shim.Error("Invalid tranaction Amount")
+	}
 txnBalString := strconv.FormatInt(bal, 10)
 println("openBalString ",openBalString)
 println("Updating Balance ",bal)
@@ -305,6 +311,7 @@ md1 := hash1.Sum(nil)
 txnIDsha1 := hex.EncodeToString(md1)
 md12 := hash1.Sum(nil)
 txnIDsha12 := hex.EncodeToString(md12)
+
 argsList := []string{txnIDsha1, txnIDsha12,args[7], args[0], args[1], walletID, openBalString, "loan_sanction",args[4], cAmtString, dAmtString, txnBalString, args[5]}
 argsListStr := strings.Join(argsList, ",")
 txnResponse := putInTxnBal(stub, argsListStr)

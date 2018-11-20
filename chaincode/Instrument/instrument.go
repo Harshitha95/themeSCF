@@ -1,6 +1,7 @@
 package main
 
 import (
+	"math"
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
@@ -147,7 +148,13 @@ func enterInstrument(stub shim.ChaincodeStubInterface, args []string) pb.Respons
 	if response.Status == shim.OK {
 		return shim.Error("instrumetcc: " + "BusinessId " + args[3] + " does not exits")
 	}
-
+	i, err := strconv.ParseFloat(args[4], 64)
+	if err!= nil {
+		return shim.Error("Error while converting String to Int ");
+	}
+	if math.Signbit(i) {
+		return shim.Error("Invalid Instrument Amount")
+	}
 	//InstrumentDate -> instDate
 	instDate, err := time.Parse("02/01/2006", args[1])
 	if err != nil {

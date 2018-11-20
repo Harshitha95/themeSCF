@@ -172,7 +172,7 @@ func newRepayInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	}
 
 	//####################################################################################################################
-	//Calling for updating Bank Asset Wallet
+	//Calling for updating Loan Disbursed  Wallet
 	//####################################################################################################################
 
 	cAmtString = "0"
@@ -230,7 +230,7 @@ func newRepayInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	}
 
 	//####################################################################################################################
-	//Calling for updating Bank Refund_Wallet
+	//Calling for updating Bank liability Wallet
 	//####################################################################################################################
 
 	dAmtString = "0"
@@ -244,20 +244,28 @@ func newRepayInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	}
 	openBalString = strconv.FormatInt(openBalance, 10)
 
-	cAmt := amt - loanChargesWalletValue - loanDisbursedWalletValue
+	fmt.Println(" openBalance in bank liability ",openBalance)
+	fmt.Println(" amt ",amt)
+	fmt.Println(" loanChargesWalletValue ",loanChargesWalletValue)
+	fmt.Println(" loanDisbursedWalletValue ",loanDisbursedWalletValue)
+		cAmt := amt - loanChargesWalletValue - loanDisbursedWalletValue
+
 	if cAmt > 0 {
 		bal = openBalance + cAmt
 	} else {
 		bal = openBalance
 	}
+	fmt.Println("bal for updating Bank liability  ",bal)
 	response = walletUpdation(stub, walletID, bal)
 	if response.Status != shim.OK {
 		return shim.Error("repaymentcc: " + "Repayment Bank Liability Wallet " + response.Message)
 	}
 	txnBalString = strconv.FormatInt(bal, 10)
+	fmt.Println("txnBalString Ammount  Bank liability ",txnBalString)
+	fmt.Println(" Bank liability walletID",walletID)
 	cAmtString = strconv.FormatInt(cAmt, 10)
 	u4 := uuid.New()
-	fmt.Printf("generated Version 4 UUID %v", u4)
+	fmt.Printf("generated Version 4 UUID %v Bank liability", u4)
 	StringUUID4 := u4.String();
 	fmt.Print("StringUUID4 ",StringUUID4);
 	argsList = []string{StringUUID4, args[0], args[2], args[3], args[4], walletID, openBalString, args[1], args[5], cAmtString, dAmtString, txnBalString, args[8]}
@@ -289,14 +297,21 @@ func newRepayInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 		return shim.Error("repaymentcc: " + "Repayment Business Loan_WalletValue (seller) " + err.Error())
 	}
 	openBalString = strconv.FormatInt(SellerLoanwalletopenBalance, 10)
+
 	if (amt > loanChargesWalletValue+loanDisbursedWalletValue) || (amt == loanChargesWalletValue+loanDisbursedWalletValue) {
 		dAmt = loanChargesWalletValue + loanDisbursedWalletValue
 	} else if amt < loanChargesWalletValue+loanDisbursedWalletValue {
 		dAmt = amt - loanChargesWalletValue
 	}
-	bal = openBalance - dAmt
+	fmt.Println(" openBalance in Business Loan_Wallet  ",SellerLoanwalletopenBalance)
+	fmt.Println(" amt ",amt)
+	fmt.Println(" dAmt ",dAmt)
+	fmt.Println(" SellerLoanwalletID  ",SellerLoanwalletID)
+	
+	bal = SellerLoanwalletopenBalance - dAmt
+	fmt.Println(" updatinf Balance in Business Loan_Wallet ",bal)
 	txnBalString = strconv.FormatInt(bal, 10)
-	response = walletUpdation(stub, walletID, bal)
+	response = walletUpdation(stub, SellerLoanwalletID, bal)
 	if response.Status != shim.OK {
 		return shim.Error("repaymentcc: " + "Repayment Business Loan_Wallet (seller) " + response.Message)
 	}
@@ -305,7 +320,7 @@ func newRepayInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Printf("generated Version 4 UUID %v", u5)
 	StringUUID5 := u5.String();
 	fmt.Print("StringUUID5 ",StringUUID5);
-	argsList = []string{StringUUID5, args[0], args[2], args[3], args[4], walletID, openBalString, args[1], args[5], cAmtString, dAmtString, txnBalString, args[8]}
+	argsList = []string{StringUUID5, args[0], args[2], args[3], args[4], SellerLoanwalletID, openBalString, args[1], args[5], cAmtString, dAmtString, txnBalString, args[8]}
 	argsListStr = strings.Join(argsList, ",")
 	txnResponse = putInTxnBal(stub, argsListStr)
 	if txnResponse.Status != shim.OK {
@@ -330,6 +345,11 @@ func newRepayInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	dAmt = loanChargesWalletValue
 	bal = openBalance - loanChargesWalletValue
 	txnBalString = strconv.FormatInt(bal, 10)
+fmt.Println("openBalance Business Charges/Interest O/s Wallet ",openBalance)
+
+fmt.Println(" Business Charges/Interest O/s Wallet",walletID)
+
+fmt.Println("Updating Balance Business Charges/Interest O/s Wallet",bal);
 
 	response = walletUpdation(stub, walletID, bal)
 	if response.Status != shim.OK {
@@ -514,22 +534,26 @@ func newRepayInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	//####################################################################################################################
 	//Calling for updating Business Liability Wallet (Buyer)
 	//####################################################################################################################
-
+	
 	cAmtString = "0"
 	dAmtString = args[5]
 
 	walletID, err = getWalletID(stub, "businesscc", args[8], "liability")
 	if err != nil {
-		return shim.Error("repaymentcc: " + "Repayment Bank Liability WalletID " + err.Error())
+		return shim.Error("repaymentcc: " + "Repayment businesscc Liability WalletID " + err.Error())
 	}
 	fmt.Print("walletID ",walletID);
 	openBalance, err = getWalletValue(stub, walletID)
 	if err != nil {
-		return shim.Error("repaymentcc: " + "Repayment Bank Liability WalletValue " + err.Error())
+		return shim.Error("repaymentcc: " + "Repayment businesscc Liability WalletValue " + err.Error())
 	}
 	openBalString = strconv.FormatInt(openBalance, 10)
-
+	//reducing loan amt instead of  repayment amount 
+	if (openBalance < amt) || (openBalance == amt) {
 	bal = openBalance - amt
+	} else { 
+	bal = openBalance
+	}
 	txnBalString = strconv.FormatInt(bal, 10)
 
 	response = walletUpdation(stub, walletID, bal)
@@ -594,6 +618,8 @@ func getWalletValue(stub shim.ChaincodeStubInterface, walletID string) (int64, e
 func walletUpdation(stub shim.ChaincodeStubInterface, walletID string, amt int64) pb.Response {
 
 	txnBalString := strconv.FormatInt(amt, 10)
+	fmt.Println("walletUpdation  WalletId",walletID)
+	fmt.Println("walletUpdation  Balance",txnBalString)
 	walletArgs := toChaincodeArgs("updateWallet", walletID, txnBalString)
 	walletResponse := stub.InvokeChaincode("walletcc", walletArgs, "myc")
 	if walletResponse.Status != shim.OK {

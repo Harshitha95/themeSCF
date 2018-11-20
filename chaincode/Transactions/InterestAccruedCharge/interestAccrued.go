@@ -12,7 +12,6 @@ import (
 
 type chainCode struct {
 }
-
 func toChaincodeArgs(args ...string) [][]byte {
 	bargs := make([][]byte, len(args))
 	for i, arg := range args {
@@ -185,34 +184,36 @@ func newInterestAccruedInfo(stub shim.ChaincodeStubInterface, args []string) pb.
 	fmt.Println(string(response.GetPayload()))
 
 	//####################################################################################################################
-	//Calling for updating Bank Revenue Wallet
+	//Calling for updating Bank liability Wallet
 	//####################################################################################################################
 
 	cAmtString = args[5]
 	dAmtString = "0"
 
-	walletID, openBalString, txnBalString, err = getWalletInfo(stub, args[6], "asset", "bankcc", cAmtString, dAmtString)
+	walletID, openBalString, txnBalString, err = getWalletInfo(stub, args[6], "liability", "bankcc", cAmtString, dAmtString)
 	if err != nil {
-		return shim.Error("interestAcc.cc: " + "Bank Asset Wallet(interestAcc):" + err.Error())
+		return shim.Error("interestAcc.cc: " + "Bank liability Wallet(interestAcc):" + err.Error())
 	}
 	u4 := uuid.New()
 
-	fmt.Printf("generated Version 4 UUID Bank Revenue Wallet %v", u4)
+	fmt.Printf("generated Version 4 UUID Bank liability Wallet %v", u4)
 	StringUUID4 := u4.String();
-	
+	fmt.Println("walletID ",walletID)
+	fmt.Println("cAmtString in bank liability ",cAmtString);
+	fmt.Println("dAmtString in bank liability ",dAmtString);
 	fmt.Print("StringUUID4 ",StringUUID4);
 	// STEP-4 generate txn_balance_object and write it to the Txn_Bal_Ledger
 	argsList = []string{StringUUID4, args[0], args[2], args[3], args[4], walletID, openBalString, args[1], args[5], cAmtString, dAmtString, txnBalString, args[8]}
 	argsListStr = strings.Join(argsList, ",")
 	chaincodeArgs = toChaincodeArgs("putTxnBalInfo", argsListStr)
-	fmt.Println("calling the other chaincode")
+	fmt.Println("calling the bankcc chaincode to update Bank liability Wallet")
 	response = stub.InvokeChaincode("txnbalcc", chaincodeArgs, "myc")
 	if response.Status != shim.OK {
 		return shim.Error("interestAcc.cc: " + response.Message)
 	}
 	fmt.Println(string(response.GetPayload()))
 	
-	fmt.Println("******************** End newInterestAccruedInfo *************************")
+	fmt.Println(" ******************** End newInterestAccruedInfo ************************* ")
 	return shim.Success(nil)
 }
 

@@ -84,7 +84,7 @@ func newPenalChargesInfo(stub shim.ChaincodeStubInterface, args []string) pb.Res
 	// Now to create a TXN_Bal_Update obj for 3 times
 	// Calling TXN_Balance CC based on TXN_Type
 	/*
-	   a. Crediting (Increasing) Bank Revenue Wallet
+	   a. Crediting (Increasing) Bank Liability  Wallet
 	   b. Crediting (Increasing) Business Charges O/s Wallet
 	   c. Crediting (Increasing) Loan Charges Wallet
 	*/
@@ -96,20 +96,20 @@ func newPenalChargesInfo(stub shim.ChaincodeStubInterface, args []string) pb.Res
 	cAmtString := args[5]
 	dAmtString := "0"
 
-	walletID, openBalString, txnBalString, err := getWalletInfo(stub, args[6], "charges", "bankcc", cAmtString, dAmtString)
+	walletID, openBalString, txnBalString, err := getWalletInfo(stub, args[6], "liability", "bankcc", cAmtString, dAmtString)
 	if err != nil {
-		return shim.Error("penalCharges.cc: " + "Bank Revenue Wallet(penalCharges):" + err.Error())
+		return shim.Error("penalCharges.cc: " + "Bank Liability Wallet(penalCharges):" + err.Error())
 	}
 	u1 := uuid.New()
 
-	fmt.Printf("generated Version 4 UUID Bank Revenue Wallet %v", u1)
+	fmt.Printf("Generated Version 4 UUID Bank Liability Wallet %v", u1)
 	StringUUID1 := u1.String();
 	fmt.Print("StringUUID1 ",StringUUID1);
 	// STEP-4 generate txn_balance_object and write it to the Txn_Bal_Ledger
 	argsList := []string{StringUUID1, args[0], args[2], args[3], args[4], walletID, openBalString, args[1], args[5], cAmtString, dAmtString, txnBalString, args[8]}
 	argsListStr := strings.Join(argsList, ",")
 	chaincodeArgs = toChaincodeArgs("putTxnBalInfo", argsListStr)
-	fmt.Println("calling the bankcc chaincode Bank Revenue Wallet")
+	fmt.Println("calling the bankcc chaincode Bank Liability Wallet")
 	response = stub.InvokeChaincode("txnbalcc", chaincodeArgs, "myc")
 	if response.Status != shim.OK {
 		return shim.Error("penalCharges.cc: " + response.Message)

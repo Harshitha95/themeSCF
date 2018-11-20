@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
-
+	"math"
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	pb "github.com/hyperledger/fabric/protos/peer"
 )
@@ -88,13 +88,18 @@ func newTxnInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	if !tTypeValues[tTypeLower] {
 		return shim.Error("transactioncc: " + "Invalid transaction type " + args[1])
 	}
-
 	//TxnDate -> tDate
 	tDate, err := time.Parse("02/01/2006", args[2])
 	if err != nil {
 		return shim.Error("transactioncc: " + err.Error())
 	}
-
+	i, err := strconv.ParseFloat(args[5], 64)
+	if err!= nil {
+		return shim.Error("Error while converting String to Int ");
+	}
+	if math.Signbit(i) {
+		return shim.Error("Invalid Amount")
+	}
 	amt, err := strconv.ParseInt(args[5], 10, 64)
 	if err != nil {
 		return shim.Error("transactioncc: " + err.Error())

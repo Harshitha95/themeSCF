@@ -78,7 +78,8 @@ func getWallet(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	}
 	balInt := int64(bal.Balance)
 	balStr := strconv.FormatInt(balInt, 10)
-	fmt.Println(" Converted to String ",balStr)
+	fmt.Println(" getWallet WalletId ",args[0])
+	fmt.Println(" getWallet Converted to String ",balStr)
 	fmt.Println("******************** End get Wallet*************************")
 	return shim.Success([]byte(balStr))
 }
