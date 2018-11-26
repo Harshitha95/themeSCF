@@ -1,6 +1,47 @@
 # ThemechainSCF0.1V
 Golang
 
+
+#Pre-requisite
+
+https://hyperledger.github.io/composer/latest/prereqs-ubuntu.sh
+1.Ubuntu 16.04 LTS
+2.Install Ubuntu 18.04 LTS
+3.Install prereqs to install Hyperledger fabric V1.2
+https://hyperledger-fabric.readthedocs.io/en/release-1.2/build_network.html
+
+4. for binaries
+https://github.com/hyperledger/fabric/blob/release-1.2/scripts/bootstrap.sh
+curl the file ..and save it(with full rights chmod U+X) and run it.
+
+5.get the code from git 
+git clone https://github.com/uchihamalolan/EncoreBlockchain
+
+6.go tom .bashrc file
+vi ~/.bashrc add Path to hyperledger first network
+export PATH="$HOME/hyperledger/fabric-samples/bin:$PATH"
+OR similiar variable for bin to be used
+ 
+7. reload the bash by 
+source ~/.bashrc
+
+8.CD fabric-samples/Firstnetwork/ run ./byfn.sh generate ( optionally use channel name by giving -c "channelname"
+whih will generate the certificate ,keys...
+
+9.CD EncoreBlockchain/Node/  run ./startfabric.sh
+
+10. npm install
+
+11.node enrollAdmin.js
+12.node registerUser.js
+
+13 ./installCC.sh
+ install chaincode membership certificate location and ,version(-v) , chaincodename , and chaincode(.go file) location
+ instansiate chaincode membership certificate location and , chaincodename(-n) , and chaincode(.go file) location ,channelname(-C) ,
+arguments(-c) , validation (-P)
+
+
+
 # To work on CLI, follow the steps.
 Dev Mode Hyperledger Fabric
 
