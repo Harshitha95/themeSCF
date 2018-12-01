@@ -120,9 +120,16 @@ func writeBankInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response 
 		xLenStr := strconv.Itoa(len(args)) //needed?!
 		return shim.Error("Invalid number of arguments in writeBankInfo (required:9) given:" + xLenStr)
 	}
-	fmt.Print("args[0] &[1]  &[2]", args[0] ," -----> ",args[1]," -----> ",args[2])
-	fmt.Print("args[3] &[4]args[5] ", args[3] ," -----> ",args[4]," -----> ",args[5])
-	fmt.Print("args[6] &[7]", args[6] ," -----> ",args[7]," -----> ",args[8])
+	fmt.Println("args[0]", args[0])
+	fmt.Println("args[1]", args[1])
+	fmt.Println("args[2]", args[2])
+	fmt.Println("args[3]", args[3])
+	fmt.Println("args[4]", args[5])
+	fmt.Println("args[5]", args[5])
+	fmt.Println("args[6]", args[6])
+	fmt.Println("args[7]" ,args[7])
+	fmt.Println("args[8] ",args[8])
+
 
 	//Checking Bank ID existence
 	response := bankIDexists(stub, args[0])
@@ -137,7 +144,13 @@ func writeBankInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response 
 		return shim.Error("bankcc : " + "Bank code already exist: " + args[3])
 	}
 	defer codeBranchIterator.Close()
-
+	indexName := "Bankcode~BankBranch"
+	codeBranchKey, err := stub.CreateCompositeKey(indexName, []string{args[3],args[2]})
+	if err != nil {
+		return shim.Error("Unable to create composite key Bankcode~BankBranch in bankcc")
+	}
+	value := []byte{0x00}
+	stub.PutState(codeBranchKey, value)
 	hash := sha256.New()
 
 	//TODO:	check for collisions
