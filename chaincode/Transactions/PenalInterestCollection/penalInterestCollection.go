@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"math"
 	"github.com/google/uuid"
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	pb "github.com/hyperledger/fabric/protos/peer"
@@ -110,12 +111,12 @@ func newPICinfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 
 	walletID, err := getWalletID(stub, "businesscc", args[7], "main")
 	if err != nil {
-		return shim.Error("penalCharges.cc: " + "Penal Interest CollectionBusiness Main WalletID " + err.Error())
+		return shim.Error("penalCharges.cc: " + "Penal Interest Collection Business Main WalletID " + err.Error())
 	}
 
 	openBalance, err := getWalletValue(stub, walletID)
 	if err != nil {
-		return shim.Error("penalCharges.cc: " + "Penal Interest CollectionBusiness Main WalletValue " + err.Error())
+		return shim.Error("penalCharges.cc: " + "Penal Interest Collection Business Main WalletValue " + err.Error())
 	}
 	openBalString := strconv.FormatInt(openBalance, 10)
 	bal := openBalance - amt
@@ -131,6 +132,13 @@ func newPICinfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Printf("generated Version 4 UUID %v", u1)
 	StringUUID1 := u1.String();
 	fmt.Print("StringUUID1 ",StringUUID1);
+	i, err := strconv.ParseFloat(txnBalString, 64)
+	if err!= nil {
+		return shim.Error("Error while converting String to Int ");
+	}
+	if math.Signbit(i) {
+		return shim.Error("Invalid transaction Amount for Business Main Wallet")
+	}
 	argsList := []string{StringUUID1, args[0], args[2], args[3], args[4], walletID, openBalString, args[1], args[5], cAmtString, dAmtString, txnBalString, args[8]}
 	argsListStr := strings.Join(argsList, ",")
 	txnResponse := putInTxnBal(stub, argsListStr)
@@ -147,7 +155,7 @@ func newPICinfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 
 	walletID, err = getWalletID(stub, "bankcc", args[6], "main")
 	if err != nil {
-		return shim.Error("penalCharges.cc: " + "Penal Interest CollectionBank Main WalletID " + err.Error())
+		return shim.Error("penalCharges.cc: " + "Penal Interest Collection Bank Main WalletID " + err.Error())
 	}
 
 	openBalance, err = getWalletValue(stub, walletID)
@@ -169,6 +177,13 @@ func newPICinfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Printf("generated Version 4 UUID %v", u2)
 	StringUUID2 := u2.String();
 	fmt.Print("StringUUID2 ",StringUUID2);
+	i1, err1 := strconv.ParseFloat(txnBalString, 64)
+	if err1!= nil {
+		return shim.Error("Error while converting String to Int ");
+	}
+	if math.Signbit(i1) {
+		return shim.Error("Invalid transaction Amount for Bank Main Wallet")
+	}
 	argsList = []string{StringUUID2, args[0], args[2], args[3], args[4], walletID, openBalString, args[1], args[5], cAmtString, dAmtString, txnBalString, args[8]}
 	argsListStr = strings.Join(argsList, ",")
 	txnResponse = putInTxnBal(stub, argsListStr)
@@ -207,6 +222,13 @@ func newPICinfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Printf("generated Version 4 UUID %v", u3)
 	StringUUID3 := u3.String();
 	fmt.Print("StringUUID3 ",StringUUID3);
+	i2, err2 := strconv.ParseFloat(txnBalString, 64)
+	if err2!= nil {
+		return shim.Error("Error while converting String to Int");
+	}
+	if math.Signbit(i2) {
+		return shim.Error("Invalid transaction Amount for Business Charges O/s Wallet")
+	}
 	argsList = []string{StringUUID3, args[0], args[2], args[3], args[4], walletID, openBalString, args[1], args[5], cAmtString, dAmtString, txnBalString, args[8]}
 	argsListStr = strings.Join(argsList, ",")
 	txnResponse = putInTxnBal(stub, argsListStr)
@@ -245,6 +267,13 @@ func newPICinfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Printf("generated Version 4 UUID %v", u4)
 	StringUUID4 := u4.String();
 	fmt.Print("StringUUID4 ",StringUUID4);
+	i3, err3 := strconv.ParseFloat(txnBalString, 64)
+	if err3!= nil {
+		return shim.Error("Error while converting String to Int ");
+	}
+	if math.Signbit(i3) {
+		return shim.Error("Invalid transaction Amount for Loan Charges Wallet")
+	}
 	argsList = []string{StringUUID4, args[0], args[2], args[3], args[4], walletID, openBalString, args[1], args[5], cAmtString, dAmtString, txnBalString, args[8]}
 	argsListStr = strings.Join(argsList, ",")
 	txnResponse = putInTxnBal(stub, argsListStr)

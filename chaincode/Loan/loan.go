@@ -123,13 +123,22 @@ func (c *chainCode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 
 func newLoanInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Println("********************While Writing Loan *************************")
+	//Added instrument Status Update code 
 	if len(args) != 14 {
 		xLenStr := strconv.Itoa(len(args))
 		return shim.Error("loancc: " + "Invalid number of arguments in newLoanInfo(loan) (required:14) given: " + xLenStr)
 	}
-	fmt.Print("args[0] &[1]  &[2]", args[0] ," -----> ",args[1]," -----> ",args[2])
-	fmt.Print("args[3] &[4]args[5] ", args[3] ," -----> ",args[4]," -----> ",args[5])
-	fmt.Print("args[6] &[7]  &[8]", args[6] ," -----> ",args[7]," -----> ",args[8])
+	fmt.Print("args[0]", args[0])
+	fmt.Print("args[1]", args[1])
+	fmt.Print("args[2]", args[2])
+	fmt.Print("args[3]", args[3])
+	fmt.Print("args[4]", args[5])
+	fmt.Print("args[5]", args[5])
+	fmt.Print("args[6]", args[6])
+	fmt.Print("args[7]" args[7])
+	fmt.Print("args[8] ",,args[8])
+	fmt.Print("args[9] ",,args[9])
+	
 	//Checking existence of loanID
 	println("Checking existence of loanID")
 	response := loanIDexists(stub, args[0])
@@ -293,7 +302,7 @@ bal := openBalance + amt
 i := float64(bal)
 	
 	if math.Signbit(i) {
-		return shim.Error("Invalid tranaction Amount")
+		return shim.Error("Invalid tranaction Amount for Business Liability Wallet")
 	}
 txnBalString := strconv.FormatInt(bal, 10)
 println("openBalString ",openBalString)

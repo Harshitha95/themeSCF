@@ -11,6 +11,7 @@ import (
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	pb "github.com/hyperledger/fabric/protos/peer"
 )
+
 type chainCode struct {
 }
 
@@ -139,7 +140,7 @@ func putNewBusinessInfo(stub shim.ChaincodeStubInterface, args []string) pb.Resp
 	md := hash.Sum(nil)
 	BusinessWalletIDsha := hex.EncodeToString(md)
 	fmt.Print("BusinessWalletIDsha ",BusinessWalletIDsha)
-	createWallet(stub, BusinessWalletIDsha, args[3])
+	createWallet(stub, BusinessWalletIDsha, args[6])
 	
 	// Hashing BusinessLoanWalletID
 	BusinessLoanWalletStr := args[2] + "BusinessLoanWallet"
@@ -226,7 +227,6 @@ func getBusinessInfo(stub shim.ChaincodeStubInterface, args []string) pb.Respons
 		return shim.Error("businesscc: " + "Unable to parse businessInfo into the structure " + err.Error())
 	}
 	return shim.Success(nil)
-	
 }
 
 func bisIDexists(stub shim.ChaincodeStubInterface, bisID string) pb.Response {

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"math"
 	"github.com/google/uuid"
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	pb "github.com/hyperledger/fabric/protos/peer"
@@ -111,6 +112,13 @@ func newAccrualInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response
 	StringUUID1 := u1.String();
 	
 	fmt.Print("StringUUID1 ",StringUUID1);
+	i, err := strconv.ParseFloat(txnBalString, 64) //String to float 
+	if err!= nil {
+		return shim.Error("Error while converting String to Int ");
+	}
+	if math.Signbit(i) {
+		return shim.Error("Invalid tranaction Amount for Loan Interest Accrued Wallet")
+	}
 	// STEP-4 generate txn_balance_object and write it to the Txn_Bal_Ledger
 	argsList := []string{StringUUID1, args[0], args[2], args[3], args[4], walletID, openBalString, args[1], args[5], cAmtString, dAmtString, txnBalString, args[8]}
 	argsListStr := strings.Join(argsList, ",")

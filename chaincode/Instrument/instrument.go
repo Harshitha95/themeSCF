@@ -9,7 +9,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
-
+	"bytes"
+	"html"
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	pb "github.com/hyperledger/fabric/protos/peer"
 )
@@ -19,7 +20,8 @@ type chainCode struct {
 
 type instrumentInfo struct {
 	//Instrument ID for storing is auto generated
-	InstrumentRefNo string    `json:"RefNo"`         //[0]
+	ObjectType 		string	  `json:"docType"`  //Referring the Objecttype InstrumentInfo as doctype named 
+	InstrumentRefNo string    `json:"InstrumentRefNo"`         //[0]
 	InstrumentDate  time.Time `json:"Date"`          //[1]
 	SellBusinessID  string    `json:"SellerID"`      //[2]
 	BuyBusinsessID  string    `json:"BuyerID"`       //[3]
@@ -31,6 +33,25 @@ type instrumentInfo struct {
 	UploadBatchNo   string    `json:"UploadBatchNo"` //[8]
 	ValueDate       time.Time `json:"ValueDate"`     //[9]
 }
+
+type instrumentInfoReturn struct {
+	//Instrument ID for storing is auto generated
+	Key             string    `json:"Key"`
+	Record          instrumentInfo 
+/* 	ObjectType 		string	  `json:"docType"`  //Referring the Objecttype InstrumentInfo as doctype named 
+	InstrumentRefNo string    `json:"RefNo"`         //[0]
+	InstrumentDate  time.Time `json:"Date"`          //[1]
+	SellBusinessID  string    `json:"SellerID"`      //[2]
+	BuyBusinsessID  string    `json:"BuyerID"`       //[3]
+	InsAmount       string    `json:"Amount"`        //[4]// use int64 for convertion
+	InsStatus       string    `json:"Status"`        // not required
+	InsDueDate      time.Time `json:"DueDate"`       //[5]
+	ProgramID       string    `json:"ProgramID"`     //[6]
+	PPRid           string    `json:"PPRID"`         //[7]
+	UploadBatchNo   string    `json:"UploadBatchNo"` //[8]
+	ValueDate       time.Time `json:"ValueDate"`     //[9] */
+}
+
 
 func toChaincodeArgs(args ...string) [][]byte {
 	bargs := make([][]byte, len(args))
@@ -57,19 +78,24 @@ func (c *chainCode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 	function, args := stub.GetFunctionAndParameters()
 	var jsonresp string
 	var err1 error
+	fmt.Println("**********Invoke Instrument *********")
 	if function == "enterInstrument" {
 		//Used to enter new instrument data
 		return enterInstrument(stub, args)
 	} else if function == "getInstrument" {
 		//used to retrieve the instrument data
 		return getInstrument(stub, args)
+	} else if function == "getInstrumentDetails" {
+		//used to retrieve the instrument data
+		return getInstrumentDetails(stub, args)
 	} else if function == "updateInstrumentStatus" { //instrumentStatus
 		//Updates instrument status accordingly
 		return updateInstrumentStatus(stub, args)
 	} else if function == "getInstrumentAmt" {
 		return getInstrumentAmt(stub, args)
+	} else if function == "queryInstrument" {
+		return queryInstrument(stub, args)
 	} else if function == "instrumentIDexists" {
-
 		jsonresp,err1 = instrumentIDexists(stub, args)
 		if err1 != nil {
 			return shim.Error(err1.Error())
@@ -99,28 +125,34 @@ func enterInstrument(stub shim.ChaincodeStubInterface, args []string) pb.Respons
 		xLenStr := strconv.Itoa(len(args))
 		return shim.Error("instrumetcc: " + "Invalid number of arguments in enterInstrument (required:10) given:" + xLenStr)
 	}
-	fmt.Print("args[0] &[1]  &[2]", args[0] ," -----> ",args[1]," -----> ",args[2])
-	fmt.Print("args[3] &[4]args[5] ", args[3] ," -----> ",args[4]," -----> ",args[5])
-	fmt.Print("args[6] &[7]", args[6] ," -----> ",args[7]," -----> ",args[8]," -----> ",args[9])
+	fmt.Print("args[0]", args[0])
+	fmt.Print("args[1]", args[1])
+	fmt.Print("args[2]", args[2])
+	fmt.Print("args[3]", args[3])
+	fmt.Print("args[4]", args[5])
+	fmt.Print("args[5]", args[5])
+	fmt.Print("args[6]", args[6])
+	fmt.Print("args[7]" ,args[7])
+	fmt.Print("args[8] ",args[8])
+	fmt.Print("args[9] ",args[9])
 	// Checking existence of Instrument Reference No. – Supplier ID pair
-	/**refNoSellIDiterator, _ := stub.GetStateByPartialCompositeKey("InstrumentRefNo~SellBusinessID~InsAmount", []string{args[0], args[2]})
+	indexName := "InstrumentRefNo~SellBusinessID~InsAmount"
+	inst := instrumentInfo{}
+	refNoSellIDiterator, _ := stub.GetStateByPartialCompositeKey("InstrumentRefNo~SellBusinessID~InsAmount", []string{args[0],args[2]})
 	refNoSellIDdata, _ := refNoSellIDiterator.Next()
 	if refNoSellIDdata != nil {
 		return shim.Error("instrumetcc: " + "Instrument Reference No. – Supplier ID pair already exists")
 	}
-	defer refNoSellIDiterator.Close() */
-
-	//Checking existence of instrumentId Exist
-//	var result string
-   // var err error
-	//result, err = instrumentIDexists(stub, args)
-	//return shim.Success([]byte(result))
-	chaincodeArgs1 := toChaincodeArgs("instrumentIDexists", args[0])
-	response1 := stub.InvokeChaincode("instrumetcc", chaincodeArgs1, "myc")
-	if response1.Status == shim.OK {
-		return shim.Error("instrumetcc: " + "instrumentId " + args[0] + " does not exits")
+	defer refNoSellIDiterator.Close() 
+	
+	//create composite primary key for each new entry,check duplicate prior this
+	refNoSellIDkey, err := stub.CreateCompositeKey(indexName, []string{inst.InstrumentRefNo, inst.SellBusinessID})
+	if err != nil {
+		return shim.Error("instrumetcc: " + "Composite key InstrumentRefNo~SellBusinessID~InsAmount can not be created (instrument)")
 	}
-
+	value := []byte{0x00}
+	stub.PutState(refNoSellIDkey, value)
+	
 	//Checking existence of ProgramID
 	chaincodeArgs := toChaincodeArgs("programIDexists", args[6])
 	response := stub.InvokeChaincode("programcc", chaincodeArgs, "myc")
@@ -190,9 +222,9 @@ func enterInstrument(stub shim.ChaincodeStubInterface, args []string) pb.Respons
 	hash.Write([]byte(instID))
 	md := hash.Sum(nil)
 	instIDsha := hex.EncodeToString(md)
-
-	inst := instrumentInfo{args[0], instDate, args[2], args[3], args[4], "open", insDueDate, args[6], args[7], args[8], vDate}
-	instBytes, err := json.Marshal(inst)
+    //Doctype is passed as 
+	inst1 := instrumentInfo{"InstruObject",args[0], instDate, args[2], args[3], args[4], "open", insDueDate, args[6], args[7], args[8], vDate}
+	instBytes, err := json.Marshal(inst1)
 	if err != nil {
 		return shim.Error("instrumetcc: " + err.Error())
 	}
@@ -208,17 +240,19 @@ func updateInstrumentStatus(stub shim.ChaincodeStubInterface, args []string) pb.
 		args[1] -> seller ID
 		args[2] -> status
 	*/
-	key := strings.ToLower(args[0] + args[1])
+ key := strings.ToLower(args[0] + args[1])
 	hash := sha256.New()
 	instID := strings.ToLower(key)
 	hash.Write([]byte(instID))
 	md := hash.Sum(nil)
-	instIDsha := hex.EncodeToString(md)
+	instIDsha := hex.EncodeToString(md) 
 
-	instBytes, err := stub.GetState(instIDsha)
+instBytes, err := stub.GetState(instIDsha)
+		//instBytes, err := stub.GetState(args[0])
 	if err != nil {
 		return shim.Error("instrumetcc: " + "Unable to fetch instrument info for status updation")
 	}
+	fmt.Println("instBytes ",instBytes)
 	inst := instrumentInfo{}
 	err = json.Unmarshal(instBytes, &inst)
 	if err != nil {
@@ -235,8 +269,12 @@ func updateInstrumentStatus(stub shim.ChaincodeStubInterface, args []string) pb.
 		return shim.Error("instrumetcc: " + "Instrument status cannot be settled as it is not overdue or sanctioned")
 	}
 	inst.InsStatus = args[2]
+	fmt.Println("inst b4 marshalling" ,inst)
 	instBytes, _ = json.Marshal(inst)
-	stub.PutState(key, instBytes)
+	fmt.Println("inst after marshalling" ,instBytes)
+	stub.PutState(instIDsha, instBytes)
+	err = json.Unmarshal(instBytes, &inst)
+	fmt.Println("After Updating ",inst)
 	fmt.Println("******************** end updateInstrumentStatus *************************")
 	return shim.Success([]byte("Instrument status updated successfully"))
 
@@ -247,7 +285,6 @@ func getInstrument(stub shim.ChaincodeStubInterface, args []string) pb.Response 
 	if len(args) != 2 {
 		xLenStr := strconv.Itoa(len(args))
 		return shim.Error("instrumetcc: " + "Invalid number of arguments in getInstrument (required:2) given:" + xLenStr)
-
 	}
 	/*
 		args[0] -> InstrumentRefNo
@@ -266,11 +303,58 @@ func getInstrument(stub shim.ChaincodeStubInterface, args []string) pb.Response 
 		return shim.Error("instrumetcc: " + "No data exists on this InstrumentID: " + args[0])
 	}
 
-	//ins := instrumentInfo{}
-	//err = json.Unmarshal(insBytes, &ins)
-	//insString := fmt.Sprintf("%+v", ins)
+	ins := instrumentInfo{}
+	err1 := json.Unmarshal(insBytes, &ins)
+	if err1 != nil {
+		return shim.Error("Error while unmarshalling in getInstrument()" +err1.Error())
+	}
+//	insString := fmt.Sprintf("%+v", ins)
+	fmt.Println(" insBytes ",insBytes)
+	
+	fmt.Println(" ins ",ins)
+	data, err1 := json.Marshal(ins)
+	if err1 != nil {
+		return shim.Error("after adding error while marshaling  instrument" + err1.Error() )
+	} 	
 	fmt.Println("End  getInstrument")
-	return shim.Success(nil)
+	return shim.Success(data)
+}
+
+func getInstrumentDetails(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+
+	fmt.Println("******************** Inside getInstrumentDetails with arg" ,args[0])
+	if len(args) != 1 {
+		xLenStr := strconv.Itoa(len(args))
+		return shim.Error("instrumetcc: " + "Invalid number of arguments in getInstrument (required:1) given:" + xLenStr)
+	}
+	/*
+		args[0] -> InstrumentRefNo
+		args[1] -> SellBusinessID
+	*/
+
+	//bArrayMemberAlreadyWritten := false
+	fmt.Println("args[0] ",args[0])                      
+	insBytes, err := stub.GetStateByPartialCompositeKey("InstrumentRefNo~SellBusinessID~InsAmount", []string{args[0]})
+/* 	insData, err := insBytes.Next()
+	if err != nil {
+		return shim.Error(" No Instrument Exist on this ID " + args[0])
+	} */
+	if err != nil {
+		return shim.Error(" Error with GetStateByPartialCompositeKey " + err.Error())
+	} 
+	defer insBytes.Close()
+	fmt.Println("insBytes ",insBytes)
+	buffer, err1 := constructQueryResponseFromIterator(insBytes)
+	if err1 != nil {
+		return shim.Error("Error while contructing Query Response ")
+	} 
+	fmt.Println("buffer& ",&buffer)
+	fmt.Println("buffer ",buffer)
+
+	fmt.Printf("- getQueryResultForQueryString queryResult:\n%s\n", buffer.String())
+
+	return shim.Success(buffer.Bytes())
+
 }
 
 func getInstrumentAmt(stub shim.ChaincodeStubInterface, args []string) pb.Response {
@@ -345,8 +429,93 @@ func instrumentIDexists(stub shim.ChaincodeStubInterface, instrumentId []string)
     if value == nil {
             return "", fmt.Errorf("Asset not found: %s", instrumentId[0])
 	}
-	fmt.Println("******** end instrumentIDexists ")
+	fmt.Println(" ******** End instrumentIDexists ******** ")
     return string(value), nil
+}
+func queryInstrument(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+	instrumentvalasstruct := []instrumentInfoReturn{}
+	//var instrumentvalasstruct instrumentInfo;
+	if len(args) < 1 {
+		return shim.Error("Incorrect number of arguments. Expecting 1")
+	}
+//	queryString := args;
+	fmt.Println(" Hello .. Inside queryInstrument1 ")
+	fmt.Println("args " ,html.UnescapeString(args[0]))
+	//fmt.Println("args ",args);
+	queryResults, err := getQueryResultForQueryString(stub, html.UnescapeString(args[0]))
+	if err != nil {
+		return shim.Error(err.Error())
+	} 	
+		fmt.Println("queryInstrument ",string(queryResults));
+	///	businessValues,err4 = getBusinessInfoVal(stub, args)
+	//var instrumentvalasstruct1;
+	  err2 := json.Unmarshal(queryResults, &instrumentvalasstruct)
+	if err2 != nil {
+		return shim.Error("Error while unmarshalling instrumentvalasstruct "+ err2.Error())
+	}   
+	fmt.Println(" instrumentvalasstruct  RefNo",instrumentvalasstruct)
+//	fmt.Println(" Key  ",instrumentvalasstruct.Key)
+	data, err1 := json.Marshal(instrumentvalasstruct)
+	if err1 != nil {
+		return shim.Error("error while marshaling  businessvalasstruct" + err1.Error() )
+	} 
+	fmt.Println(" Before sending %s ",data)
+	return shim.Success(data)
+}
+
+func getQueryResultForQueryString(stub shim.ChaincodeStubInterface, queryString string) ([]byte, error) {
+
+	fmt.Printf("- getQueryResultForQueryString queryString:\n%s\n", queryString)
+
+	resultsIterator, err := stub.GetQueryResult(queryString)
+	if err != nil {
+		return nil, err
+	}
+	defer resultsIterator.Close()
+	buffer, err := constructQueryResponseFromIterator(resultsIterator)
+	if err != nil {
+		return nil, err
+	}
+//	buff := buffer.String();
+	fmt.Printf("- getQueryResultForQueryString queryResult:\n%s\n", buffer.String())
+	//fmt.Println("Buffer RefNo",buff.Record)
+	return buffer.Bytes(), nil
+}
+func constructQueryResponseFromIterator(resultsIterator shim.StateQueryIteratorInterface) (*bytes.Buffer, error) {
+	// buffer is a JSON array containing QueryResults
+	var buffer bytes.Buffer
+	buffer.WriteString("[")
+
+	bArrayMemberAlreadyWritten := false
+	var i int
+	fmt.Println("Inside constructQueryResponseFromIterator")
+	for i = 0; resultsIterator.HasNext();  i++ {
+		queryResponse, err := resultsIterator.Next()
+		fmt.Println("Inside resultsIterator ",queryResponse.Value)
+		if err != nil {
+			return nil, err
+		}
+		fmt.Println("queryResponse from constructQueryResponseFromIterator ",queryResponse.Value)
+		// Add a comma before array members, suppress it for the first array member
+		
+		if bArrayMemberAlreadyWritten == true {
+			buffer.WriteString(",")
+		}
+		buffer.WriteString("{\"Key\":")
+		buffer.WriteString("\"")
+		buffer.WriteString(queryResponse.Key)
+		
+		buffer.WriteString("\"")
+
+		buffer.WriteString(", \"Record\":")
+		// Record is a JSON object, so we write as-is
+		buffer.WriteString(string(queryResponse.Value))
+		buffer.WriteString("}")
+		bArrayMemberAlreadyWritten = true
+	}
+	buffer.WriteString("]")
+
+	return &buffer, nil
 }
 
 func main() {

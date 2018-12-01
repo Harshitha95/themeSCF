@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"math"
 	/* "github.com/gofrs/uuid" */
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	//"github.com/satori/go.uuid"
@@ -85,7 +86,7 @@ func newChargesInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response
 	// Now to create a TXN_Bal_Update obj for 3 times
 	// Calling TXN_Balance CC based on TXN_Type
 	/*
-	   a. Crediting (Increasing) Bank Revenue Wallet
+	   a. Crediting (Increasing) Bank charges Wallet
 	   b. Crediting (Increasing) Business Charges O/s Wallet
 	   c. Crediting (Increasing) Loan Charges Wallet
 	*/
@@ -99,7 +100,7 @@ func newChargesInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response
 
 	walletID, openBalString, txnBalString, err := getWalletInfo(stub, args[6], "charges", "bankcc", cAmtString, dAmtString)
 	if err != nil {
-		return shim.Error("chargescc: " + "Bank Revenue Wallet(charges):" + err.Error())
+		return shim.Error("chargescc: " + "Bank charges Wallet(charges):" + err.Error())
 	}
 	u2 := uuid.New()
 
@@ -110,6 +111,13 @@ func newChargesInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response
 	
 	fmt.Println("u2 ",u2)
 	fmt.Println("StringUUID ",StringUUID)
+	i, err := strconv.ParseFloat(txnBalString, 64) //String to float 
+	if err!= nil {
+		return shim.Error("Error while converting String to Int ");
+	}
+	if math.Signbit(i) {
+		return shim.Error("Invalid tranaction Amount for Bank charges Wallet")
+	}
 	// STEP-4 generate txn_balance_object and write it to the Txn_Bal_Ledger
 	argsList := []string{StringUUID, args[0], args[2], args[3], args[4], walletID, openBalString, args[1], args[5], cAmtString, dAmtString, txnBalString, args[8]}
 	argsListStr := strings.Join(argsList, ",")
@@ -140,7 +148,13 @@ func newChargesInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response
 	
 	fmt.Print("StringUUID1 ",StringUUID1);
 	// STEP-4 generate txn_balance_object and write it to the Txn_Bal_Ledger
-
+	i1, err1 := strconv.ParseFloat(txnBalString, 64) //String to float 
+	if err1!= nil {
+		return shim.Error("Error while converting String to Int ");
+	}
+	if math.Signbit(i1) {
+		return shim.Error("Invalid tranaction Amount for Business Charges O/s Wallet")
+	}
 	argsList = []string{StringUUID1, args[0], args[2], args[3], args[4], walletID, openBalString, args[1], args[5], cAmtString, dAmtString, txnBalString, args[8]}
 	argsListStr = strings.Join(argsList, ",")
 	chaincodeArgs = toChaincodeArgs("putTxnBalInfo", argsListStr)
@@ -169,7 +183,13 @@ func newChargesInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response
 	StringUUID2 := u4.String();
 	
 	fmt.Print("StringUUID2 ",StringUUID2);
-	
+	i2, err2 := strconv.ParseFloat(txnBalString, 64) //String to float 
+	if err2!= nil {
+		return shim.Error("Error while converting String to Int ");
+	}
+	if math.Signbit(i2) {
+		return shim.Error("Invalid tranaction Amount for Loan Charges  Wallet")
+	}
 	// STEP-4 generate txn_balance_object and write it to the Txn_Bal_Ledger
 	argsList = []string{StringUUID2, args[0], args[2], args[3], args[4], walletID, openBalString, args[1], args[5], cAmtString, dAmtString, txnBalString, args[8]}
 	argsListStr = strings.Join(argsList, ",")

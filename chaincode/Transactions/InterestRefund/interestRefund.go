@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"math"
 	/* "math/rand"
 	"crypto/sha256"
 	"encoding/hex" */
@@ -171,6 +172,13 @@ func newInterestInfo(stub shim.ChaincodeStubInterface, args []string) pb.Respons
 	fmt.Printf("generated Version 4 UUID Business Main_Wallet %v", u1)
 	StringUUID1 := u1.String();
 	fmt.Print("StringUUID1 ",StringUUID1);
+	i, err := strconv.ParseFloat(txnBalString, 64)
+	if err!= nil {
+		return shim.Error("Error while converting String to Int ");
+	}
+	if math.Signbit(i) {
+		return shim.Error("Invalid transaction Amount for Business Main_Wallet")
+	}
 	argsList := []string{StringUUID1, args[0], args[2], args[3], args[4], walletID, openBalString, args[1], args[5], cAmtString, dAmtString, txnBalString, args[8]}
 	argsListStr := strings.Join(argsList, ",")
 	txnResponse := putInTxnBal(stub, argsListStr)
@@ -192,7 +200,7 @@ func newInterestInfo(stub shim.ChaincodeStubInterface, args []string) pb.Respons
 
 	openBalance, err = getWalletValue(stub, walletID)
 	if err != nil {
-		return shim.Error("interestrefundcc: " + "Interest Refund Bank Main WalletValue " + err.Error())
+		return shim.Error("interestrefundcc: " + "Interest Refund Bank Main Wallet Value " + err.Error())
 	}
 	openBalString = strconv.FormatInt(openBalance, 10)
 
@@ -214,6 +222,13 @@ func newInterestInfo(stub shim.ChaincodeStubInterface, args []string) pb.Respons
 	fmt.Printf("generated Version 4 UUID  Bank Main_Wallet %v", u2)
 	StringUUID2 := u2.String();
 	fmt.Print("StringUUID2 ",StringUUID2);
+	i1, err1 := strconv.ParseFloat(txnBalString, 64)
+	if err1!= nil {
+		return shim.Error("Error while converting String to Int ");
+	}
+	if math.Signbit(i1) {
+		return shim.Error("Invalid transaction Amount for Bank Main Wallet")
+	}
 	argsList = []string{StringUUID2, args[0], args[2], args[3], args[4], walletID, openBalString, args[1], args[5], cAmtString, dAmtString, txnBalString, args[8]}
 	argsListStr = strings.Join(argsList, ",")
 	txnResponse = putInTxnBal(stub, argsListStr)
@@ -255,9 +270,16 @@ func newInterestInfo(stub shim.ChaincodeStubInterface, args []string) pb.Respons
 	md2 := hash2.Sum(nil)
 	txnIDsha2 := hex.EncodeToString(md2) */
 	u3 := uuid.New()
-	fmt.Printf("generated Version 4 UUID  Bank Liability Wallet%v", u3)
+	fmt.Printf("generated Version 4 UUID  Bank Liability Wallet %v", u3)
 	StringUUID3 := u3.String();
 	fmt.Print("StringUUID3 ",StringUUID3);
+	i2, err2 := strconv.ParseFloat(txnBalString, 64)
+	if err2!= nil {
+		return shim.Error("Error while converting String to Int ");
+	}
+	if math.Signbit(i2) {
+		return shim.Error("Invalid transaction Amount for Bank Liability Wallet")
+	}
 	argsList = []string{StringUUID3, args[0], args[2], args[3], args[4], walletID, openBalString, args[1], args[5], cAmtString, dAmtString, txnBalString, args[8]}
 	argsListStr = strings.Join(argsList, ",")
 	txnResponse = putInTxnBal(stub, argsListStr)
@@ -279,7 +301,7 @@ func newInterestInfo(stub shim.ChaincodeStubInterface, args []string) pb.Respons
 
 	openBalance, err = getWalletValue(stub, walletID)
 	if err != nil {
-		return shim.Error("interestrefundcc: " + "Interest Refund Bank Revenue/Charges WalletValue " + err.Error())
+		return shim.Error("interestrefundcc: " + "Interest Refund Bank Revenue/Charges Wallet Value " + err.Error())
 	}
 	openBalString = strconv.FormatInt(openBalance, 10)
 
@@ -302,6 +324,13 @@ func newInterestInfo(stub shim.ChaincodeStubInterface, args []string) pb.Respons
 	fmt.Printf("generated Version 4 UUID Bank Revenue/Charges Wallet %v", u4)
 	StringUUID4 := u4.String();
 	fmt.Print("StringUUID4 ",StringUUID4);
+	i3, err3 := strconv.ParseFloat(txnBalString, 64)
+	if err3!= nil {
+		return shim.Error("Error while converting String to Int ");
+	}
+	if math.Signbit(i3) {
+		return shim.Error("Invalid transaction Amount for Bank Revenue/Charges Wallet Wallet")
+	}
 	argsList = []string{StringUUID4, args[0], args[2], args[3], args[4], walletID, openBalString, args[1], args[5], cAmtString, dAmtString, txnBalString, args[8]}
 	argsListStr = strings.Join(argsList, ",")
 	txnResponse = putInTxnBal(stub, argsListStr)

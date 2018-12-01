@@ -122,7 +122,7 @@ func writeBankInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response 
 	}
 	fmt.Print("args[0] &[1]  &[2]", args[0] ," -----> ",args[1]," -----> ",args[2])
 	fmt.Print("args[3] &[4]args[5] ", args[3] ," -----> ",args[4]," -----> ",args[5])
-	fmt.Print("args[6] &[7]", args[6] ," -----> ",args[7]," -----> ",args[8],)
+	fmt.Print("args[6] &[7]", args[6] ," -----> ",args[7]," -----> ",args[8])
 
 	//Checking Bank ID existence
 	response := bankIDexists(stub, args[0])
@@ -131,7 +131,7 @@ func writeBankInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response 
 	}
 
 	//Checking existence of Bank code (!*!)
-	codeBranchIterator, err := stub.GetStateByPartialCompositeKey("Bankcode~BankBranch", []string{args[3]})
+	codeBranchIterator, err := stub.GetStateByPartialCompositeKey(" Bankcode~BankBranch ", []string{args[3]})
 	codeBranchData, err := codeBranchIterator.Next()
 	if codeBranchData != nil {
 		return shim.Error("bankcc : " + "Bank code already exist: " + args[3])
@@ -406,7 +406,7 @@ func getBankInfoBalTemp(stub shim.ChaincodeStubInterface, args []string) ([]byte
 	chaincodeArgs1 := toChaincodeArgs("getWallet", mainWalletId)
 	response1 = stub.InvokeChaincode("walletcc", chaincodeArgs1, "myc")
 	comres=append(comres,string(response1.Payload))
-	bankvalasstruct.BankWalletIDBal = string(response5.Payload);
+	bankvalasstruct.BankWalletIDBal = string(response1.Payload);
 	fmt.Println("mainWalletId balance %s",string(response1.Payload))
 		
 	chaincodeArgs2 := toChaincodeArgs("getWallet", assetWalletId)
@@ -426,7 +426,7 @@ func getBankInfoBalTemp(stub shim.ChaincodeStubInterface, args []string) ([]byte
 	response3 = stub.InvokeChaincode("walletcc", chaincodeArgs3, "myc")
 	fmt.Println("chargesWalletId balance %s",string(response3.Payload))
 	comres=append(comres,string(response3.Payload))
-	bankvalasstruct.BankChargesWalletIDBal = string(response4.Payload);
+	bankvalasstruct.BankChargesWalletIDBal = string(response3.Payload);
 	
 	//bankValues.BankChargesWalletIDBal=string(response3.Payload);
 	/* slice2 := make([]byte, 0, len(comres)+1)
@@ -453,7 +453,7 @@ func getBankInfoBalTemp(stub shim.ChaincodeStubInterface, args []string) ([]byte
 	
 	fmt.Println("tdsWalletId balance %s",string(response5.Payload))
 
-	bankvalasstruct.BankChargesWalletIDBal = string(response3.Payload);
+//	bankvalasstruct.BankChargesWalletIDBal = string(response3.Payload);
 	data, err1 = json.Marshal(bankvalasstruct)
 	if err1 != nil {
 		return shim.Error("error while marshaling  bankvalasstruct" + err1.Error() )

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"math"
 /* 	"crypto/sha256"
 	"encoding/hex"
 	"math/rand" */
@@ -150,7 +151,7 @@ func newInterestAccruedInfo(stub shim.ChaincodeStubInterface, args []string) pb.
 	argsList = []string{StringUUID2, args[0], args[2], args[3], args[4], walletID, openBalString, args[1], args[5], cAmtString, dAmtString, txnBalString, args[8]}
 	argsListStr = strings.Join(argsList, ",")
 	chaincodeArgs = toChaincodeArgs("putTxnBalInfo", argsListStr)
-	fmt.Println("calling the other chaincode")
+	fmt.Println("calling the txnbalcc chaincode")
 	response = stub.InvokeChaincode("txnbalcc", chaincodeArgs, "myc")
 	if response.Status != shim.OK {
 		return shim.Error("interestAcc.cc: " + response.Message)
