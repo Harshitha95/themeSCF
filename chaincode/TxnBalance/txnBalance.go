@@ -66,7 +66,7 @@ func (c *chainCode) putTxnBalInfo(stub shim.ChaincodeStubInterface, args []strin
 	}
 
 	//TxnDate ->txnDate
-	txnDate, err := time.Parse("02/01/2006", args[2])
+	txnDate, err := time.Parse(time.RFC3339, args[2])
 	if err != nil {
 		return shim.Error("txnbalcc: " + "txnbal err in txndate " + err.Error())
 	}
@@ -77,17 +77,17 @@ func (c *chainCode) putTxnBalInfo(stub shim.ChaincodeStubInterface, args []strin
 	}
 
 	txnTypeValues := map[string]bool{
-		"disbursement":              true,
-		"repayment":                 true,
-		"marginrefund":             true,
-		"interestrefund":           true,
-		"penalinterestcollection": true,
+		"Disbursement":              true,
+		"Repayment":                 true,
+		"Marginrefund":             true,
+		"Interestrefund":           true,
+		"Penalinterestcollection": true,
 		"loan_sanction":             true,
-		"charges":                   true,
-		"interestinadvance":       true,
-		"accrual":                   true,
-		"interestaccruedcharges":  true,
-		"penalcharges":             true,
+		"Charges":                   true,
+		"Interestinadvance":       true,
+		"Accrual":                   true,
+		"Interestaccruedcharges":  true,
+		"Penalcharges":             true,
 		"TDS":                       true,
 	}
 

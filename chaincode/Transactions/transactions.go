@@ -69,18 +69,18 @@ func newTxnInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 		fmt.Println("args[8]", args[8] ) 
 
 	tTypeValues := map[string]bool{
-		"disbursement":              true,
-		"repayment":                 true,
-		"marginrefund":             true,
-		"interestrefund":           true,
-		"penalinterestcollection": true,
+		"Disbursement":              true,
+		"Repayment":                 true,
+		"Marginrefund":             true,
+		"Interestrefund":           true,
+		"Penalinterestcollection": true,
 		"loan_sanction":             true,
-		"charges":                   true,
-		"interestinadvance":       true,
-		"accrual":                   true,
-		"interestaccruedcharges":  true,
-		"penalcharges":             true,
-		"tds":                       true,
+		"Charges":                   true,
+		"Interestinadvance":       true,
+		"Accrual":                   true,
+		"Interestaccruedcharges":  true,
+		"Penalcharges":             true,
+		"TDS":                       true,
 	}
 
 	//Converting into lower case for comparison

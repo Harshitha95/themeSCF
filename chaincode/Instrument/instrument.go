@@ -125,19 +125,19 @@ func enterInstrument(stub shim.ChaincodeStubInterface, args []string) pb.Respons
 		xLenStr := strconv.Itoa(len(args))
 		return shim.Error("instrumetcc: " + "Invalid number of arguments in enterInstrument (required:10) given:" + xLenStr)
 	}
-	fmt.Print("args[0]", args[0])
-	fmt.Print("args[1]", args[1])
-	fmt.Print("args[2]", args[2])
-	fmt.Print("args[3]", args[3])
-	fmt.Print("args[4]", args[5])
-	fmt.Print("args[5]", args[5])
-	fmt.Print("args[6]", args[6])
-	fmt.Print("args[7]" ,args[7])
-	fmt.Print("args[8] ",args[8])
-	fmt.Print("args[9] ",args[9])
+	fmt.Println("args[0]", args[0])
+	fmt.Println("args[1]", args[1])
+	fmt.Println("args[2]", args[2])
+	fmt.Println("args[3]", args[3])
+	fmt.Println("args[4]", args[5])
+	fmt.Println("args[5]", args[5])
+	fmt.Println("args[6]", args[6])
+	fmt.Println("args[7]" ,args[7])
+	fmt.Println("args[8] ",args[8])
+	fmt.Println("args[9] ",args[9])
 	// Checking existence of Instrument Reference No. – Supplier ID pair
 	indexName := "InstrumentRefNo~SellBusinessID~InsAmount"
-	inst := instrumentInfo{}
+//	inst := instrumentInfo{}
 	refNoSellIDiterator, _ := stub.GetStateByPartialCompositeKey("InstrumentRefNo~SellBusinessID~InsAmount", []string{args[0],args[2]})
 	refNoSellIDdata, _ := refNoSellIDiterator.Next()
 	if refNoSellIDdata != nil {
@@ -146,7 +146,8 @@ func enterInstrument(stub shim.ChaincodeStubInterface, args []string) pb.Respons
 	defer refNoSellIDiterator.Close() 
 	
 	//create composite primary key for each new entry,check duplicate prior this
-	refNoSellIDkey, err := stub.CreateCompositeKey(indexName, []string{inst.InstrumentRefNo, inst.SellBusinessID})
+	//refNoSellIDkey, err := stub.CreateCompositeKey(indexName, []string{inst.InstrumentRefNo, inst.SellBusinessID})
+	refNoSellIDkey, err := stub.CreateCompositeKey(indexName, []string{args[0], args[2],args[4]})
 	if err != nil {
 		return shim.Error("instrumetcc: " + "Composite key InstrumentRefNo~SellBusinessID~InsAmount can not be created (instrument)")
 	}

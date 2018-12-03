@@ -9,6 +9,8 @@ import (
 	"errors"
 	"strings"
 	"time"
+	"html"
+	"bytes"
 	"math"
 	"math/rand"
 	"github.com/hyperledger/fabric/core/chaincode/shim"
@@ -47,6 +49,12 @@ type loanInfoVal struct {
 	LoanAccruedInterestWalletBal string   `json:"AccruedInterestWalletBal"` //[6]
 }
 
+type loanstruct struct {
+
+	Key             string    `json:"Key"`
+	Record          loanInfo 
+
+}
 // Converts the args to byte of args
 func toChaincodeArgs(args ...string) [][]byte {
 	bargs := make([][]byte, len(args))
@@ -89,6 +97,8 @@ func (c *chainCode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 		return getSellerID(stub, args[0])
 	} else if function == "getBuyerID" {
 		return getBuyerID(stub, args[0])
+	} else if function == "queryLoan" {
+		return queryLoan(stub, args)
 	} else if function == "getWalletsofLoan" {
 		//To check the loanId existence
 		return getWalletsofLoan(stub, args)
@@ -128,16 +138,16 @@ func newLoanInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 		xLenStr := strconv.Itoa(len(args))
 		return shim.Error("loancc: " + "Invalid number of arguments in newLoanInfo(loan) (required:14) given: " + xLenStr)
 	}
-	fmt.Print("args[0]", args[0])
-	fmt.Print("args[1]", args[1])
-	fmt.Print("args[2]", args[2])
-	fmt.Print("args[3]", args[3])
-	fmt.Print("args[4]", args[5])
-	fmt.Print("args[5]", args[5])
-	fmt.Print("args[6]", args[6])
-	fmt.Print("args[7]" args[7])
-	fmt.Print("args[8] ",,args[8])
-	fmt.Print("args[9] ",,args[9])
+	fmt.Println("args[0]", args[0])
+	fmt.Println("args[1]", args[1])
+	fmt.Println("args[2]", args[2])
+	fmt.Println("args[3]", args[3])
+	fmt.Println("args[4]", args[5])
+	fmt.Println("args[5]", args[5])
+	fmt.Println("args[6]", args[6])
+	fmt.Println("args[7]" ,args[7])
+	fmt.Println("args[8] ",args[8])
+	fmt.Println("args[9] ",args[9])
 	
 	//Checking existence of loanID
 	println("Checking existence of loanID")
@@ -208,8 +218,9 @@ func newLoanInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	//Parsing into date for storage but hh:mm:ss will also be stored as
 	println("Parsing into date for storage")
 	//00:00:00 .000Z with the date
-	//DueDate -> dDate
-	dDate, err := time.Parse("02/01/2006", args[7])
+	//DueDate -> dDate 02-01-2006T15:04:05
+	//dDate, err := time.Parse("02/01/2006", args[7])
+	dDate, err := time.Parse(time.RFC3339, args[7])
 	if err != nil {
 		return shim.Error("loancc: " + err.Error())
 	}
@@ -226,7 +237,7 @@ func newLoanInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 
 	//ValueDate ->vDate
 	println("ValueDate ->vDate")
-	vDate, err := time.Parse("02/01/2006T15:04:05", vStr)
+	vDate, err := time.Parse(time.RFC3339, vStr)
 	if err != nil {
 		return shim.Error("loancc: " + err.Error())
 	}
@@ -781,6 +792,93 @@ func getWalletIDForBus(stub shim.ChaincodeStubInterface, ccName string, id strin
 	return walletID, nil
 
 }
+
+func queryLoan(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+	loanstruct := []loanstruct{}
+	//var instrumentvalasstruct instrumentInfo;
+	if len(args) < 1 {
+		return shim.Error("Incorrect number of arguments. Expecting 1")
+	}
+//	queryString := args;
+	fmt.Println(" Hello .. Inside queryLoan ")
+	fmt.Println("args " ,html.UnescapeString(args[0]))
+	//fmt.Println("args ",args);
+	queryResults, err := getQueryResultForQueryString(stub, html.UnescapeString(args[0]))
+	if err != nil {
+		return shim.Error(err.Error())
+	} 	
+	fmt.Println("queryLoan ",string(queryResults));
+	///	businessValues,err4 = getBusinessInfoVal(stub, args)
+	//var instrumentvalasstruct1;
+	  err2 := json.Unmarshal(queryResults, &loanstruct)
+	if err2 != nil {
+		return shim.Error("Error while unmarshalling instrumentvalasstruct "+ err2.Error())
+	}   
+	fmt.Println(" loanstruct  RefNo",loanstruct)
+//	fmt.Println(" Key  ",instrumentvalasstruct.Key)
+	data, err1 := json.Marshal(loanstruct)
+	if err1 != nil {
+		return shim.Error("error while marshaling  loanstruct" + err1.Error() )
+	} 
+	fmt.Println(" Before sending %s ",data)
+	return shim.Success(data)
+}
+func getQueryResultForQueryString(stub shim.ChaincodeStubInterface, queryString string) ([]byte, error) {
+
+	fmt.Printf("- getQueryResultForQueryString queryString:\n%s\n", queryString)
+
+	resultsIterator, err := stub.GetQueryResult(queryString)
+	if err != nil {
+		return nil, err
+	}
+	defer resultsIterator.Close()
+	buffer, err := constructQueryResponseFromIterator(resultsIterator)
+	if err != nil {
+		return nil, err
+	}
+//	buff := buffer.String();
+	fmt.Printf("- getQueryResultForQueryString queryResult:\n%s\n", buffer.String())
+	//fmt.Println("Buffer RefNo",buff.Record)
+	return buffer.Bytes(), nil
+}
+func constructQueryResponseFromIterator(resultsIterator shim.StateQueryIteratorInterface) (*bytes.Buffer, error) {
+	// buffer is a JSON array containing QueryResults
+	var buffer bytes.Buffer
+	buffer.WriteString("[")
+
+	bArrayMemberAlreadyWritten := false
+	var i int
+	fmt.Println("Inside constructQueryResponseFromIterator")
+	for i = 0; resultsIterator.HasNext();  i++ {
+		queryResponse, err := resultsIterator.Next()
+		fmt.Println("Inside resultsIterator ",queryResponse.Value)
+		if err != nil {
+			return nil, err
+		}
+		fmt.Println("queryResponse from constructQueryResponseFromIterator ",queryResponse.Value)
+		// Add a comma before array members, suppress it for the first array member
+		
+		if bArrayMemberAlreadyWritten == true {
+			buffer.WriteString(",")
+		}
+		buffer.WriteString("{\"Key\":")
+		buffer.WriteString("\"")
+		buffer.WriteString(queryResponse.Key)
+		
+		buffer.WriteString("\"")
+
+		buffer.WriteString(", \"Record\":")
+		// Record is a JSON object, so we write as-is
+		buffer.WriteString(string(queryResponse.Value))
+		buffer.WriteString("}")
+		bArrayMemberAlreadyWritten = true
+	}
+	buffer.WriteString("]")
+
+	return &buffer, nil
+}
+
+
 func main() {
 	err := shim.Start(new(chainCode))
 	if err != nil {

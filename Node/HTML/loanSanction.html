@@ -1,8 +1,9 @@
 <html>
-<head>
-<style>
 
-body {background-color: white;}
+<head>
+  <style>
+
+    body {background-color: white;}
 h1 { text-align: center  }
 .nav {
     
@@ -23,134 +24,247 @@ h1 { text-align: center  }
     margin-left: 100px;
 }
 </style>
-<script src="jquery-3.1.0.min.js"></script>
-	<!--<script src="jquery-3.1.0.js"></script> --> 
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
-	<script src='tc-admin.js'></script>
-<script>
-  function createLoan() {
-  
-  let loanId= $("#loanId").val();
-  let instrumentRefNo= $("#instrumentRefNo").val();
-  let exposureBusinessId= $("#exposureBusinessId").val();
-  let programId= $("#programId").val();
-  let sanctionAmmount= $("#sanctionAmmount").val();
-  let SanctionAuthority= $("#SanctionAuthority").val();
-  let roi= $("#roi").val();
+  <script src="jquery-3.1.0.min.js"></script>
+  <!--<script src="jquery-3.1.0.js"></script> -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src='tc-admin.js'></script>
+  <script>
+    function createLoan() {
 
-  let duedate= $("#duedate").val();
-  let valuedate= $("#valuedate").val();
-  let buyerBusinessId= $("#buyerBusinessId").val();
-  
-  let sellerBusinessId= $("#sellerBusinessId").val();
-  let options = {};
- options.chaincodeId="loancc";
- options.methodToBeCalled="newLoanInfo";
+      let loanId = $("#loanId").val();
+      let instrumentRefNo = $("#instrumentNo option:selected").text();
+      let exposureBusinessId = $("#exposureBusinessId").val();
+      let programId = $("#programId").val();
+      let sanctionAmmount = $("#sanctionAmmount").val();
+      let SanctionAuthority = $("#SanctionAuthority").val();
+      let roi = $("#roi").val();
 
-//form array of named inputs 
+      let duedate = $("#duedate").val();
+      let valuedate = $("#valuedate").val();
+      let buyerBusinessId = $("#buyerBusinessId").val();
 
-var arguments={};
-arguments.arg1=loanId;
-arguments.arg2=instrumentRefNo;
-arguments.arg3=exposureBusinessId;
-arguments.arg4=programId;
-arguments.arg5=sanctionAmmount;
-arguments.arg6=SanctionAuthority;
-arguments.arg7=roi;
-arguments.arg8=duedate;
-arguments.arg9=valuedate;
-arguments.arg10="0";
-arguments.arg11="0";
-arguments.arg12="0";    
-arguments.arg13=buyerBusinessId;
-arguments.arg14=sellerBusinessId;
-options.dataArguments=arguments;
-  
-$.ajax({ 
-   url: "http://localhost:3000/postSender",
-   datatype: "JSON", 
-   data: options,
-   type: "Post", 
-   success: function (data) { 
-              //debugger;                           
-              console.log("data "+data );
-              //console.log("data.length "+data.length )
-              console.log("data.length "+ data.length);
-              let len=data.length;
-              $("#messages").text(data);
-                } 
-              }); 
+      let sellerBusinessId = $("#sellerBusinessId").val();
+      let options = {};
+      options.chaincodeId = "loancc";
+      options.methodToBeCalled = "newLoanInfo";
+
+      //form array of named inputs 
+
+      var arguments = {};
+      arguments.arg1 = loanId;
+      arguments.arg2 = instrumentRefNo;
+      arguments.arg3 = exposureBusinessId;
+      arguments.arg4 = programId;
+      arguments.arg5 = sanctionAmmount;
+      arguments.arg6 = SanctionAuthority;
+      arguments.arg7 = roi;
+      arguments.arg8 = duedate;
+      arguments.arg9 = valuedate;
+      arguments.arg10 = "0";
+      arguments.arg11 = "0";
+      arguments.arg12 = "0";
+      arguments.arg13 = buyerBusinessId;
+      arguments.arg14 = sellerBusinessId;
+      options.dataArguments = arguments;
+
+      $.ajax({
+        url: "http://localhost:3000/postSender",
+        datatype: "JSON",
+        data: options,
+        type: "Post",
+        success: function (data) {
+          //debugger;                           
+          console.log("data " + data);
+          //console.log("data.length "+data.length )
+          console.log("data.length " + data.length);
+          let len = data.length;
+          $("#messages").text(data);
+        }
+      });
+    }
+    setTimeout(function () {
+      $('#messages').remove();
+    }, 50000);
+    function getInstrumentNo() {
+
+      let options = {};
+      options.chaincodeId = "instrumentcc";
+      options.methodToBeCalled = "queryInstrument";
+      let arguments = {};
+
+      arguments.arg1 = '{"selector":{"Status":"open"}}';
+      //let arguments='{"selector":{"Status":"open"}}';
+      options.dataArguments = arguments;
+      console.log("options ", options)
+      $.ajax({
+        url: "http://localhost:3000/postSender",
+        datatype: "JSON",
+        type: "Post",
+        data: options,
+        success: function (data) {
+          console.log("data ", data)
+          data1 = JSON.parse(data);
+          //JSON.stringify(data)
+          for (var i in data1) {
+             let opt ={}
+            /*  opt.RefNo = new Option(data1[i].Record.RefNo);
+            opt.SellerID = new Option(data1[i].Record.SellerID); 
+             $("#instrumentNo").append(opt.RefNo); 
+             $("#sample").val(opt.SellerID); */
+             $("#instrumentNo").append('<option value= '+data1[i].Record.SellerID+'>'+data1[i].Record.InstrumentRefNo+'</option>');
+           //$("#sample").val(opt.SellerID);    
+            console.log("InstrumentRefNo ", data1[i].Record.InstrumentRefNo);
+            console.log("SellerID ", data1[i].Record.SellerID);
           }
-          setTimeout(function(){
-  $('#messages').remove();
-}, 50000);
-  
-</script> 
+        } 
+     
+      });
+    }
+    window.onload = getInstrumentNo();
+    $('#instrumentNo').change(function() {
+      console.log("Selected item val" + $(this).val());
+      console.log("Selected item text" + $(this).text());
+	  /* 	let instrumentNo1 = $(this).val();
+      let SellerID = $(this).text(); */
+      var val = $("#instrumentNo option:selected").val();
+      var text = $("#instrumentNo option:selected").text();
+ // let  SellerID = $("sample").val();
+    console.log("val ",val)
+    console.log(" text",text)
+      // console.log("SellerID ",SellerID)
+			getDetails(text,val);
+		})
+
+    function getDetails(ins,sellID){
+      let options = {};
+      options.chaincodeId = "instrumentcc";
+      options.methodToBeCalled = "getInstrument";
+      let arguments = {};
+      arguments.arg1 = ins;
+      arguments.arg2 = sellID;
+      options.dataArguments = arguments;
+      console.log("options ", options)
+      $.ajax({
+        url: "http://localhost:3000/postSender",
+        datatype: "JSON",
+        type: "Post",
+        data: options,
+        success: function (data) {
+          console.log("Data ", data)
+          data1 = JSON.parse(data);
+          console.log("Data1 ", data1);
+          document.getElementById('sellerBusinessId').value=data1.SellerID;
+        //  document.getElementById('buyerBusinessId').value=data1.BuyerID;
+          $("#buyerBusinessId").val(data1.BuyerID);
+          $("#programId").val(data1.ProgramID);
+          $("#duedate").val(data1.DueDate);
+          $("#valuedate").val(data1.ValueDate);
+          $("#buyerBusinessId").val(data1.BuyerID);
+          $("#buyerBusinessId").val(data1.BuyerID);
+
+          //JSON.stringify(data)
+         /*  for (var i in data1) {
+            let opt = new Option(data1[i].Record.RefNo);
+            $("#instrumentNo").append(opt);  
+            console.log("RefNo ", opt);
+          } */
+        } 
+        
+      });
+
+    }
+  </script>
 </head>
+
 <body>
-  <div >
+  <div>
     <img src="/Images/headleft.png">
     <div class="top-right" style="float: right; margin-top: -117px;margin-right: 45px;overflow: hidden">
-      <ol style="overflow: hidden"><li style="padding: 10px"><img style="position: absolute;width:134px" onclick="addBankParticipant()"src="/Images/BAdd.png"/></li>
-        <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -4px" src="/Images/bankConfig.png"/></li>
-          <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -9px"onclick="bankWalletPage()" src="/Images/bankWallet.png"/></li></ol></div>
+      <ol style="overflow: hidden">
+        <li style="padding: 10px"><img style="position: absolute;width:134px" onclick="addBankParticipant()" src="/Images/BAdd.png" /></li>
+        <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -4px" src="/Images/bankConfig.png" /></li>
+        <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -9px" onclick="bankWalletPage()"
+            src="/Images/bankWallet.png" /></li>
+      </ol>
+    </div>
   </div>
   <div></div>
   <div class="nav">
     <img src="/Images/sanctionloanhead.png">
     <div class="top-right" style="float: right; margin-top: 117px;margin-right: 45px;overflow: hidden">
-     <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -128px;margin-left: -260px" onclick="mainPage()" src="/Images/back.png"/></li></div>     
-    </div>   
-    <div class="nav1" id="text">
-	<br>
-	<div class="row">
-			<div class="col-md-4">Loan No</div><div class="col-md-8"><input type="text" id="loanId"></div>
-		</div>
-		<div class="row">
-			<div class="col-md-4">Instrument No</div><div class="col-md-8" style="width:170px"><input type="text" id="instrumentRefNo"></div>
-		</div>
-		<br>
-		  <div class="row">
-			<div class="col-md-4">Exposure Business ID</div><div class="col-md-8"><input type="text" id="exposureBusinessId"></div>
-		</div>
-		<br>
-		  <div class="row">
-			<div class="col-md-4">Program ID</div><div class="col-md-8"><input type="text" id="programId"></div>
-		</div>
-		<br>
-		  <div class="row">
-			<div class="col-md-4">Loan Sanction Amount</div><div class="col-md-8"><input type="text" id="sanctionAmmount"></div>
-		</div>
-		<br>
-		<div class="row">
-			<div class="col-md-4">Sanction Authority</div><div class="col-md-8" style="width:170px"><input type="text" id="SanctionAuthority"></div>
-		</div>
-		<br>
-    <div class="row">
-    <div class="col-md-4">ROI</div><div class="col-md-8"><input type="text" id="roi"></div>
-  </div>
-  <br>
-  <div class="row">
-  <div class="col-md-4">Due Date</div><div class="col-md-8"><input type="text" id="duedate"></div>
-</div>
-<br>
-  <div class="row">
-  <div class="col-md-4">Value Date</div><div class="col-md-8"><input type="text" id="valuedate"></div>
-</div>
-<br>
-  <div class="row">
-  <div class="col-md-4">Buyer Business Id</div><div class="col-md-8"><input type="text" id="buyerBusinessId"></div>
-</div>
-<br>
-  <div class="row">
-  <div class="col-md-4">Seller Business Id</div><div class="col-md-8"><input type="text" id="sellerBusinessId"></div>
-</div>
-    <div class="center" style="margin-left: 330px">
-     <img src="/Images/Cancel.png" onclick="cancel()">
-      <img src="/Images/Submit.png" onclick="createLoan()">
-       <div id="messages"></div>
-    </div>       
+      <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -128px;margin-left: -260px"
+          onclick="mainPage()" src="/Images/back.png" /></li>
     </div>
+  </div>
+  <div class="nav1" id="text">
+
+    <div class="row">
+      <div class="col-md-4">Instrument Reference No</div>
+      <div class="col-md-8" class="select" name="Instrument No"><select id="instrumentNo" style="width:168px">
+          <option value="0">Instrument No</option>
+        </select></div>
+    </div>
+     <br>
+    <div class="row">
+      <div class="col-md-4">Loan No</div>
+      <div class="col-md-8"><input type="text" id="loanId"></div>
+    </div>
+<!--     <div class="row">
+      <div class="col-md-4">Instrument No</div>
+      <div class="col-md-8" style="width:170px"><input type="text" id="instrumentRefNo"></div>
+    </div> -->
+    <br>
+    <div class="row">
+      <div class="col-md-4">Exposure Business ID</div>
+      <div class="col-md-8"><input type="text" id="exposureBusinessId"></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4">Program ID</div>
+      <div class="col-md-8"><input type="text" id="programId" readonly="readonly"></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4">Loan Sanction Amount</div>
+      <div class="col-md-8"><input type="text" id="sanctionAmmount"></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4">Sanction Authority</div>
+      <div class="col-md-8" style="width:170px"><input type="text" id="SanctionAuthority"></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4">ROI</div>
+      <div class="col-md-8"><input type="text" id="roi"></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4">Due Date</div>
+      <div class="col-md-8"><input type="text" id="duedate" readonly="readonly" ></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4">Value Date</div>
+      <div class="col-md-8"><input type="text" id="valuedate" readonly="readonly"></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4">Buyer Business Id</div>
+      <div class="col-md-8"><input type="text" id="buyerBusinessId" readonly="readonly"></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4">Seller Business Id</div>
+      <div class="col-md-8"><input type="text" id="sellerBusinessId" readonly="readonly"></div>
+    </div>
+    <div class="center" style="margin-left: 330px">
+      <img src="/Images/Cancel.png" onclick="cancel()">
+      <img src="/Images/Submit.png" onclick="createLoan()">
+      <div id="messages"></div>
+    </div>
+  </div>
 </body>
+
 </html>

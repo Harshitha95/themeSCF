@@ -31,7 +31,8 @@
     arguments.arg9=uploadBatchNo;
     arguments.arg10=instrumentEndDate;
     options.dataArguments=arguments;
- 
+ console.log("options",options)
+ console.log("dataArguments ",options.dataArguments)
 $.ajax({ 
    url: "http://localhost:3000/postSender",
    datatype: "JSON", 
@@ -46,7 +47,8 @@ $.ajax({
               $("#messages").text(data);
                 } 
               }); 
-          }
+    }
+
     </script> 
 </head>
 <body>
@@ -64,7 +66,7 @@ $.ajax({
      <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -128px;margin-left: -260px" onclick="mainPage()" src="/Images/back.png"/></li></div>
    </div>
    <div class="nav1" id="text">
-   </br>
+     <br>
     <div class="row">
         <div class="col-md-4">Instrument Reference No</div><div class="col-md-8"><input type="text" id="instrumentRefNo"></div>
     </div>

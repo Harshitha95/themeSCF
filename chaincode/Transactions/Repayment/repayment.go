@@ -44,16 +44,16 @@ func newRepayInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 		xLenStr := strconv.Itoa(len(args))
 		return shim.Error("repaymentcc: " + "Invalid number of arguments in newRepayInfo(repayment) (required:10) given:" + xLenStr)
 	}
-	fmt.Print("args[0]", args[0])
-	fmt.Print("args[1]", args[1])
-	fmt.Print("args[2]", args[2])
-	fmt.Print("args[3]", args[3])
-	fmt.Print("args[4]", args[5])
-	fmt.Print("args[5]", args[5])
-	fmt.Print("args[6]", args[6])
-	fmt.Print("args[7]" args[7])
-	fmt.Print("args[8] ",,args[8])
-	fmt.Print("args[9] ",,args[9])
+	fmt.Println("args[0]", args[0])
+	fmt.Println("args[1]", args[1])
+	fmt.Println("args[2]", args[2])
+	fmt.Println("args[3]", args[3])
+	fmt.Println("args[4]", args[5])
+	fmt.Println("args[5]", args[5])
+	fmt.Println("args[6]", args[6])
+	fmt.Println("args[7]",args[7])
+	fmt.Println("args[8] ",args[8])
+	fmt.Println("args[9] ",args[9])
 	/*
 	 *TxnType string    //args[1]
 	 *TxnDate time.Time //args[2]
