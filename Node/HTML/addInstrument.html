@@ -48,7 +48,17 @@ $.ajax({
                 } 
               }); 
     }
-
+    window.onload = setDate();
+ function setDate() {
+    var today = new Date();
+  var date = (today.getDate() < 10 ? '0' : '') + today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+  console.log("Date ",date) 
+  $("#instrumentDate").val(date);
+  var randomNo = Math.floor(1000 + Math.random() * 9000);
+			console.log("Val ",randomNo);
+			$("#uploadBatchNo").val(randomNo);
+  
+  }
     </script> 
 </head>
 <body>

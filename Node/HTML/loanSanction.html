@@ -25,11 +25,13 @@ h1 { text-align: center  }
 }
 </style>
   <script src="jquery-3.1.0.min.js"></script>
+  <script src="moment-timezone.min.js"></script>
   <!--<script src="jquery-3.1.0.js"></script> -->
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src='tc-admin.js'></script>
   <script>
+ //   moment().format();
     function createLoan() {
 
       let loanId = $("#loanId").val();
@@ -158,11 +160,15 @@ h1 { text-align: center  }
         //  document.getElementById('buyerBusinessId').value=data1.BuyerID;
           $("#buyerBusinessId").val(data1.BuyerID);
           $("#programId").val(data1.ProgramID);
-          $("#duedate").val(data1.DueDate);
-          $("#valuedate").val(data1.ValueDate);
+         /*  let ts =new Date(data1.DueDate)
+         console.log("Loacale String ",ts.toLocaleDateString());
+          $("#duedate").val(ts.toLocaleDateString()); */
+        let dueDate = formatDate(data1.DueDate);
+       let valueDate = formatDate2(data1.ValueDate);
+          $("#valuedate").val(valueDate);
           $("#buyerBusinessId").val(data1.BuyerID);
-          $("#buyerBusinessId").val(data1.BuyerID);
-
+         // $("#buyerBusinessId").val(data1.BuyerID);
+          $("#duedate").val(dueDate);
           //JSON.stringify(data)
          /*  for (var i in data1) {
             let opt = new Option(data1[i].Record.RefNo);
@@ -172,8 +178,41 @@ h1 { text-align: center  }
         } 
         
       });
-
     }
+
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [day, month, year].join('/');
+}
+
+function formatDate2(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear(),
+        hr = '' + (d.getHours() ),
+        min = '' + d.getMinutes(),
+        sec = d.getSeconds();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    if (hr.length < 2) hr = '0' + hr;
+    if (min.length < 2) min = '0' + min;
+    if (sec.length < 2) sec = '0' + sec;
+    var da =[day, month, year].join('/');
+    var m =[hr, min, sec].join(':');
+    var T=da+":"+m;
+    console.log("Formated Time ",da+m);
+    return T;
+}
+
   </script>
 </head>
 
@@ -247,7 +286,7 @@ h1 { text-align: center  }
     <br>
     <div class="row">
       <div class="col-md-4">Value Date</div>
-      <div class="col-md-8"><input type="text" id="valuedate" readonly="readonly"></div>
+      <div class="col-md-8"><input type="text" id="valuedate" ></div>
     </div>
     <br>
     <div class="row">

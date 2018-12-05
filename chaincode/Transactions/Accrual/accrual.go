@@ -78,7 +78,7 @@ func newAccrualInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response
 	status := string(response.Payload)
 
 	if status != "part disbursed" && status != "disbursed" {
-		return shim.Error("accrual.cc: " + "loan status for loanID " + args[3] + " is not Sanctioned / part disbursed / disbursed")
+		return shim.Error("accrual.cc: " + "loan status for loanID " + args[3] + " is not  part disbursed / disbursed")
 	}
 
 	txnAmt, _ := strconv.ParseInt(args[5], 10, 64)

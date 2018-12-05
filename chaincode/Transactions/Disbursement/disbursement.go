@@ -37,8 +37,16 @@ func newDisbInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 		xLenStr := strconv.Itoa(len(args))
 		return shim.Error("disbursementcc: " + "Invalid number of arguments in newDisbInfo(disbursement) (required:10) given:" + xLenStr)
 	}
-	fmt.Println("args []",args [0], " ",args [1], " ",args [2], " ",args [3], " ",args [4], " ",args [5])
-	fmt.Print("args[6] &[7]  &[8] &[9]", args[6] ," -----> ",args[7]," -----> ",args[8]," -----> ",args[9])
+	fmt.Println("args[0]", args[0] )
+	fmt.Println("args[1]", args[1] )
+	fmt.Println("args[2]", args[2] )
+	fmt.Println("args[3]", args[3] )
+	fmt.Println("args[4]", args[4] )
+	fmt.Println("args[5]", args[5] )
+	fmt.Println("args[6]", args[6] )
+	fmt.Println("args[7]", args[7] )
+	fmt.Println("args[8]", args[8] ) 
+	fmt.Println("args[9]", args[9] ) 
 	/*
 	 *TxnType string    //args[1]
 	 *TxnDate time.Time //args[2]

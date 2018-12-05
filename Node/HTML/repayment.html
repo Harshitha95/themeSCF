@@ -1,152 +1,3 @@
-<!-- <html>
-<head>
-<style>
-
-body {background-color: white;}
-h1 { text-align: center  }
-.nav {
-    
-    list-style-type: none;
-    height:75px;
-    width: 100%;   
-    margin-top: 50px;
-    margin-left: 100px;
-}
-.nav1 {
-    
-    list-style-type: none;
-       height:auto;
-    width: 84%;
-    text-indent: 10px;
-    background-color: #ffdde8;
-    margin-top: -16px;
-    margin-left: 100px;
-}
-
-</style>
-	<script>
-		src="https://code.jquery.com/jquery-3.3.1.js"
-integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-crossorigin="anonymous"></script>
-<script>
-	function loanRepayment() {
-	console.log("Inside Repay onclick");
-	let txnId= $("#txnId").val();
-	let txnDate= $("#txnDate").val();
-	let txnType= $("#txnType").val();
-	let loanId= $("#loanId").val();
-	let instrumentRefNo= $("#instrumentRefNo").val();
-	let amount= $("#amount").val();
-	let from= $("#from").val();
-	let to= $("#to").val();
-	let by= $("#by").val();
-	let by= $("#pprId").val();
-	let options = {};
-   options.chaincodeId="repaymentcc";
-   options.methodToBeCalled="newRepayInfo";
-  
-  //form array of named inputs 
-  
-  var arguments={};
-  arguments.arg1=txnId;
-  arguments.arg2=txnDate;
-  arguments.arg3=txnType;
-  arguments.arg4=loanId;
-  arguments.arg5=instrumentRefNo;
-  arguments.arg6=amount;
-  arguments.arg7=from;
-  arguments.arg8=to;
-  arguments.arg9=by;
-  arguments.arg9=pprId;
-  
-  options.dataArguments=arguments;
-	
-  $.ajax({ 
-	 url: "http://localhost:3000/postSender",
-	 datatype: "JSON", 
-	 data: options,
-	 type: "Post", 
-	 success: function (data) { 
-				//debugger;                           
-				console.log("data "+data );
-				//console.log("data.length "+data.length )
-				console.log("data.length "+ data.length);
-				let len=data.length;
-				$("#messages").text(data);
-				  } 
-				}); 
-			}
-			setTimeout(function(){
-	$('#messages').remove();
-  }, 50000);
-	</script>
-</head>
-<body>
-  <div >
-    <img src="/Images/headleft.png">
-    <div class="top-right" style="float: right; margin-top: -117px;margin-right: 45px;overflow: hidden">
-      <ol style="overflow: hidden"><li style="padding: 10px"><img style="position: absolute;width:134px" onclick="addBankParticipant()"src="/Images/BAdd.png"/></li>
-        <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -4px" src="/Images/bankConfig.png"/></li>
-          <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -9px"onclick="bankWalletsPage()" src="/Images/bankWallet.png"/></li></ol></div>
-  </div>
-  <div></div>
-  <div class="nav">
-    <img src="/Images/repaymenthead.png">
-    <div class="top-right" style="float: right; margin-top: 117px;margin-right: 45px;overflow: hidden">
-     <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -128px;margin-left: -260px" onclick="mainPage()" src="/Images/back.png"/></li></div>     
-    </div>   
-    <div class="nav1" id="text">
-		 <div class="nav1" id="text">
-       <div class="row">
-        <div class="col-md-4">Transaction Id</div>
-        <div class="col-md-8"><input type="text" id="txnId" ></div>
-    </div>   
-    <div class="row">
-        <div class="col-md-4">Transaction Date</div>
-        <div class="col-md-8"><input type="text" id="txnDate" ></div>
-    </div>
-	 
-	<div class="row">
-        <div class="col-md-4">Transaction Type</div>
-        <div class="col-md-8"><input type="text" id="txnType"></div>
-    </div>
-	 <div class="row">
-		<div class="col-md-4">Loan No</div><div class="col-md-8"><input type="text" id="loanId"></div>
-	</div>
-	
-	<div class="row">
-		<div class="col-md-4">Instrument No</div><div class="col-md-8" style="width:170px"><input type="text" id="instrumentRefNo"></div>
-	</div>
-
-	<div class="row">
-		<div class="col-md-4">Amount</div><div class="col-md-8" style="width:170px"><input type="text" id="amount"></div>
-	</div>
-
-	<div class="row">
-		<div class="col-md-4">From</div><div class="col-md-8" style="width:170px"><input type="text" id="from"></div>
-	</div>
-
-	<div class="row">
-		<div class="col-md-4">To</div><div class="col-md-8" style="width:170px"><input type="text" id="to"></div>
-	</div>
-
-	<div class="row">
-		<div class="col-md-4">By </div><div class="col-md-8" style="width:170px"><input type="text" id="by"></div>
-	</div>
-
-	<div class="row">
-		<div class="col-md-4">PPR Id </div><div class="col-md-8" style="width:170px"><input type="text" id="pprId"></div>
-	</div>
-   
-    <div class="center" style="margin-left: 330px">
-     <img src="/Images/Cancel.png" onclick="cancel()">
-			<img src="/Images/Submit.png" onclick="loanRepayment()">
-       <div id="messages"></div>
-    </div>       
-     </div> 
-</body>
-</html> -->
-
 <html>
 <head>
 <style>
@@ -231,10 +82,75 @@ h1 { text-align: center  }
 					} 
 				  }); 
 			  }
-			  setTimeout(function(){
+	setTimeout(function(){
 	  $('#messages').remove();
 	}, 50000);
-	  </script>
+function getLoanNo() {
+
+let options = {};
+options.chaincodeId = "loancc";
+options.methodToBeCalled = "queryLoan";
+let arguments = {};
+
+arguments.arg1 = '{"selector":{"LoanStatus":"sanctioned"}}';
+//let arguments='{"selector":{"Status":"open"}}';
+options.dataArguments = arguments;
+console.log("options ", options)
+$.ajax({
+	url: "http://localhost:3000/postSender",
+	datatype: "JSON",
+	type: "Post",
+	data: options,
+	success: function (data) {
+		console.log("data ", data)
+		data1 = JSON.parse(data);
+		//JSON.stringify(data)
+		console.log("data1 ", data1)
+		for (var i in data1) {
+		let opt =new Option(data1[i].Key);
+		$("#loanId").append(opt);
+		
+	}
+	} 
+	});
+}
+window.onload = getLoanNo();
+$('#loanId').change(function() {
+	let loanId = $(this).val();
+    
+    console.log("loanId ",loanId)
+   	getDetails(loanId);
+})
+
+function getDetails(loanId){
+      let options = {};
+      options.chaincodeId = "loancc";
+      options.methodToBeCalled = "getLoanInfo";
+      let arguments = {};
+      arguments.arg1 = loanId;
+      options.dataArguments = arguments;
+      console.log("options ", options)
+      $.ajax({
+        url: "http://localhost:3000/postSender",
+        datatype: "JSON",
+        type: "Post",
+        data: options,
+        success: function (data) {
+          console.log("Data ", data)
+          data1 = JSON.parse(data);
+          console.log("Data1 ", data1);
+		  var today = new Date();
+		  var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+		  console.log("Date ",date)
+		  $("#txnDate").val(date);
+          $("#instrumentRefNo").val(data1.InstrumentNo);
+		  var randomNo = Math.floor(1000 + Math.random() * 9000);
+			console.log("Val ",randomNo);
+			$("#txnId").val("TXN"+randomNo);
+        } 
+       });
+    }
+	</script>
 </head>
 <body>
   <div >
@@ -251,30 +167,32 @@ h1 { text-align: center  }
      <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -128px;margin-left: -260px" onclick="mainPage()" src="/Images/back.png"/></li></div>     
     </div>   
     <div class="nav1" id="text">
-       <div class="row">
-        <div class="col-md-4">Transaction Id</div>
-        <div class="col-md-8"><input type="text" id="txnId" ></div>
-    </div>   
-    <div class="row">
-        <div class="col-md-4">Transaction Date</div>
-        <div class="col-md-8"><input type="text" id="txnDate" ></div>
-    </div>
-	 
-	<div class="row">
-        <div class="col-md-4">Transaction Type</div>
-        <div class="col-md-8"><input type="text" id="txnType"></div>
-    </div>
-	 <div class="row">
-		<div class="col-md-4">Loan No</div><div class="col-md-8"><input type="text" id="loanId"></div>
-	</div>
-	
-	<div class="row">
-		<div class="col-md-4">Instrument No</div><div class="col-md-8" style="width:170px"><input type="text" id="instrumentRefNo"></div>
-	</div>
-
-	<div class="row">
-		<div class="col-md-4">Amount</div><div class="col-md-8" style="width:170px"><input type="text" id="amount"></div>
-	</div>
+		<div class="row">
+			<div class="col-md-4">Loan No</div>
+				<div class="col-md-8" class="select" name="Instrument No">
+					<select id="loanId" style="width:168px">
+						<option value="0">Loan</option>
+					 </select>
+				</div>
+			</div>
+			<div class="row">
+					<div class="col-md-4">Instrument No</div><div class="col-md-8"><input type="text" id="instrumentRefNo"></div>
+			</div>
+			<div class="row">
+					<div class="col-md-4">Transaction Id</div>
+					<div class="col-md-8"><input type="text" id="txnId" readonly="readonly"></div>
+			</div>   
+			<div class="row">
+					<div class="col-md-4">Transaction Date</div>
+					<div class="col-md-8"><input type="text" id="txnDate" readonly="readonly"></div>
+			</div>	 
+			<div class="row">
+					<div class="col-md-4">Transaction Type</div>
+					<div class="col-md-8"><input type="text" id="txnType" value="Disbursement" readonly="readonly"></div>
+			</div>	
+			<div class="row">
+					<div class="col-md-4">Amount</div><div class="col-md-8" style="width:170px"><input type="text" id="amount"></div>
+			</div>
 	<div class="row">
 		<div class="col-md-4">Bank Id</div><div class="col-md-8" style="width:170px"><input type="text" id="bankId"></div>
 	</div>

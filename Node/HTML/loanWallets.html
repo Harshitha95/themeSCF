@@ -82,54 +82,99 @@
 
 </style>
 <script>
-	 function getLoanDetails() {
-  
-  let loanId= $("#loanId").val();
+	window.onload = getLoanNo();
+$('#loanId').change(function() {
+let loanId = $(this).val();
 
-   let options = {};
- options.chaincodeId="loancc";
- options.methodToBeCalled="getWalletsofLoan";
-//form array of named inputs 
-var arguments={};
-arguments.arg1=loanId;
-arguments.arg2="disbursed";
-arguments.arg3="charges";
-arguments.arg4="accrued";
- 
-
-options.dataArguments=arguments;
+console.log("loanId ",loanId)
+getLoanDetails(loanId);
+})
+	 function getLoanDetails(loanId) {
   
-$.ajax({ 
-   url: "http://localhost:3000/postSender",
-   datatype: "JSON", 
-   data: options,
-   type: "Post", 
-   success: function (data) { 
-              //debugger;                           
-              console.log("data "+data );
-              data=JSON.parse(data);
-              //console.log("data.length "+data.length )
-              console.log("data.length "+ data.length);
-     
-              let len=data.length;
-              if(data != null){
-	      	   let _str = '<h3>Loan Wallet Details</h3>';
-        		_str += '</br>';
-           		_str += '<table style="width:100%;cell-padding:20px"><tr ><th>Wallet Type</th><th>Wallet ID</th><th>Wallet Balance</th></tr>';
-        		_str +='<tr><td width="200px">Loan Disbursed Wallet</td><td>'+data.DisbursementWallet+'</td><td style="text-align:right;margin-right:10px">'+data.DisbursementWalletBal+'</td></tr>';
-        		_str +='<tr><td>Loan Charges Wallet</td><td>'+data.ChargesWallet+'</td><td style="text-align:right;margin-right:10px">'+data.ChargesWalletBal+'</td></tr>';
-				_str +='<tr><td>Loan Accrued Wallet</td><td>'+data.AccruedInterestWallet+'</td><td style="text-align:right;margin-right:10px">'+data.AccruedInterestWalletBal+'</td></tr>';
-        		     
-        $('#valuetable').empty();
-        $('#valuetable').append(_str);
-        }
-             // $("#messages").text(data);
-                } 
-              }); 
-          }
-          setTimeout(function(){
-  $('#messages').remove();
-}, 50000);
+	//	let loanId= $("#loanId").val();
+
+		let options = {};
+		options.chaincodeId="loancc";
+		options.methodToBeCalled="getWalletsofLoan";
+		//form array of named inputs 
+		var arguments={};
+		arguments.arg1=loanId;
+		arguments.arg2="disbursed";
+		arguments.arg3="charges";
+		arguments.arg4="accrued";
+		
+
+		options.dataArguments=arguments;
+		
+		$.ajax({ 
+		url: "http://localhost:3000/postSender",
+		datatype: "JSON", 
+		data: options,
+		type: "Post", 
+		success: function (data) { 
+					//debugger;                           
+					console.log("data "+data );
+					data=JSON.parse(data);
+					//console.log("data.length "+data.length )
+					console.log("data.length "+ data.length);
+			
+					let len=data.length;
+					if(data != null){
+					let _str = '<h3>Loan Wallet Details</h3>';
+						_str += '</br>';
+						_str += '<table style="width:100%;cell-padding:20px"><tr ><th>Wallet Type</th><th>Wallet ID</th><th>Wallet Balance</th></tr>';
+						_str +='<tr><td width="200px">Loan Disbursed Wallet</td><td>'+data.DisbursementWallet+'</td><td style="text-align:right;margin-right:10px">'+data.DisbursementWalletBal+'</td></tr>';
+						_str +='<tr><td>Loan Charges Wallet</td><td>'+data.ChargesWallet+'</td><td style="text-align:right;margin-right:10px">'+data.ChargesWalletBal+'</td></tr>';
+						_str +='<tr><td>Loan Accrued Wallet</td><td>'+data.AccruedInterestWallet+'</td><td style="text-align:right;margin-right:10px">'+data.AccruedInterestWalletBal+'</td></tr>';
+							
+				$('#valuetable').empty();
+				$('#valuetable').append(_str);
+				}
+					// $("#messages").text(data);
+						} 
+					}); 
+				}
+		setTimeout(function(){
+			$('#messages').remove();
+		}, 50000);
+function getLoanNo() {
+
+let options = {};
+options.chaincodeId = "loancc";
+options.methodToBeCalled = "queryLoan";
+let arguments = {};
+
+arguments.arg1 = '{"selector":{"LoanStatus":"sanctioned"}}';
+//let arguments='{"selector":{"Status":"open"}}';
+options.dataArguments = arguments;
+console.log("options ", options)
+$.ajax({
+	url: "http://localhost:3000/postSender",
+	datatype: "JSON",
+	type: "Post",
+	data: options,
+	success: function (data) {
+		console.log("data ", data)
+		data1 = JSON.parse(data);
+		//JSON.stringify(data)
+		console.log("data1 ", data1)
+		for (var i in data1) {
+		let opt =new Option(data1[i].Key);
+		$("#loanId").append(opt);
+	
+/*  opt.RefNo = new Option(data1[i].Record.RefNo);
+opt.SellerID = new Option(data1[i].Record.SellerID); 
+$("#instrumentNo").append(opt.RefNo); 
+$("#sample").val(opt.SellerID); */
+//   $("#instrumentNo").append('<option value= '+data1[i].Record.SellerID+'>'+data1[i].Record.InstrumentRefNo+'</option>');
+//$("#sample").val(opt.SellerID);    
+/*   console.log("InstrumentRefNo ", data1[i].Record.InstrumentRefNo);
+console.log("SellerID ", data1[i].Record.SellerID); */
+}
+} 
+
+});
+}
 	</script> 
  </head>
  
@@ -156,7 +201,12 @@ $.ajax({
 	   </div> -->
 	</br>
 	<div class="row">
-		<div class="col-md-4">Loan ID</div><div class="col-md-8"><input type="text" id="loanId"></div>
+		<div class="col-md-4">Loan ID</div>
+		<div class="col-md-8" class="select" name="Instrument No">
+			<select id="loanId" style="width:168px">
+				<option value="0">Loan</option>
+			 </select>
+		</div>
 	</div>
     </div>
     <div class="center" style="margin-left: 330px">

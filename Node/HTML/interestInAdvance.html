@@ -1,121 +1,3 @@
-<!-- <html>
-<head>
-<style>
-
-body {background-color: white;}
-h1 { text-align: center  }
-.nav {
-    
-    list-style-type: none;
-    height:75px;
-    width: 100%;   
-    margin-top: 50px;
-    margin-left: 100px;
-}
-.nav1 {
-    
-    list-style-type: none;
-       height:auto;
-    width: 84%;
-    text-indent: 10px;
-    background-color: #99ddff;
-    margin-top: -16px;
-    margin-left: 100px;
-}
-
-</style>
-<script src="jquery-3.1.0.min.js"></script>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
-	<script src='tc-admin.js'></script>
-<script>
-	function getLoan() {
-			$.ajax({  
-			url: "http://14.192.17.63:6002/composer/admin/getSanctionedLoans",  
-			datatype: "JSON",  
-			type: "Get",  
-			success: function (data) {  
-			//debugger; 
-				console.log("data "+data );
-			//	console.log("data.length "+data.length )
-				console.log("data.length "+ data.length);
-				let len=data.length;
-					for(var i=0;i<len; i++)  
-					{  
-						var opt = new Option(data[i]);  
-						$("#loanId").append(opt);  
-						console.log("opt "+opt);
-					}  
-				}  
-			});  
-		}
-		window.onload = getLoan();
-
-		 $('#loanId').change(function() {
-			console.log("Selected item" + $(this).val());
-		let loanId = $(this).val();
-			getAmount(loanId);
-		})
-		
-		function getAmount(loanId) {
-			$.ajax({  
-			url: "http://14.192.17.63:6002/composer/admin/getAmount",  
-			datatype: "JSON", 
-			data:{
-			loan:loanId
-			},
-			type: "Get",  
-			success: function (data) {  
-			//debugger; 
-				console.log("data "+data.amount );
-				//(data.amount)
-				document.getElementById('amount').value=data.amount;
-			 
-				}  
-			});  
-		}
-		
-	</script> 
-	</head>
-<body>
-  <div >
-    <img src="/Images/headleft.png">
-    <div class="top-right" style="float: right; margin-top: -117px;margin-right: 45px;overflow: hidden">
-      <ol style="overflow: hidden"><li style="padding: 10px"><img style="position: absolute;width:134px" onclick="addBankParticipant()"src="/Images/BAdd.png"/></li>
-        <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -4px" src="/Images/bankConfig.png"/></li>
-          <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -9px"onclick="bankWalletsPage()" src="/Images/bankWallet.png"/></li></ol></div>
-  </div>
-  <div></div>
-  <div class="nav">
-    <img src="/Images/advancecollectionhead.png">
-    <div class="top-right" style="float: right; margin-top: 117px;margin-right: 45px;overflow: hidden">
-     <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -128px;margin-left: -260px" onclick="mainPage()" src="/Images/back.png"/></li></div>     
-    </div>   
-    <div class="nav1" id="text">
-   </br>
-       <div class="row">
-        <div class="col-md-4">Loan ID</div><div class="col-md-8" class="select"> 
-        	<select id="loanId" style="width:168px">       
-            	<option value="">Loan Id</option>
-      		</select>
-      	</div>
-     </div>
-       	
-    <div class="row">
-        <div class="col-md-4">Charges Amount</div>
-        <div class="col-md-8"><input type="text" id="amount" readonly="readonly"></div>
-    </div>
-     </br>
-	<div class="center" style="margin-left: 330px">
-	     <img src="/Images/Cancel.png" onclick="cancel()">
-	     <img src="/Images/Submit.png" onclick="callIntersetInAdvance()">
-	       <div id="messages"></div>
-	</div>     
-	    <div id="valuetable"></div>  
-    </div> 
-</body>
-</html>
- -->
  <html>
 <head>
 <style>
@@ -203,6 +85,80 @@ h1 { text-align: center  }
 			  setTimeout(function(){
 	  $('#messages').remove();
 	}, 50000);
+	function getLoanNo() {
+
+let options = {};
+options.chaincodeId = "loancc";
+options.methodToBeCalled = "queryLoan";
+let arguments = {};
+
+arguments.arg1 = '{"selector":{ "$or" :	[{"LoanStatus":"disbursed"} ,{"LoanStatus":"part disbursed"}]}}';
+//let arguments='{"selector":{"Status":"open"}}';
+options.dataArguments = arguments;
+console.log("options ", options)
+$.ajax({
+	url: "http://localhost:3000/postSender",
+	datatype: "JSON",
+	type: "Post",
+	data: options,
+	success: function (data) {
+		console.log("data ", data)
+		data1 = JSON.parse(data);
+		//JSON.stringify(data)
+		console.log("data1 ", data1)
+		for (var i in data1) {
+		let opt =new Option(data1[i].Key);
+		$("#loanId").append(opt);
+	
+/*  opt.RefNo = new Option(data1[i].Record.RefNo);
+opt.SellerID = new Option(data1[i].Record.SellerID); 
+$("#instrumentNo").append(opt.RefNo); 
+$("#sample").val(opt.SellerID); */
+//   $("#instrumentNo").append('<option value= '+data1[i].Record.SellerID+'>'+data1[i].Record.InstrumentRefNo+'</option>');
+//$("#sample").val(opt.SellerID);    
+/*   console.log("InstrumentRefNo ", data1[i].Record.InstrumentRefNo);
+console.log("SellerID ", data1[i].Record.SellerID); */
+}
+} 
+
+});
+}
+window.onload = getLoanNo();
+$('#loanId').change(function() {
+let loanId = $(this).val();
+
+console.log("loanId ",loanId)
+getDetails(loanId);
+})
+
+function getDetails(loanId){
+let options = {};
+options.chaincodeId = "loancc";
+options.methodToBeCalled = "getLoanInfo";
+let arguments = {};
+arguments.arg1 = loanId;
+options.dataArguments = arguments;
+console.log("options ", options)
+$.ajax({
+url: "http://localhost:3000/postSender",
+datatype: "JSON",
+type: "Post",
+data: options,
+success: function (data) {
+console.log("Data ", data)
+data1 = JSON.parse(data);
+console.log("Data1 ", data1);
+var today = new Date();
+	  var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+	  console.log("Date ",date)
+	  $("#txnDate").val(date);
+	$("#instrumentRefNo").val(data1.InstrumentNo);
+	var randomNo = Math.floor(1000 + Math.random() * 9000);
+			console.log("Val ",randomNo);
+			$("#txnId").val("TXN"+randomNo);
+} 
+});
+}
 	  </script>
 </head>
 <body>
@@ -220,23 +176,27 @@ h1 { text-align: center  }
      <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -128px;margin-left: -260px" onclick="mainPage()" src="/Images/back.png"/></li></div>     
     </div>   
     <div class="nav1" id="text">
+		<div class="row">
+			<div class="col-md-4">Loan ID</div>
+				<div class="col-md-8" class="select" name="Loan No">
+					<select id="loanId" style="width:168px">
+							<option value="0">Loan</option>
+					 </select>
+				</div>
+		</div>
        <div class="row">
         <div class="col-md-4">Transaction Id</div>
-        <div class="col-md-8"><input type="text" id="txnId" ></div>
+        <div class="col-md-8"><input type="text" id="txnId" readonly="readonly" ></div>
     </div>   
     <div class="row">
         <div class="col-md-4">Transaction Date</div>
-        <div class="col-md-8"><input type="text" id="txnDate" ></div>
+        <div class="col-md-8"><input type="text" id="txnDate"  readonly="readonly "></div>
     </div>
 	 
 	<div class="row">
         <div class="col-md-4">Transaction Type</div>
-        <div class="col-md-8"><input type="text" id="txnType"></div>
+        <div class="col-md-8"><input type="text" id="txnType" value="InterestInAdvance" readonly="readonly"></div>
     </div>
-	 <div class="row">
-		<div class="col-md-4">Loan No</div><div class="col-md-8"><input type="text" id="loanId"></div>
-	</div>
-	
 	<div class="row">
 		<div class="col-md-4">Instrument No</div><div class="col-md-8" style="width:170px"><input type="text" id="instrumentRefNo"></div>
 	</div>

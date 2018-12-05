@@ -219,8 +219,7 @@ func newLoanInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	println("Parsing into date for storage")
 	//00:00:00 .000Z with the date
 	//DueDate -> dDate 02-01-2006T15:04:05
-	//dDate, err := time.Parse("02/01/2006", args[7])
-	dDate, err := time.Parse(time.RFC3339, args[7])
+	dDate, err := time.Parse("02/01/2006", args[7])
 	if err != nil {
 		return shim.Error("loancc: " + err.Error())
 	}
@@ -237,11 +236,11 @@ func newLoanInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 
 	//ValueDate ->vDate
 	println("ValueDate ->vDate")
-	vDate, err := time.Parse(time.RFC3339, vStr)
+	vDate, err := time.Parse("02/01/2006T15:04:05", vStr)
+	//vDate, err := time.Parse("02/01/2006", vStr)
 	if err != nil {
 		return shim.Error("loancc: " + err.Error())
 	}
-
 	hash := sha256.New()
 	println("Hashing wallets")
 	// Hashing LoanDisbursedWalletID

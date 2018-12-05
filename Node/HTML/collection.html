@@ -123,7 +123,6 @@ h1 { text-align: center  }
 body {background-color: white;}
 h1 { text-align: center  }
 .nav {
-    
     list-style-type: none;
     height:75px;
     width: 100%;   
@@ -131,7 +130,6 @@ h1 { text-align: center  }
     margin-left: 100px;
 }
 .nav1 {
-    
     list-style-type: none;
     height:auto;
     width: 84%;
@@ -140,7 +138,6 @@ h1 { text-align: center  }
     margin-top: -16px;
     margin-left: 100px;
 }
-
 </style>
 <script src="jquery-3.1.0.min.js"></script>
 	<!--<script src="jquery-3.1.0.js"></script> --> 
@@ -163,7 +160,7 @@ h1 { text-align: center  }
 	  let from= $("#from").val();
 	  let to= $("#to").val();
 	  let by= $("#by").val();
-	  let pprId= $("#pprId").val();
+	 // let pprId= $("#pprId").val();
 
 	  let options = {};
 	 options.chaincodeId="interest_in_advancecc";
@@ -181,7 +178,7 @@ h1 { text-align: center  }
 	arguments.arg8=from;
 	arguments.arg7=to;
 	arguments.arg9=by;
-	arguments.arg10=pprId;
+//	arguments.arg10=pprId;
 	
 	options.dataArguments=arguments;
 	  
@@ -200,9 +197,87 @@ h1 { text-align: center  }
 					} 
 				  }); 
 			  }
-			  setTimeout(function(){
-	  $('#messages').remove();
-	}, 50000);
+			setTimeout(function(){
+				$('#messages').remove();
+			}, 50000);
+		
+	function getLoanNo() {
+
+	let options = {};
+	options.chaincodeId = "loancc";
+	options.methodToBeCalled = "queryLoan";
+	let arguments = {};
+
+	arguments.arg1 = '{"selector":{ "$or" :	[{"LoanStatus":"disbursed"} ,{"LoanStatus":"part disbursed"}]}}';
+	//let arguments='{"selector":{"Status":"open"}}';
+	options.dataArguments = arguments;
+	console.log("options ", options)
+	$.ajax({
+		url: "http://localhost:3000/postSender",
+		datatype: "JSON",
+		type: "Post",
+		data: options,
+		success: function (data) {
+			console.log("data ", data)
+			data1 = JSON.parse(data);
+			//JSON.stringify(data)
+			console.log("data1 ", data1)
+			for (var i in data1) {
+			let opt =new Option(data1[i].Key);
+			$("#loanId").append(opt);
+		
+	/*  opt.RefNo = new Option(data1[i].Record.RefNo);
+	opt.SellerID = new Option(data1[i].Record.SellerID); 
+	$("#instrumentNo").append(opt.RefNo); 
+	$("#sample").val(opt.SellerID); */
+	//   $("#instrumentNo").append('<option value= '+data1[i].Record.SellerID+'>'+data1[i].Record.InstrumentRefNo+'</option>');
+	//$("#sample").val(opt.SellerID);    
+	/*   console.log("InstrumentRefNo ", data1[i].Record.InstrumentRefNo);
+	console.log("SellerID ", data1[i].Record.SellerID); */
+	}
+	} 
+
+	});
+}
+window.onload = getLoanNo();
+$('#loanId').change(function() {
+let loanId = $(this).val();
+
+console.log("loanId ",loanId)
+getDetails(loanId);
+})
+
+function getDetails(loanId){
+let options = {};
+options.chaincodeId = "loancc";
+options.methodToBeCalled = "getLoanInfo";
+let arguments = {};
+arguments.arg1 = loanId;
+options.dataArguments = arguments;
+console.log("options ", options)
+$.ajax({
+url: "http://localhost:3000/postSender",
+datatype: "JSON",
+type: "Post",
+data: options,
+success: function (data) {
+  console.log("Data ", data)
+  data1 = JSON.parse(data);
+  console.log("Data1 ", data1);
+  var today = new Date();
+		  var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+		  console.log("Date ",date)
+		  $("#txnDate").val(date);
+document.getElementById('to').value=data1.SellerID;
+//  document.getElementById('buyerBusinessId').value=data1.BuyerID;
+  $("#amount").val(data1.SanctionAmt);
+  $("#instrumentRefNo").val(data1.InstrumentNo);
+  var randomNo = Math.floor(1000 + Math.random() * 9000);
+			console.log("Val ",randomNo);
+			$("#txnId").val("TXN"+randomNo);
+} 
+});
+}
 	  </script>
 </head>
 <body>
@@ -220,40 +295,44 @@ h1 { text-align: center  }
      <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -128px;margin-left: -260px" onclick="mainPage()" src="/Images/back.png"/></li></div>     
     </div>   
     <div class="nav1" id="text">
-       <div class="row">
-        <div class="col-md-4">Transaction Id</div>
-        <div class="col-md-8"><input type="text" id="txnId" ></div>
-    </div>   
-    <div class="row">
-        <div class="col-md-4">Transaction Date</div>
-        <div class="col-md-8"><input type="text" id="txnDate" ></div>
-    </div>
-	<div class="row">
-        <div class="col-md-4">Transaction Type</div>
-        <div class="col-md-8"><input type="text" id="txnType"></div>
-    </div>
-	 <div class="row">
-		<div class="col-md-4">Loan No</div><div class="col-md-8"><input type="text" id="loanId"></div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">Instrument No</div><div class="col-md-8" style="width:170px"><input type="text" id="instrumentRefNo"></div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">Amount</div><div class="col-md-8" style="width:170px"><input type="text" id="amount"></div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">From Id</div><div class="col-md-8" style="width:170px"><input type="text" id="from"></div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">To Id</div><div class="col-md-8" style="width:170px"><input type="text" id="to"></div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">By </div><div class="col-md-8" style="width:170px"><input type="text" id="by"></div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">PPR Id</div><div class="col-md-8" style="width:170px"><input type="text" id="pprId"></div>
-	</div>
-
+			<div class="row">
+					<div class="col-md-4">Loan ID</div>
+					<div class="col-md-8" class="select" name="Loan No">
+						<select id="loanId" style="width:168px">
+							<option value="0">Loan</option>
+						 </select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">Instrument No</div><div class="col-md-8"><input type="text" id="instrumentRefNo" readonly="readonly"></div>
+				</div>
+				<div class="row">
+				<div class="col-md-4">Transaction Id</div>
+					<div class="col-md-8"><input type="text" id="txnId" ></div>
+				</div>   
+				<div class="row">
+					<div class="col-md-4">Transaction Date</div>
+					<div class="col-md-8"><input type="text" id="txnDate" ></div>
+				</div>	 
+				<div class="row">
+					<div class="col-md-4">Transaction Type</div>
+					<div class="col-md-8"><input type="text" id="txnType" value="Collection" readonly="readonly"></div>
+				</div>	
+				<div class="row">
+					<div class="col-md-4">Amount</div><div class="col-md-8" style="width:170px"><input type="text" id="amount"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">From</div><div class="col-md-8" style="width:170px"><input type="text" id="from"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">To</div><div class="col-md-8" style="width:170px"><input type="text" id="to" readonly="readonly"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">By </div><div class="col-md-8" style="width:170px"><input type="text" id="by"></div>
+				</div>
+<!-- 				<div class="row">
+						<div class="col-md-4">PPR Id</div><div class="col-md-8" style="width:170px"><input type="text" id="pprId"></div>
+					</div> -->
 	    <div class="center" style="margin-left: 330px">
 	     <img src="/Images/Cancel.png" onclick="cancel()">
 	      <img src="/Images/Submit.png" onclick="collection()">

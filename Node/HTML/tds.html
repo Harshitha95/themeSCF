@@ -170,6 +170,73 @@ h1 { text-align: center  }
 				  setTimeout(function(){
 		  $('#messages').remove();
 		}, 50000);
+function getLoanNo() {
+
+let options = {};
+options.chaincodeId = "loancc";
+options.methodToBeCalled = "queryLoan";
+let arguments = {};
+
+arguments.arg1 = '{"selector":{"LoanStatus":"overdue"}}';
+
+options.dataArguments = arguments;
+console.log("options ", options)
+$.ajax({
+	url: "http://localhost:3000/postSender",
+	datatype: "JSON",
+	type: "Post",
+	data: options,
+	success: function (data) {
+		console.log("data ", data)
+		data1 = JSON.parse(data);
+		//JSON.stringify(data)
+		console.log("data1 ", data1)
+		for (var i in data1) {
+		let opt =new Option(data1[i].Key);
+		$("#loanId").append(opt);
+
+}
+} 
+
+});
+}
+window.onload = getLoanNo();
+$('#loanId').change(function() {
+let loanId = $(this).val();
+
+console.log("loanId ",loanId)
+getDetails(loanId);
+})
+
+function getDetails(loanId){
+let options = {};
+options.chaincodeId = "loancc";
+options.methodToBeCalled = "getLoanInfo";
+let arguments = {};
+arguments.arg1 = loanId;
+options.dataArguments = arguments;
+console.log("options ", options)
+$.ajax({
+url: "http://localhost:3000/postSender",
+datatype: "JSON",
+type: "Post",
+data: options,
+success: function (data) {
+console.log("Data ", data)
+data1 = JSON.parse(data);
+console.log("Data1 ", data1);
+var today = new Date();
+	  var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+	  console.log("Date ",date)
+	  $("#txnDate").val(date);
+$("#amount").val(data1.SanctionAmt);
+$("#instrumentRefNo").val(data1.InstrumentNo);
+var randomNo = Math.floor(1000 + Math.random() * 9000);
+			console.log("Val ",randomNo);
+			$("#txnId").val("TXN"+randomNo);
+} 
+});
+}
 		  </script>
 	</head>
 	<body>
@@ -187,23 +254,27 @@ h1 { text-align: center  }
 		 <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -128px;margin-left: -260px" onclick="mainPage()" src="/Images/back.png"/></li></div>     
 		</div>   
 		<div class="nav1" id="text">
-		   <div class="row">
+			<div class="row">
+				<div class="col-md-4">Loan ID</div>
+					<div class="col-md-8" class="select" name="Loan No">
+							<select id="loanId" style="width:168px">
+								<option value="0">Loan</option>
+							</select>
+					</div>
+			</div>
+		  <div class="row">
 			<div class="col-md-4">Transaction Id</div>
-			<div class="col-md-8"><input type="text" id="txnId" ></div>
-		</div>   
-		<div class="row">
-			<div class="col-md-4">Transaction Date</div>
-			<div class="col-md-8"><input type="text" id="txnDate" ></div>
-		</div>
-		 
-		<div class="row">
-			<div class="col-md-4">Transaction Type</div>
-			<div class="col-md-8"><input type="text" id="txnType"></div>
-		</div>
+			<div class="col-md-8"><input type="text" id="txnId" readonly="readonly" ></div>
+		 </div>   
 		 <div class="row">
-			<div class="col-md-4">Loan No</div><div class="col-md-8"><input type="text" id="loanId"></div>
+			<div class="col-md-4">Transaction Date</div>
+			<div class="col-md-8"><input type="text" id="txnDate" readonly="readonly"></div>
+		 </div>
+		 <div class="row">
+			<div class="col-md-4">Transaction Type</div>
+			<div class="col-md-8"><input type="text" id="txnType" readonly="readonly"  value="tds"></div>
 		</div>
-		
+				
 		<div class="row">
 			<div class="col-md-4">Instrument No</div><div class="col-md-8" style="width:170px"><input type="text" id="instrumentRefNo"></div>
 		</div>
@@ -213,11 +284,11 @@ h1 { text-align: center  }
 		</div>
 	
 		<div class="row">
-			<div class="col-md-4">Seller Id</div><div class="col-md-8" style="width:170px"><input type="text" id="from"></div>
+			<div class="col-md-4">Bank Id</div><div class="col-md-8" style="width:170px"><input type="text" id="from"></div>
 		</div>
 	
 		<div class="row">
-			<div class="col-md-4">Buyer Id</div><div class="col-md-8" style="width:170px"><input type="text" id="to"></div>
+			<div class="col-md-4">Business Id</div><div class="col-md-8" style="width:170px"><input type="text" id="to"></div>
 		</div>
 	
 		<div class="row">

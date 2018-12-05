@@ -69,18 +69,20 @@ func newTxnInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 		fmt.Println("args[8]", args[8] ) 
 
 	tTypeValues := map[string]bool{
-		"Disbursement":              true,
-		"Repayment":                 true,
-		"Marginrefund":             true,
-		"Interestrefund":           true,
-		"Penalinterestcollection": true,
+
+		"disbursement":              true,
+		"repayment":                 true,
+		"marginrefund":             true,
+		"interestrefund":           true,
+		"penalinterestcollection": true,
 		"loan_sanction":             true,
-		"Charges":                   true,
-		"Interestinadvance":       true,
-		"Accrual":                   true,
-		"Interestaccruedcharges":  true,
-		"Penalcharges":             true,
-		"TDS":                       true,
+		"charges":                   true,
+		"interestinadvance":       true,
+		"accrual":                   true,
+		"interestaccruedcharges":  true,
+		"penalcharges":             true,
+		"tds":                       true,
+		"collection":				true,
 	}
 
 	//Converting into lower case for comparison
@@ -104,9 +106,7 @@ func newTxnInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	if err != nil {
 		return shim.Error("transactioncc: " + err.Error())
 	}
-
 	//TODO: put it at last for redability
-
 	var sellerID string
 	var buyerID string
 
@@ -265,6 +265,21 @@ func newTxnInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 		}
 
 	//#######################################################################################################
+
+		//#######################################################################################################
+	case "collection":
+		sellerID = getSellerID(stub, args[3])
+		txnArgs := []string{args[0], args[1], args[2], args[3], args[4], args[5], args[6], sellerID, args[7], args[8]}
+		argsStr := strings.Join(txnArgs, ",")
+		chaincodeArgs := toChaincodeArgs("newInterestInAdvInfo", argsStr)
+		fmt.Println("calling the interest_in_advancecc chaincode")
+		response := stub.InvokeChaincode("interest_in_advancecc", chaincodeArgs, "myc")
+		if response.Status != shim.OK {
+			return shim.Error("transactioncc: " + response.Message)
+		}
+
+	//#######################################################################################################
+
 
 	case "accrual":
 		sellerID = getSellerID(stub, args[3])

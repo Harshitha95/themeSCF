@@ -77,7 +77,7 @@ func newPenalChargesInfo(stub shim.ChaincodeStubInterface, args []string) pb.Res
 
 	status := string(response.Payload)
 	if status != "overdue" {
-		return shim.Error("penalCharges.cc: " + "loan status for loanID " + args[3] + " is not Sanctioned / part disbursed / disbursed")
+		return shim.Error("penalCharges.cc: " + "loan status for loanID " + args[3] + " is not overdue")
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////
 	// 				UPDATING WALLETS																///

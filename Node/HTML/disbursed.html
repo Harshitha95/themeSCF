@@ -135,28 +135,28 @@ h1 { text-align: center  }
 	}, 50000);
 	function getLoanNo() {
 
-let options = {};
-options.chaincodeId = "loancc";
-options.methodToBeCalled = "queryLoan";
-let arguments = {};
+		let options = {};
+		options.chaincodeId = "loancc";
+		options.methodToBeCalled = "queryLoan";
+		let arguments = {};
 
-arguments.arg1 = '{"selector":{"LoanStatus":"sanctioned"}}';
-//let arguments='{"selector":{"Status":"open"}}';
-options.dataArguments = arguments;
-console.log("options ", options)
-$.ajax({
-  url: "http://localhost:3000/postSender",
-  datatype: "JSON",
-  type: "Post",
-  data: options,
-  success: function (data) {
-	console.log("data ", data)
-	data1 = JSON.parse(data);
-	//JSON.stringify(data)
-	console.log("data1 ", data1)
-	for (var i in data1) {
-	   let opt =new Option(data1[i].Key);
-	   $("#loanId").append(opt);
+		arguments.arg1 = '{"selector":{"LoanStatus":"sanctioned"}}';
+		//let arguments='{"selector":{"Status":"open"}}';
+		options.dataArguments = arguments;
+		console.log("options ", options)
+		$.ajax({
+			url: "http://localhost:3000/postSender",
+			datatype: "JSON",
+			type: "Post",
+			data: options,
+			success: function (data) {
+				console.log("data ", data)
+				data1 = JSON.parse(data);
+				//JSON.stringify(data)
+				console.log("data1 ", data1)
+				for (var i in data1) {
+				let opt =new Option(data1[i].Key);
+				$("#loanId").append(opt);
 	  	  
 	  /*  opt.RefNo = new Option(data1[i].Record.RefNo);
 	  opt.SellerID = new Option(data1[i].Record.SellerID); 
@@ -196,19 +196,19 @@ $('#loanId').change(function() {
           console.log("Data ", data)
           data1 = JSON.parse(data);
           console.log("Data1 ", data1);
+		  var today = new Date();
+		  var date = (today.getDate() < 10 ? '0' : '') + today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+		  console.log("Date ",date)
+		  $("#txnDate").val(date);
         document.getElementById('to').value=data1.SellerID;
-        //  document.getElementById('buyerBusinessId').value=data1.BuyerID;
+        
           $("#amount").val(data1.SanctionAmt);
           $("#instrumentRefNo").val(data1.InstrumentNo);
-        /*    $("#duedate").val(data1.DueDate);
-          $("#valuedate").val(data1.ValueDate);
-          $("#buyerBusinessId").val(data1.BuyerID);
-          $("#buyerBusinessId").val(data1.BuyerID); */
-
-        } 
-        
+		  var randomNo = Math.floor(1000 + Math.random() * 9000);
+			console.log("Val ",randomNo);
+			$("#txnId").val("TXN"+randomNo);
+        }         
       });
-
     }
 	  </script>
 </head>
@@ -232,21 +232,21 @@ $('#loanId').change(function() {
 		<div class="col-md-8" class="select" name="Instrument No"><select id="loanId" style="width:168px">
 			<option value="0">Loan</option>
 		 </select></div>
-		</div>
-		<div class="row">
-				<div class="col-md-4">Instrument No</div><div class="col-md-8"><input type="text" id="instrumentRefNo"></div>
-			</div>
-       <div class="row">
+	</div>
+	<div class="row">
+		<div class="col-md-4">Instrument No</div><div class="col-md-8"><input type="text" id="instrumentRefNo"></div>
+	</div>
+    <div class="row">
         <div class="col-md-4">Transaction Id</div>
-        <div class="col-md-8"><input type="text" id="txnId" ></div>
+        <div class="col-md-8"><input type="text" id="txnId" readonly="readonly" ></div>
     </div>   
     <div class="row">
         <div class="col-md-4">Transaction Date</div>
-        <div class="col-md-8"><input type="text" id="txnDate" ></div>
+        <div class="col-md-8"><input type="text" id="txnDate" readonly="readonly"></div>
     </div>	 
 	<div class="row">
         <div class="col-md-4">Transaction Type</div>
-        <div class="col-md-8"><input type="text" id="txnType" value="Disbursement" readonly="readonly"></div>
+        <div class="col-md-8"><input type="text" id="txnType" value="Disbursement" ></div>
     </div>	
 	<div class="row">
 		<div class="col-md-4">Amount</div><div class="col-md-8" style="width:170px"><input type="text" id="amount"></div>

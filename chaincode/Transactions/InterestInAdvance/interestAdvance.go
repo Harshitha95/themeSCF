@@ -46,6 +46,7 @@ func newInterestInAdvInfo(stub shim.ChaincodeStubInterface, args []string) pb.Re
 		xLenStr := strconv.Itoa(len(args))
 		return shim.Error("interestAdv.cc: " + "Invalid number of arguments in newInterestAdvInfo(interestAdv) (required:10) given:" + xLenStr)
 	}
+
 	fmt.Println("args[0]", args[0] )
 	fmt.Println("args[1]", args[1] )
 	fmt.Println("args[2]", args[2] )
@@ -55,7 +56,8 @@ func newInterestInAdvInfo(stub shim.ChaincodeStubInterface, args []string) pb.Re
 	fmt.Println("args[6]", args[6] )
 	fmt.Println("args[7]", args[7] )
 	fmt.Println("args[8]", args[8] )
-
+	fmt.Println("args[9]", args[9] )
+	
 	/*
 	 *TxnType string    //args[1]
 	 *TxnDate time.Time //args[2]

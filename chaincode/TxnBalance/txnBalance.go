@@ -66,7 +66,8 @@ func (c *chainCode) putTxnBalInfo(stub shim.ChaincodeStubInterface, args []strin
 	}
 
 	//TxnDate ->txnDate
-	txnDate, err := time.Parse(time.RFC3339, args[2])
+//timeFormat := "2006-01-02T15:04:05";
+	txnDate, err := time.Parse("02/01/2006", args[2])
 	if err != nil {
 		return shim.Error("txnbalcc: " + "txnbal err in txndate " + err.Error())
 	}
@@ -77,18 +78,18 @@ func (c *chainCode) putTxnBalInfo(stub shim.ChaincodeStubInterface, args []strin
 	}
 
 	txnTypeValues := map[string]bool{
-		"Disbursement":              true,
-		"Repayment":                 true,
-		"Marginrefund":             true,
-		"Interestrefund":           true,
-		"Penalinterestcollection": true,
+		"disbursement":              true,
+		"repayment":                 true,
+		"marginrefund":             true,
+		"interestrefund":           true,
+		"penalinterestcollection": true,
 		"loan_sanction":             true,
-		"Charges":                   true,
-		"Interestinadvance":       true,
-		"Accrual":                   true,
-		"Interestaccruedcharges":  true,
-		"Penalcharges":             true,
-		"TDS":                       true,
+		"charges":                   true,
+		"interestinadvance":       true,
+		"accrual":                   true,
+		"interestaccruedcharges":  true,
+		"penalcharges":             true,
+		"tds":                       true,
 	}
 
 	txnTypeLower := strings.ToLower(args[7])
@@ -115,7 +116,6 @@ func (c *chainCode) putTxnBalInfo(stub shim.ChaincodeStubInterface, args []strin
 	if err != nil {
 		return shim.Error("txnbalcc: " + "txnbal err in txnbal " + err.Error())
 	}
-
 	txnBalance := txnBalanceInfo{args[1], txnDate, args[3], args[4], args[5], openBal, txnTypeLower, amt, cAmt, dAmt, txnBal, args[12]}
 	txnBalanceBytes, err := json.Marshal(txnBalance)
 	if err != nil {
@@ -128,7 +128,6 @@ func (c *chainCode) putTxnBalInfo(stub shim.ChaincodeStubInterface, args []strin
 	fmt.Println("Succefully wrote txnID " + args[0] + " into the ledger")
 	fmt.Println("******************** end putTxnBalInfo *************************")
 	return shim.Success(nil)
-
 }
 
 func (c *chainCode) getTxnBalInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
