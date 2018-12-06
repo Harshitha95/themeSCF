@@ -143,8 +143,8 @@ let options = {};
 options.chaincodeId = "loancc";
 options.methodToBeCalled = "queryLoan";
 let arguments = {};
-
-arguments.arg1 = '{"selector":{"LoanStatus":"sanctioned"}}';
+arguments.arg1 = '{"selector":{ "$or" :	[{"LoanStatus":"disbursed"} ,{"LoanStatus":"part disbursed"} ,{"LoanStatus":"sanctioned"}]}}';
+//arguments.arg1 = '{"selector":{"LoanStatus":"sanctioned"}}';
 //let arguments='{"selector":{"Status":"open"}}';
 options.dataArguments = arguments;
 console.log("options ", options)

@@ -60,8 +60,8 @@ h1 { text-align: center  }
 	arguments.arg4=loanId;
 	arguments.arg5=instrumentRefNo;
 	arguments.arg6=amount;
-	arguments.arg7=to;
-	arguments.arg8=from;
+	arguments.arg7=from;
+	arguments.arg8=to;
 	arguments.arg9=by;
 	arguments.arg10=pprId;
 	
@@ -149,15 +149,29 @@ console.log("Data ", data)
 data1 = JSON.parse(data);
 console.log("Data1 ", data1);
 var today = new Date();
-	  var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+	 /*  var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
 	  console.log("Date ",date)
-	  $("#txnDate").val(date);
+	  $("#txnDate").val(date); */
+	  var date =formatDate()
+		  console.log("Date ",date);
+		  $("#txnDate").val(date);
 	$("#instrumentRefNo").val(data1.InstrumentNo);
 	var randomNo = Math.floor(1000 + Math.random() * 9000);
 			console.log("Val ",randomNo);
 			$("#txnId").val("TXN"+randomNo);
 } 
 });
+}
+function formatDate() {
+    var d = new Date(),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [day, month, year].join('/');
 }
 	  </script>
 </head>
@@ -206,11 +220,11 @@ var today = new Date();
 	</div>
 
 	<div class="row">
-		<div class="col-md-4">From</div><div class="col-md-8" style="width:170px"><input type="text" id="from"></div>
+		<div class="col-md-4">Bank</div><div class="col-md-8" style="width:170px"><input type="text" id="from"></div>
 	</div>
 
 	<div class="row">
-		<div class="col-md-4">To</div><div class="col-md-8" style="width:170px"><input type="text" id="to"></div>
+		<div class="col-md-4">Business Id</div><div class="col-md-8" style="width:170px"><input type="text" id="to"></div>
 	</div>
 
 	<div class="row">

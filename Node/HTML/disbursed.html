@@ -196,10 +196,12 @@ $('#loanId').change(function() {
           console.log("Data ", data)
           data1 = JSON.parse(data);
           console.log("Data1 ", data1);
-		  var today = new Date();
+		 /*  var today = new Date();
 		  var date = (today.getDate() < 10 ? '0' : '') + today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-		  console.log("Date ",date)
-		  $("#txnDate").val(date);
+		  console.log("Date ",date)*/
+		  var date =formatDate()
+		  console.log("Date ",date);
+		  $("#txnDate").val(date); 
         document.getElementById('to').value=data1.SellerID;
         
           $("#amount").val(data1.SanctionAmt);
@@ -210,6 +212,7 @@ $('#loanId').change(function() {
         }         
       });
     }
+	
 	  </script>
 </head>
 <body>

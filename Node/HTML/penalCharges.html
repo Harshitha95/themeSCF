@@ -138,8 +138,9 @@ success: function (data) {
 console.log("Data ", data)
 data1 = JSON.parse(data);
 console.log("Data1 ", data1);
-var today = new Date();
-	  var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+/* var today = new Date();
+	  var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear(); */
+	  var date =formatDate()
 	  console.log("Date ",date)
 	  $("#txnDate").val(date);
 $("#amount").val(data1.SanctionAmt);
@@ -150,6 +151,7 @@ var randomNo = Math.floor(1000 + Math.random() * 9000);
 } 
 });
 }
+
 		  </script>
 	</head>
 	<body>

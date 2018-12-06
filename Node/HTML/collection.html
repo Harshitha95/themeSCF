@@ -160,7 +160,7 @@ h1 { text-align: center  }
 	  let from= $("#from").val();
 	  let to= $("#to").val();
 	  let by= $("#by").val();
-	 // let pprId= $("#pprId").val();
+	  let pprId= $("#pprId").val();
 
 	  let options = {};
 	 options.chaincodeId="interest_in_advancecc";
@@ -170,7 +170,7 @@ h1 { text-align: center  }
 	
 	var arguments={};
 	arguments.arg1=txnId;
-	arguments.arg2=txnType;
+	arguments.arg2="interestinadvance";
 	arguments.arg3=txnDate;
 	arguments.arg4=loanId;
 	arguments.arg5=instrumentRefNo;
@@ -178,7 +178,7 @@ h1 { text-align: center  }
 	arguments.arg8=from;
 	arguments.arg7=to;
 	arguments.arg9=by;
-//	arguments.arg10=pprId;
+	arguments.arg10=pprId;
 	
 	options.dataArguments=arguments;
 	  
@@ -264,19 +264,31 @@ success: function (data) {
   console.log("Data ", data)
   data1 = JSON.parse(data);
   console.log("Data1 ", data1);
-  var today = new Date();
-		  var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-		  console.log("Date ",date)
+  //var today = new Date();
+		 // var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+		 var date =formatDate()
+		  console.log("Date ",date);
 		  $("#txnDate").val(date);
-document.getElementById('to').value=data1.SellerID;
+
 //  document.getElementById('buyerBusinessId').value=data1.BuyerID;
-  $("#amount").val(data1.SanctionAmt);
+ 
   $("#instrumentRefNo").val(data1.InstrumentNo);
   var randomNo = Math.floor(1000 + Math.random() * 9000);
 			console.log("Val ",randomNo);
 			$("#txnId").val("TXN"+randomNo);
 } 
 });
+}
+function formatDate() {
+    var d = new Date(),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [day, month, year].join('/');
 }
 	  </script>
 </head>
@@ -322,17 +334,17 @@ document.getElementById('to').value=data1.SellerID;
 					<div class="col-md-4">Amount</div><div class="col-md-8" style="width:170px"><input type="text" id="amount"></div>
 				</div>
 				<div class="row">
-					<div class="col-md-4">From</div><div class="col-md-8" style="width:170px"><input type="text" id="from"></div>
+					<div class="col-md-4">Bank</div><div class="col-md-8" style="width:170px"><input type="text" id="from"></div>
 				</div>
 				<div class="row">
-					<div class="col-md-4">To</div><div class="col-md-8" style="width:170px"><input type="text" id="to" readonly="readonly"></div>
+					<div class="col-md-4">Business ID</div><div class="col-md-8" style="width:170px"><input type="text" id="to"></div>
 				</div>
 				<div class="row">
 					<div class="col-md-4">By </div><div class="col-md-8" style="width:170px"><input type="text" id="by"></div>
 				</div>
-<!-- 				<div class="row">
+				<div class="row">
 						<div class="col-md-4">PPR Id</div><div class="col-md-8" style="width:170px"><input type="text" id="pprId"></div>
-					</div> -->
+					</div> -
 	    <div class="center" style="margin-left: 330px">
 	     <img src="/Images/Cancel.png" onclick="cancel()">
 	      <img src="/Images/Submit.png" onclick="collection()">

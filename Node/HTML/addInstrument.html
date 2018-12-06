@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href=style.css>
 <script>
+
     function addInstrument() {
     let instrumentRefNo= $("#instrumentRefNo").val();
   let instrumentDate= $("#instrumentDate").val();
@@ -25,11 +26,11 @@
     arguments.arg3=sellBusinessId;
     arguments.arg4=buyBusinessId;
     arguments.arg5=insAmmount;
-    arguments.arg6=insDueDate;
+    arguments.arg6=formatDate1(insDueDate);
     arguments.arg7=programId;
     arguments.arg8=pprId;
     arguments.arg9=uploadBatchNo;
-    arguments.arg10=instrumentEndDate;
+    arguments.arg10=formatDate2(instrumentEndDate);
     options.dataArguments=arguments;
  console.log("options",options)
  console.log("dataArguments ",options.dataArguments)
@@ -50,8 +51,9 @@ $.ajax({
     }
     window.onload = setDate();
  function setDate() {
-    var today = new Date();
-  var date = (today.getDate() < 10 ? '0' : '') + today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+  var date= formatDate()
+   /*  var today = new Date();
+  var date = (today.getDate() < 10 ? '0' : '') + today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear(); */
   console.log("Date ",date) 
   $("#instrumentDate").val(date);
   var randomNo = Math.floor(1000 + Math.random() * 9000);
@@ -59,6 +61,49 @@ $.ajax({
 			$("#uploadBatchNo").val(randomNo);
   
   }
+  
+function formatDate2(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear(),
+        hr = '' + (d.getHours() ),
+        min = '' + d.getMinutes(),
+        sec = '' + d.getSeconds();
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    if (hr.length < 2) hr = '0' + hr;
+    if (min.length < 2) min = '0' + min;
+    if (sec.length < 2) sec = '0' + sec;
+    var da =[day, month, year].join('/');
+    var m =[hr, min, sec].join(':');
+    var T=da+":"+m;
+    console.log("Formated Time ",da+m);
+    return T;
+}
+function formatDate() {
+    var d = new Date(),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [day, month, year].join('/');
+}
+function formatDate1(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [day, month, year].join('/');
+}
+
     </script> 
 </head>
 <body>
@@ -97,7 +142,7 @@ $.ajax({
     </div>
     </br>
     <div class="row">
-        <div class="col-md-4">Instrument Due Date</div><div class="col-md-8" style="width:170px"><input type="text" id="insDueDate"></div>
+        <div class="col-md-4">Instrument Due Date</div><div class="col-md-8" style="width:170px"><input type="date" id="insDueDate"></div>
     </div>
     </br>
       <div class="row">
@@ -111,7 +156,7 @@ $.ajax({
     </div>
     </br>
     <div class="row">
-        <div class="col-md-4">End Date</div><div class="col-md-8"><input type="text" id="instrumentEndDate"></div>
+        <div class="col-md-4">End Date</div><div class="col-md-8"><input type="date" id="instrumentEndDate"></div>
     </div>
     <div class="center" style="margin-left: 330px">
      <img src="/Images/Cancel.png" onclick="cancel()">

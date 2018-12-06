@@ -91,8 +91,8 @@ let options = {};
 options.chaincodeId = "loancc";
 options.methodToBeCalled = "queryLoan";
 let arguments = {};
-
-arguments.arg1 = '{"selector":{"LoanStatus":"sanctioned"}}';
+arguments.arg1 = '{"selector":{ "$or" :	[{"LoanStatus":"disbursed"} ,{"LoanStatus":"part disbursed"}]}}';
+//arguments.arg1 = '{"selector":{"LoanStatus":"sanctioned"}}';
 //let arguments='{"selector":{"Status":"open"}}';
 options.dataArguments = arguments;
 console.log("options ", options)
@@ -140,8 +140,11 @@ function getDetails(loanId){
           data1 = JSON.parse(data);
           console.log("Data1 ", data1);
 		  var today = new Date();
-		  var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+		/*   var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
 		  console.log("Date ",date)
+		  $("#txnDate").val(date); */
+		  var date =formatDate()
+		  console.log("Date ",date);
 		  $("#txnDate").val(date);
           $("#instrumentRefNo").val(data1.InstrumentNo);
 		  var randomNo = Math.floor(1000 + Math.random() * 9000);
@@ -188,7 +191,7 @@ function getDetails(loanId){
 			</div>	 
 			<div class="row">
 					<div class="col-md-4">Transaction Type</div>
-					<div class="col-md-8"><input type="text" id="txnType" value="Disbursement" readonly="readonly"></div>
+					<div class="col-md-8"><input type="text" id="txnType" value="Repayment" readonly="readonly"></div>
 			</div>	
 			<div class="row">
 					<div class="col-md-4">Amount</div><div class="col-md-8" style="width:170px"><input type="text" id="amount"></div>

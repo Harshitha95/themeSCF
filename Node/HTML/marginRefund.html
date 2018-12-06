@@ -87,10 +87,13 @@ function getDetails(loanId){
           console.log("Data ", data)
           data1 = JSON.parse(data);
           console.log("Data1 ", data1);
-		  var today = new Date();
+		 /*  var today = new Date();
 		  var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
 		  console.log("Date ",date)
-		  $("#txnDate").val(date);           
+		  $("#txnDate").val(date);   */    
+		  var date =formatDate()
+		  console.log("Date ",date);
+		  $("#txnDate").val(date);     
           $("#instrumentRefNo").val(data1.InstrumentNo);
 		  var randomNo = Math.floor(1000 + Math.random() * 9000);
 			console.log("Val ",randomNo);
@@ -149,6 +152,17 @@ function getDetails(loanId){
 			  setTimeout(function(){
 	  $('#messages').remove();
 	}, 50000);
+	function formatDate() {
+    var d = new Date(),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [day, month, year].join('/');
+}
 	  </script>
 </head>
 <body>
