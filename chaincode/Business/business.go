@@ -109,15 +109,24 @@ func (c *chainCode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 }
 
 func putNewBusinessInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
-	fmt.Println("********************While Writing Business *************************")
+	fmt.Println(" ******************** While Writing Business ************************* ")
 	if len(args) != 11 {
+
 		xLenStr := strconv.Itoa(len(args))
 		return shim.Error("businesscc: " + "Invalid number of arguments in putNewBusinessInfo (required:11) given:" + xLenStr)
 
 	}
-	fmt.Print("args[0] &[1]  &[2]", args[0] ," -----> ",args[1]," -----> ",args[2])
-	fmt.Print("args[3] &[4]args[5] ", args[3] ," -----> ",args[4]," -----> ",args[5])
-	fmt.Print("args[6] &[7]", args[6] ," -----> ",args[7]," -----> ",args[8]," -----> ",args[9])
+
+	fmt.Println("args[0]", args[0])
+	fmt.Println("args[1]", args[1])
+	fmt.Println("args[2]", args[2])
+	fmt.Println("args[3]", args[3])
+	fmt.Println("args[4]", args[5])
+	fmt.Println("args[5]", args[5])
+	fmt.Println("args[6]", args[6])
+	fmt.Println("args[7]" ,args[7])
+	fmt.Println("args[8] ",args[8])
+
 	response := bisIDexists(stub, args[0])
 	if response.Status != shim.OK {
 		return shim.Error("businesscc: " + response.Message)
@@ -133,13 +142,14 @@ func putNewBusinessInfo(stub shim.ChaincodeStubInterface, args []string) pb.Resp
 	if businessLimitConv <= 0 {
 		return shim.Error("businesscc: " + "Invalid Business Limit value: " + args[3])
 	}
+
 	hash := sha256.New()
 	// Hashing BusinessWalletID
 	BusinessWalletStr := args[2] + "BusinessWallet"
 	hash.Write([]byte(BusinessWalletStr))
 	md := hash.Sum(nil)
 	BusinessWalletIDsha := hex.EncodeToString(md)
-	fmt.Print("BusinessWalletIDsha ",BusinessWalletIDsha)
+	fmt.Println("BusinessWalletIDsha ",BusinessWalletIDsha)
 	createWallet(stub, BusinessWalletIDsha, args[6])
 	
 	// Hashing BusinessLoanWalletID
@@ -148,19 +158,19 @@ func putNewBusinessInfo(stub shim.ChaincodeStubInterface, args []string) pb.Resp
 	md = hash.Sum(nil)
 		
 	BusinessLoanWalletIDsha := hex.EncodeToString(md)
-	fmt.Print("BusinessLoanWalletIDsha ",BusinessLoanWalletIDsha)
+	fmt.Println("BusinessLoanWalletIDsha ",BusinessLoanWalletIDsha)
 	createWallet(stub, BusinessLoanWalletIDsha, args[7])
 	// Hashing BusinessLiabilityWalletID
 	BusinessLiabilityWalletStr := args[2] + "BusinessLiabilityWallet"
 	hash.Write([]byte(BusinessLiabilityWalletStr))
 	md = hash.Sum(nil)
 	BusinessLiabilityWalletIDsha := hex.EncodeToString(md)
-	fmt.Print("BusinessLiabilityWalletIDsha ",BusinessLiabilityWalletIDsha)
+	fmt.Println("BusinessLiabilityWalletIDsha ",BusinessLiabilityWalletIDsha)
 	createWallet(stub, BusinessLiabilityWalletIDsha, args[8])
 
 	maxROIconvertion, err := strconv.ParseInt(args[5], 10, 64)
 	if err != nil {
-		fmt.Println("Invalid Maximum ROI: %s\n", args[5])	
+		fmt.Println(" Invalid Maximum ROI: %s\n", args[5])	
 		return shim.Error("Businesscc: " + err.Error())
 	}
 	if maxROIconvertion <= 0 {
@@ -172,21 +182,22 @@ func putNewBusinessInfo(stub shim.ChaincodeStubInterface, args []string) pb.Resp
 		return shim.Error("Businesscc: " + err.Error())
 	}
 	if minROIconvertion <= 0 {
-		return shim.Error("Businesscc: " + "Invalid Min ROI value: " + args[4])
+		return shim.Error("Businesscc: " + " Invalid Min ROI value: " + args[4])
 	}
 	// Hashing BusinessPrincipalOutstandingWalletID
 	BusinessPrincipalOutstandingWalletStr := args[2] + "BusinessPrincipalOutstandingWallet"
 	hash.Write([]byte(BusinessPrincipalOutstandingWalletStr))
 	md = hash.Sum(nil)
 	BusinessPrincipalOutstandingWalletIDsha := hex.EncodeToString(md)
-	fmt.Print("BusinessPrincipalOutstandingWalletIDsha ",BusinessPrincipalOutstandingWalletIDsha)
+	fmt.Println("BusinessPrincipalOutstandingWalletIDsha ",BusinessPrincipalOutstandingWalletIDsha)
 	createWallet(stub, BusinessPrincipalOutstandingWalletIDsha, args[9])
+
 	// Hashing BusinessChargesOutstandingWalletID
 	BusinessInterestOutstandingWalletStr := args[2] + "BusinessInterestOutstandingWallet"
 	hash.Write([]byte(BusinessInterestOutstandingWalletStr))
 	md = hash.Sum(nil)
 	BusinessChargesOutstandingWalletIDsha := hex.EncodeToString(md)
-	fmt.Print("BusinessChargesOutstandingWalletIDsha ",BusinessChargesOutstandingWalletIDsha)
+	fmt.Println("BusinessChargesOutstandingWalletIDsha ",BusinessChargesOutstandingWalletIDsha)
 	createWallet(stub, BusinessChargesOutstandingWalletIDsha, args[10])
 	newInfo := &businessInfo{args[1], args[2], businessLimitConv, BusinessWalletIDsha, BusinessLoanWalletIDsha, BusinessLiabilityWalletIDsha, maxROIconvertion, minROIconvertion, BusinessPrincipalOutstandingWalletIDsha, BusinessChargesOutstandingWalletIDsha}
 	newInfoBytes, _ := json.Marshal(newInfo)
@@ -194,9 +205,9 @@ func putNewBusinessInfo(stub shim.ChaincodeStubInterface, args []string) pb.Resp
 	if err != nil {
 		return shim.Error("businesscc: " + err.Error())
 	}
-	fmt.Println("Successfully added buissness " + args[1] + " to the ledger")
-	fmt.Println("******************** End Writing Business *************************")
-	return shim.Success([]byte("Successfully added buissness " + args[1] + " to the ledger"))
+	fmt.Println("Successfully added buissness " + args[1] )
+	fmt.Println( "******************** End Writing Business ************************* ")
+	return shim.Success([]byte("Successfully added buissness " + args[1] ))
 }
 
 func createWallet(stub shim.ChaincodeStubInterface, walletID string, amt string) pb.Response {
@@ -337,8 +348,8 @@ func getWalletsofBusiness(stub shim.ChaincodeStubInterface, args []string) pb.Re
 	if err1 != nil {
 
 	}
-	fmt.Print("loanWalletId ",loanWalletId)
-	fmt.Print("posWalletId ",posWalletId)
+	fmt.Println("loanWalletId ",loanWalletId)
+	fmt.Println("posWalletId ",posWalletId)
 	businessvalasstruct := businessInfoVal{}
 	businessValues,err4 = getBusinessInfoVal(stub, args)
 	
@@ -433,7 +444,7 @@ func getBusinessWallet(stub shim.ChaincodeStubInterface, args []string) (string,
 	case "POS":
 		walletID = business.BusinessPrincipalOutstandingWalletID
 	}	
-	fmt.Println("walletID based on case %s " ,walletID)
+	fmt.Println(" walletID based on case %s " ,walletID)
 	fmt.Println("********************End getBusinessWallet *************************")
 	return string(walletID),nil;
 }

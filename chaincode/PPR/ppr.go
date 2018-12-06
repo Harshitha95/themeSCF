@@ -79,9 +79,15 @@ func (c *chainCode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 func createPPR(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 
 	fmt.Println("******************** Start createPPR *************************")
-	fmt.Print("args[0] &[1]  &[2]", args[0] ," -----> ",args[1]," -----> ",args[2])
-	fmt.Print("args[3] &[4]args[5] ", args[3] ," -----> ",args[4]," -----> ",args[5])
-	fmt.Print("args[6] &[7]", args[6] ," -----> ",args[7]," -----> ",args[8]," -----> ",args[9])
+	fmt.Println("args[0]", args[0])
+	fmt.Println("args[1]", args[1])
+	fmt.Println("args[2]", args[2])
+	fmt.Println("args[3]", args[3])
+	fmt.Println("args[4]", args[4])
+	fmt.Println("args[5]", args[5])
+	fmt.Println("args[6]", args[6])
+	fmt.Println("args[7]" ,args[7])
+	fmt.Println("args[8] ",args[8])
 	if len(args) != 10 {
 		xLenStr := strconv.Itoa(len(args))
 		return shim.Error("pprcc: " + "Invalid number of arguments in createPPR (required:10) given:" + xLenStr)

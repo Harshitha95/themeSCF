@@ -227,7 +227,6 @@ func newLoanInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 		fmt.Println("Since the due date falls on sunday, due date is extended to Monday(loan) : ", dDate.AddDate(0, 0, 1))
 	}
 	dDate = dDate.AddDate(0, 0, 1)
-
 	//Converting the incoming date from Dd/mm/yy:hh:mm:ss to Dd/mm/yyThh:mm:ss for parsing
 	println("Converting the incoming date from Dd/mm/yy:hh:mm:ss to Dd/mm/yyThh:mm:ss for parsing")
 	vDateStr := args[8][:10]
@@ -274,7 +273,6 @@ func newLoanInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	if response.Status == shim.OK {
 		return shim.Error("loancc: " + "BuyerBusinessID " + args[13] + " does not exits")
 	}
-
 	//Checking existence of SellerBusinessID
 	println("Checking existence of SellerBusinessID")
 	chaincodeArgs = toChaincodeArgs("bisIDexists", args[13])

@@ -124,7 +124,7 @@ func writeBankInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response 
 	fmt.Println("args[1]", args[1])
 	fmt.Println("args[2]", args[2])
 	fmt.Println("args[3]", args[3])
-	fmt.Println("args[4]", args[5])
+	fmt.Println("args[4]", args[4])
 	fmt.Println("args[5]", args[5])
 	fmt.Println("args[6]", args[6])
 	fmt.Println("args[7]" ,args[7])
@@ -160,7 +160,7 @@ func writeBankInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response 
 	hash.Write([]byte(BankWalletStr))
 	md := hash.Sum(nil)
 	BankWalletIDsha := hex.EncodeToString(md)
-	fmt.Print("BankWalletIDsha ",BankWalletIDsha)
+	fmt.Println("BankWalletIDsha ",BankWalletIDsha)
 	createWallet(stub, BankWalletIDsha, args[4])
 	
 
@@ -169,7 +169,7 @@ func writeBankInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response 
 	hash.Write([]byte(BankAssetWalletStr))
 	md = hash.Sum(nil)
 	BankAssetWalletIDsha := hex.EncodeToString(md)
-	fmt.Print("BankAssetWalletIDsha ",BankAssetWalletIDsha)
+	fmt.Println("BankAssetWalletIDsha ",BankAssetWalletIDsha)
 	createWallet(stub, BankAssetWalletIDsha, args[5])
 
 	// Hashing BankChargesWalletID
@@ -177,7 +177,7 @@ func writeBankInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response 
 	hash.Write([]byte(BankChargesWalletStr))
 	md = hash.Sum(nil)
 	BankChargesWalletIDsha := hex.EncodeToString(md)
-	fmt.Print("BankChargesWalletIDsha ",BankChargesWalletIDsha)
+	fmt.Println("BankChargesWalletIDsha ",BankChargesWalletIDsha)
 	createWallet(stub, BankChargesWalletIDsha, args[6])
 
 	// Hashing BankLiabilityWalletID
@@ -185,7 +185,7 @@ func writeBankInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response 
 	hash.Write([]byte(BankLiabilityWalletStr))
 	md = hash.Sum(nil)
 	BankLiabilityWalletIDsha := hex.EncodeToString(md)
-	fmt.Print("BankLiabilityWalletIDsha ",BankLiabilityWalletIDsha)
+	fmt.Println("BankLiabilityWalletIDsha ",BankLiabilityWalletIDsha)
 	createWallet(stub, BankLiabilityWalletIDsha, args[7])
 
 	// Hashing TDSreceivableWalletID
@@ -193,7 +193,7 @@ func writeBankInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response 
 	hash.Write([]byte(TDSreceivableWalletStr))
 	md = hash.Sum(nil)
 	TDSreceivableWalletIDsha := hex.EncodeToString(md)
-	fmt.Print("TDSreceivableWalletIDsha ",TDSreceivableWalletIDsha)
+	fmt.Println("TDSreceivableWalletIDsha ",TDSreceivableWalletIDsha)
 	createWallet(stub, TDSreceivableWalletIDsha,  args[8])
 
 	//args[0] -> bankID | creating a bank struct obj and writing it to the ledger
@@ -207,8 +207,8 @@ func writeBankInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response 
 	if err != nil {
 		return shim.Error("bankcc : " + err.Error())
 	}
-	fmt.Println("********************End Writing *************************")
-	return shim.Success([]byte("Succefully written into the ledger"))
+	fmt.Println(" ********************End Writing ************************* ")
+	return shim.Success([]byte("Succefully added bank "+ args[0]))
 }
 
 func bankIDexists(stub shim.ChaincodeStubInterface, bankID string) pb.Response {
@@ -260,38 +260,7 @@ func getBankInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	return shim.Success([]byte(x))
 	
 }
-/* 
-func getBankInfoTemp(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 
-	if len(args) != 1 {
-		xLenStr := strconv.Itoa(len(args))
-		return shim.Error("bankcc : " + "Invalid number of arguments in getBankInfo (required:1) given:" + xLenStr)
-	}
-
-	// getting bank info from the ledger, args[0] -> bankID
-	bankInfoBytes, err := stub.GetState(args[0])
-
-	if err != nil {
-		return shim.Error("bankcc : " + "Unable to fetch the state" + err.Error())
-	}
-	if bankInfoBytes == nil {
-		return shim.Error("bankcc : " + "Data does not exist for " + args[0])
-	}
-
-	// unmarshalling bankInfoBytes into bank structure
-	bank := bankInfoVal{}
-	
-	err = json.Unmarshal(bankInfoBytes, &bank)
-	if err != nil {
-		return shim.Error("bankcc : " + "Uable to paser into the json format")
-	}
-	x := fmt.Sprintf("%+v", bank)
-	fmt.Println("BankInfo : %s\n", x)
-	//fmt.Println("")
-	return shim.Success([]byte(x))
-	
-} */
-//
 func getBankInfoBalTemp(stub shim.ChaincodeStubInterface, args []string) ([]byte,error) {
 	fmt.Println("********************Start getBankInfoBalTemp *************************")
 		bankvalasstruct := bankInfoVal{}
@@ -310,55 +279,23 @@ func getBankInfoBalTemp(stub shim.ChaincodeStubInterface, args []string) ([]byte
 		if err != nil {
 			fmt.Print(err)
 		}
-		fmt.Println("Returning value of getBankInfoBalTemp  %s",data)
+	//	fmt.Println("Returning value of getBankInfoBalTemp  %s",data)
 		fmt.Println("********************Start getBankInfoBalTemp *************************")
 	 return data,nil 
 	}
 
-/* func getBankInfoBal(stub shim.ChaincodeStubInterface, args []string) (string,error) {
-/* 
-	if len(args) != 1 {
-		xLenStr := strconv.Itoa(len(args))
-		//return shim.Error("bankcc : " + "Invalid number of arguments in getBankInfo (required:1) given:" + xLenStr)
-		return "",fmt.Errorf("bankcc : " + "Invalid number of arguments in getBankInfo (required:1) given:" + xLenStr)
-	}
- 
-	// getting bank info from the ledger, args[0] -> bankID
-	bankInfoBytes, err := stub.GetState(args[0])
-
-	if err != nil {
-		//return shim.Error("bankcc : " + "Unable to fetch the state" + err.Error())
-		return "",fmt.Errorf("bankcc : " + "Unable to fetch the state" + err.Error())
-	}
-	if bankInfoBytes == nil {
-		//return shim.Error("bankcc : " + "Data does not exist for " + args[0])
-		return "",fmt.Errorf("bankcc : " + "Data does not exist for " + args[0])
-	}
-
-	// unmarshalling bankInfoBytes into bank structure
-	bank := bankInfoVal{}
-	//
-	err = json.Unmarshal(bankInfoBytes, &bank)
-	if err != nil {
-		//return shim.Error("bankcc : " + "Uable to paser into the json format")
-		return "",fmt.Errorf("bankcc : " + "Uable to paser into the json format")
-	}
-	
-	x := fmt.Sprintf("%+v", bank)
-
-	fmt.Println("BankInfoBankInfo : %s\n", x)
-	
-
-	return string(bankInfoBytes),nil
-	
-} */
 //func getWalletsofBank(stub shim.ChaincodeStubInterface, args []string) ([]byte,error){
 	func getWalletsofBank(stub shim.ChaincodeStubInterface, args []string) pb.Response{
 	//var i int;
 	//var resp []string;
 	//var allResponse []byte;
 	fmt.Println("********************While Reading Bank getWalletsofBank *************************")
-	fmt.Println("args []",args [0], " ",args [1], " ",args [2], " ",args [3], " ",args [4], " ",args [5])
+	fmt.Println("args[0]", args[0])
+	fmt.Println("args[1]", args[1])
+	fmt.Println("args[2]", args[2])
+	fmt.Println("args[3]", args[3])
+	fmt.Println("args[4]", args[4])
+	fmt.Println("args[5]", args[5])
 	var response1 pb.Response  ;
 	var response2 pb.Response  ;
 	var response3 pb.Response  ;
@@ -413,19 +350,21 @@ func getBankInfoBalTemp(stub shim.ChaincodeStubInterface, args []string) ([]byte
 	if err1 != nil {
 		return shim.Error("error while marshaling  bankvalasstruct" + err1.Error() )
 	} 
-	fmt.Println("Before appending balance to json %s",data)
+	//fmt.Println("Before appending balance to json %s",data)
 
 
 	chaincodeArgs1 := toChaincodeArgs("getWallet", mainWalletId)
 	response1 = stub.InvokeChaincode("walletcc", chaincodeArgs1, "myc")
 	comres=append(comres,string(response1.Payload))
 	bankvalasstruct.BankWalletIDBal = string(response1.Payload);
+
 	fmt.Println("mainWalletId balance %s",string(response1.Payload))
 		
 	chaincodeArgs2 := toChaincodeArgs("getWallet", assetWalletId)
 	response2 = stub.InvokeChaincode("walletcc", chaincodeArgs2, "myc")
 	comres=append(comres,string(response2.Payload))
 	bankvalasstruct.BankAssetWalletIDBal=string(response2.Payload);
+
 	fmt.Println("assetwallet balance %s",string(response2.Payload))
 	/* slice1 := make([]byte, 0, len(comres)+1)
 		comresAsByteArray1 := response2.Payload
@@ -472,7 +411,7 @@ func getBankInfoBalTemp(stub shim.ChaincodeStubInterface, args []string) ([]byte
 		return shim.Error("error while marshaling  bankvalasstruct" + err1.Error() )
 	} 
 	fmt.Println("comres  %s",comres);
-	fmt.Println("Response returning from getWalletsofBank %s",data)
+	//fmt.Println("Response returning from getWalletsofBank %s",data)
 		if response1.Status  != shim.OK {
 			return shim.Error("bankcc : " + "Unable to get wallet of bank")
 	}

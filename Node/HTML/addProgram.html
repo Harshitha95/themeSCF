@@ -55,7 +55,7 @@ crossorigin="anonymous"></script>
     arguments.arg3=programAnchor;
     arguments.arg4=programType;
    // arguments.arg5=program_StartDate;
-    arguments.arg5=program_EndDate;
+    arguments.arg5=formatDate(program_EndDate);
     arguments.arg6=programLimit;
     arguments.arg7=programROI;
     arguments.arg8=programExposure;
@@ -85,6 +85,17 @@ crossorigin="anonymous"></script>
           setTimeout(function(){
   $('#messages').remove();
 }, 50000);
+function formatDate(program_EndDate) {
+    var d = new Date(program_EndDate),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [day, month, year].join('/');
+}
   </script>
   </head>
 <div>
@@ -119,13 +130,13 @@ crossorigin="anonymous"></script>
         <div class="row">
         <div class="col-md-4">Program Type</div><div class="col-md-8"><input type="text" id="programType"></div>
     </div>
-    </br>
+ <!--    </br>
         <div class="row">
         <div class="col-md-4">Program Start_Date</div><div class="col-md-8"><input type="date" id="program_StartDate"></div>
-    </div>
+    </div> -->
     </br>
         <div class="row">
-        <div class="col-md-4">Program End_Date</div><div class="col-md-8"><input type="text" id="program_EndDate"></div>
+        <div class="col-md-4">Program End_Date</div><div class="col-md-8"><input type="date" id="program_EndDate"></div>
     </div>  
     </br>  
         <div class="row">
@@ -152,9 +163,9 @@ crossorigin="anonymous"></script>
         <div class="col-md-4">Sanction Authority</div><div class="col-md-8"><input type="text" id="sanctionAuthority"></div>
     </div>
        </br>
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-md-4">Sanction Date</div><div class="col-md-8"><input type="date" id="sanctionDate"></div>
-    </div>
+    </div> -->
        </br>
     <div class="row">
         <div class="col-md-4">Repayment Account No</div><div class="col-md-8"><input type="text" id="repaymentAccountNo"></div>
