@@ -82,7 +82,7 @@
 
 </style>
 <script>
-	window.onload = getLoanNo();
+window.onload = getLoanNo();
 $('#loanId').change(function() {
 let loanId = $(this).val();
 
@@ -144,8 +144,7 @@ options.chaincodeId = "loancc";
 options.methodToBeCalled = "queryLoan";
 let arguments = {};
 arguments.arg1 = '{"selector":{ "$or" :	[{"LoanStatus":"disbursed"} ,{"LoanStatus":"part disbursed"} ,{"LoanStatus":"sanctioned"}]}}';
-//arguments.arg1 = '{"selector":{"LoanStatus":"sanctioned"}}';
-//let arguments='{"selector":{"Status":"open"}}';
+
 options.dataArguments = arguments;
 console.log("options ", options)
 $.ajax({
@@ -156,7 +155,6 @@ $.ajax({
 	success: function (data) {
 		console.log("data ", data)
 		data1 = JSON.parse(data);
-		//JSON.stringify(data)
 		console.log("data1 ", data1)
 		for (var i in data1) {
 		let opt =new Option(data1[i].Key);

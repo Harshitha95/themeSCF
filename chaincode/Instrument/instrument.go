@@ -93,7 +93,9 @@ func (c *chainCode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 		return updateInstrumentStatus(stub, args)
 	} else if function == "getInstrumentAmt" {
 		return getInstrumentAmt(stub, args)
-	} else if function == "queryInstrument" {
+	}  else if function == "getPPRID" {
+		return getPPRID(stub, args)
+	}  else if function == "queryInstrument" {
 		return queryInstrument(stub, args)
 	} else if function == "instrumentIDexists" {
 		jsonresp,err1 = instrumentIDexists(stub, args)
@@ -519,9 +521,28 @@ func constructQueryResponseFromIterator(resultsIterator shim.StateQueryIteratorI
 	return &buffer, nil
 }
 
+func getPPRID(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+hash := sha256.New()
+	instID := strings.ToLower(args[0] + args[1])
+	hash.Write([]byte(instID))
+	md := hash.Sum(nil)
+	instIDsha := hex.EncodeToString(md)
+	instrumentDetails, err := stub.GetState(instIDsha)
+	if err != nil {
+		return shim.Error("instrumentcc: " + err.Error())
+	} else if instrumentDetails == nil {
+		return shim.Error("instrumentcc: " + " No data exists on this Instrument No " + args[0])
+	}
+	instrument := instrumentInfo{}
+	err = json.Unmarshal(instrumentDetails, &instrument)
+	if err != nil {
+		return shim.Error("instrumentcc: " + err.Error())
+	}
+	return shim.Success([]byte(instrument.PPRid))
+}
 func main() {
 	err := shim.Start(new(chainCode))
 	if err != nil {
-		fmt.Printf("instrumetcc: "+"Error starting Instrument chaincode: %s\n", err)
+		fmt.Printf("instrumetcc: "+" Error starting Instrument chaincode: %s\n", err)
 	}
 }

@@ -203,12 +203,12 @@ $('#loanId').change(function() {
 		  console.log("Date ",date);
 		  $("#txnDate").val(date); 
         document.getElementById('to').value=data1.SellerID;
-        
-          $("#amount").val(data1.SanctionAmt);
+                  $("#amount").val(data1.SanctionAmt);
           $("#instrumentRefNo").val(data1.InstrumentNo);
 		  var randomNo = Math.floor(1000 + Math.random() * 9000);
 			console.log("Val ",randomNo);
 			$("#txnId").val("TXN"+randomNo);
+			
         }         
       });
     }
@@ -232,7 +232,7 @@ $('#loanId').change(function() {
     <div class="nav1" id="text">
 	<div class="row">
 		<div class="col-md-4">Loan No</div>
-		<div class="col-md-8" class="select" name="Instrument No"><select id="loanId" style="width:168px">
+		<div class="col-md-8" class="select" name="Loan No"><select id="loanId" style="width:168px">
 			<option value="0">Loan</option>
 		 </select></div>
 	</div>

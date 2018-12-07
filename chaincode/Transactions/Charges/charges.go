@@ -202,7 +202,7 @@ func newChargesInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response
 	}
 	fmt.Println(string(response.GetPayload()))
 	fmt.Println("******************** End Charges *************************")
-	return shim.Success(nil)
+	return shim.Success("Transaction Completed")
 }
 
 func getWalletInfo(stub shim.ChaincodeStubInterface, participantID string, walletType string, ccName string, cAmtStr string, dAmtStr string) (string, string, string, error) {

@@ -151,7 +151,7 @@ func writeProgram(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	programInfoBytes, _ := json.Marshal(pInfo)
 	err = stub.PutState(args[0], programInfoBytes)
 	fmt.Println("******************** End  writeProgram *************************");
-	return shim.Success([]byte("Successfully added the program to the ledger"))
+	return shim.Success([]byte("Successfully added program ",args[0]))
 
 }
 

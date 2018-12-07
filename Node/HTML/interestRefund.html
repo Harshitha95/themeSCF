@@ -165,7 +165,7 @@ $('#loanId').change(function() {
 function getDetails(loanId){
       let options = {};
       options.chaincodeId = "loancc";
-      options.methodToBeCalled = "getLoanInfo";
+      options.methodToBeCalled = "getLoanwithPPR";
       let arguments = {};
       arguments.arg1 = loanId;
       options.dataArguments = arguments;
@@ -182,14 +182,13 @@ function getDetails(loanId){
 		  var date =formatDate()
 		  console.log("Date ",date);
 		  $("#txnDate").val(date); 
-		/*   var today = new Date();
-		  var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-		  console.log("Date ",date)
-		  $("#txnDate").val(date);   */         
+	        
           $("#instrumentRefNo").val(data1.InstrumentNo);
 		  var randomNo = Math.floor(1000 + Math.random() * 9000);
 			console.log("Val ",randomNo);
 			$("#txnId").val("TXN"+randomNo);
+			console.log("data1.PPRId ",data1.PPRId);
+			$("#pprId").val(data1.PPRId);
         } 
        });
     }

@@ -168,7 +168,7 @@ func createPPR(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	pprBytes, err := json.Marshal(ppr)
 	err = stub.PutState(args[0], pprBytes)
 	fmt.Println("******************** end  createPPR *************************")
-	return shim.Success([]byte("Successfully added PPR to the ledger"))
+	return shim.Success([]byte("Successfully added PPR ", args[0]))
 	
 }
 

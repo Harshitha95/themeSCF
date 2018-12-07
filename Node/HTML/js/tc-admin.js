@@ -9,7 +9,7 @@ function addBusinessParticipant ()
         {$('#body').empty();
         $('#body').append(page);
         updatePage('addBusiness');
-		console.log("Participant Page Updated");
+		console.log("Business Participant Page Updated");
   });
 }
 
@@ -21,7 +21,7 @@ function viewBusinessParticipant ()
         {$('#body').empty();
         $('#body').append(page);
         updatePage('viewBusiness');
-		console.log("Participant Page Updated");
+		console.log("Business Participant Page Updated");
   });
 }
 
@@ -33,7 +33,7 @@ function addBankParticipant ()
         {$('#body').empty();
         $('#body').append(page);
         updatePage('addBank');
-		console.log("Participant Page Updated");
+		console.log("Bank Participant Page Updated");
   });
 }
 
@@ -45,7 +45,7 @@ function viewBankParticipant ()
         {$('#body').empty();
         $('#body').append(page);
         updatePage('viewBank');
-		console.log("Participant Page Updated");
+		console.log("Bank Participant Page Updated");
   });
 }
 
@@ -57,7 +57,7 @@ function addInstrumentPage() {
         {$('#body').empty();
         $('#body').append(page);
         updatePage('addInstrument');
-		console.log("Asset Page Updated");
+		console.log("Instrument Page Updated");
   });
 }
 
@@ -69,7 +69,7 @@ function viewInstrumentPage() {
         {$('#body').empty();
         $('#body').append(page);
         updatePage('viewInstrument');
-		console.log("Asset Page Updated");
+		console.log("Instrument Page Updated");
   });
 }
 
@@ -83,7 +83,7 @@ function addPPRPage() {
         {$('#body').empty();
         $('#body').append(page);
         updatePage('addPPR');
-		console.log("Asset Page Updated");
+		console.log("PPR Page Updated");
   });
 }
 
@@ -95,9 +95,22 @@ function loanSanctionPage() {
         {$('#body').empty();
         $('#body').append(page);
         updatePage('loanSanction');
-		console.log("Asset Page Updated");
+		console.log("loanSanction Page Updated");
   });
 }
+
+function loanStatusPage() {
+	
+	let toLoad = 'loanStatus.html';
+	console.log("Inside loanStatus")
+    $.when($.get(toLoad)).done(function (page)
+        {$('#body').empty();
+        $('#body').append(page);
+        updatePage('loanStatus');
+		console.log("loanStatus Page Updated");
+  });
+}
+
 
 function disbursedPage() {
 		let toLoad = 'disbursed.html';

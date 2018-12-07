@@ -218,7 +218,7 @@ getDetails(loanId);
 function getDetails(loanId){
 let options = {};
 options.chaincodeId = "loancc";
-options.methodToBeCalled = "getLoanInfo";
+options.methodToBeCalled = "getLoanwithPPR";
 let arguments = {};
 arguments.arg1 = loanId;
 options.dataArguments = arguments;
@@ -241,6 +241,8 @@ success: function (data) {
 			console.log("Val ",randomNo);
 			$("#txnId").val("TXN"+randomNo);
   $("#instrumentRefNo").val(data1.InstrumentNo);
+  console.log("data1.PPRId ",data1.PPRId);
+			$("#pprId").val(data1.PPRId);
 } 
 });
 }

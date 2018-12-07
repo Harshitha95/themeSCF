@@ -359,8 +359,8 @@ func newDisbInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	if response.Status != shim.OK {
 		return shim.Error("disbursementcc: " + response.Message)
 	}
-	fmt.Println("******************** End Disbursement *************************")
-	return shim.Success(nil)
+	fmt.Println(" ******************** End Disbursement ************************* ")
+	return shim.Success(" Successfully Disbursed ")
 }
 
 func toChaincodeArgs(args ...string) [][]byte {
@@ -405,14 +405,11 @@ func getWalletInfo(stub shim.ChaincodeStubInterface, participantID string, walle
 	if err != nil {
 		return "", "", "", errors.New("Error in converting the dAmt")
 	}
-
 	txnBal := openBal - dAmt + cAmt
 	txnBalString := strconv.FormatInt(txnBal, 10)
-
 	// STEP-3
 	// update wallet of ID walletID here, and write it to the wallet_ledger
 	// walletFcn := "updateWallet"
-
 	walletArgs = toChaincodeArgs("updateWallet", walletID, txnBalString)
 	walletResponse = stub.InvokeChaincode("walletcc", walletArgs, "myc")
 	if walletResponse.Status != shim.OK {
@@ -421,7 +418,6 @@ func getWalletInfo(stub shim.ChaincodeStubInterface, participantID string, walle
 	fmt.Println(" ******************** End getWalletInfo ************************* ")
 	return walletID, openBalString, txnBalString, nil
 }
-
 func getWalletValues(stub shim.ChaincodeStubInterface, walletID string) (int64, error) {
 	fmt.Println(" ******************** Start getWalletValues *********** ")
 	fmt.Println("args " ,walletID )

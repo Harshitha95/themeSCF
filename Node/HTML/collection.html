@@ -224,8 +224,9 @@ h1 { text-align: center  }
 			console.log("data1 ", data1)
 			for (var i in data1) {
 			let opt =new Option(data1[i].Key);
+			
 			$("#loanId").append(opt);
-		
+		//	console.log("data1.PPRId ",data1.PPRId);
 	/*  opt.RefNo = new Option(data1[i].Record.RefNo);
 	opt.SellerID = new Option(data1[i].Record.SellerID); 
 	$("#instrumentNo").append(opt.RefNo); 
@@ -242,7 +243,6 @@ h1 { text-align: center  }
 window.onload = getLoanNo();
 $('#loanId').change(function() {
 let loanId = $(this).val();
-
 console.log("loanId ",loanId)
 getDetails(loanId);
 })
@@ -250,7 +250,7 @@ getDetails(loanId);
 function getDetails(loanId){
 let options = {};
 options.chaincodeId = "loancc";
-options.methodToBeCalled = "getLoanInfo";
+options.methodToBeCalled = "getLoanwithPPR";
 let arguments = {};
 arguments.arg1 = loanId;
 options.dataArguments = arguments;
@@ -264,21 +264,20 @@ success: function (data) {
   console.log("Data ", data)
   data1 = JSON.parse(data);
   console.log("Data1 ", data1);
-  //var today = new Date();
-		 // var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-		 var date =formatDate()
-		  console.log("Date ",date);
-		  $("#txnDate").val(date);
-
-//  document.getElementById('buyerBusinessId').value=data1.BuyerID;
- 
-  $("#instrumentRefNo").val(data1.InstrumentNo);
-  var randomNo = Math.floor(1000 + Math.random() * 9000);
+	
+			var date =formatDate()
+			console.log("Date ",date);
+			$("#txnDate").val(date);
+			$("#instrumentRefNo").val(data1.InstrumentNo);
+			console.log("data1.PPRId ",data1.PPRId);
+			$("#pprId").val(data1.PPRId);
+			var randomNo = Math.floor(1000 + Math.random() * 9000);
 			console.log("Val ",randomNo);
 			$("#txnId").val("TXN"+randomNo);
 } 
 });
 }
+
 function formatDate() {
     var d = new Date(),
         month = '' + (d.getMonth() + 1),

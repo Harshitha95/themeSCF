@@ -104,6 +104,10 @@ button {
     cursor: pointer;
 }
 </style>
+<script>
+
+</script>
+
 <script src=./js/tc-admin.js></script>
 <script src = ./js/jquery-3.1.0.js> </script>
 <script src = ./js/jquery-3.1.0.min.js> </script>
@@ -124,11 +128,7 @@ button {
  				<li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -4px" src="/Images/bankConfig.png"/></li>
  					<li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -9px" onclick="bankWalletPage()" src="/Images/bankWallet.png"/></li></ol></div>
  	</div>
-
-
 <div></div>
-
-
  <h2 class="text-danger">Set Up</h2>
  <hr></hr>
  <div class="row">
@@ -226,95 +226,10 @@ button {
     <hr></hr>
    <div class="row">  
     <div class="col-md-2"><img  src="/Images/EOD_Daily Settlement.png"/></div>
-      <div class="col-md-2"><img  src="/Images/EOD_Invoice Due.png"/></div>
+      <div class="col-md-2"><img onclick="loanStatusPage()"  src="/Images/EOD_Invoice Due.png"/></div>
      <div class="col-md-2"><img src="/Images/EOD_Interest Accrual.png"/></div>
      <div class="col-md-2"><img src="/Images/EOD Penal.png"/></div>
    </div>
- <!-- <div class="grid-container">
-  <div class="row">
-  
-  	<div class="col-md-2"><button onclick="disbursedPage()" class=" btn-danger"style="text-align: left">Loan Disbursed</button></div>
-    <img style="position: absolute;  onclick="disbursedPage()" src="/Images/Cash_disb.png"/>
-  	<div class="col-md-2"><button onclick="interestInAdvColl()" class=" btn-danger">Interest InAdvance Collection</button></div>
- 
-  	<div class="col-md-2"><button onclick="repaymentPage()" class=" btn-danger">Repayment</button></div>
-  	<div class="col-md-2"><button onclick="marginRefundPage()" class=" btn-danger">Margin Refund</button></div>
-  	<div class="col-md-2"><button onclick="interestRefundPage()" class=" btn-danger">Interest Refund</button></div>
-  </div>
-  <h3 class="text-danger">Ledger</h3>
-  <div class="row">
-  	<div class="col-md-2"><button onclick="charges()" class=" btn-danger">Charges</button></div>
-  	<div class="col-md-2"><button onclick="accrualChaincode()" class=" btn-danger">Accrual </button></div>
-  	<div class="col-md-2"><button onclick="interestAccChargesPage()" class=" btn-danger">Interest Accrued Charges</button></div>
-  	<div class="col-md-2"><button onclick="penalChargesPage()" class=" btn-danger">Penal Charges</button></div>
-
- 	<div class="col-md-2">	<button onclick="penalInterestCollectionPage()"  class=" btn-danger">Penal Interest Collectionn</button></div>
- 	<div class="col-md-2"><button onclick="tdsPage()" class=" btn-danger">TDS</button></div>
- </div> -- >
-<!--<button class="accordion">Add</button>
-<div class="panel">
-	<button onclick="addBusinessParticipant()">Add Business Participant</button>
-	<button onclick="addBankParticipant()">Add Bank Participant</button>
-	</br>
-	<button onclick="addProgramAsset()" >Add Program</button>
-	<button onclick="addPPRPage()" >Add PPR</button>
-	<button onclick="addInstrumentPage()">Add Instrument</button>
-</div>
-<button class="accordion">Loan</button>
-<div class="panel">
-	<button onclick="loanSanctionPage()">Loan Sanction</button>
-	<button onclick="disbursedPage()">Loan Disbursed</button>
-</div>
-<button class="accordion">Charges</button>
-<div class="panel">
-	<button onclick="charges()">Charges</button>
-	<button onclick="penalChargesPage()">Penal Charges</button>
-	<button onclick="accrualChaincode()">Accrual Chaincode</button>
-	<button onclick="interestAccChargesPage()">Interest Accrued Charges</button>
-</div>
-<button class="accordion">Repayment</button>
-<div class="panel">
-	<button onclick="repaymentPage()">Repayment</button>
-</div>
-<button class="accordion">Refund</button>
-<div class="panel">
-	<button onclick="marginRefundPage()">Margin Refund</button>
-	<button onclick="interestRefundPage()">Interest Refund</button>
-</div>
-<button class="accordion">Collection</button>
-<div class="panel">
-	<button onclick="interestInAdvColl()">Interest InAdvance Collection</button>
-	<button onclick="penalInterestCollectionPage()">Penal Interest Collectionn</button>
-</div>
-<button class="accordion">TDS</button>
-<div class="panel">
-	<button onclick="tdsPage()">TDS</button>
-</div>
-<button class="accordion">View Wallets</button>
-<div class="panel">
-	<button onclick="businessWalletsPage()">Business Wallets</button>
-	<button onclick="loanWalletsPage()">Loan Wallets</button>
-	<button onclick="bankWalletPage()">Bank Wallets</button>
-</div>
-
-<script type="text/javascript">
-  	
-  	var acc = document.getElementsByClassName("accordion");
-		var i;
-
-		for (i = 0; i < acc.length; i++) {
-		    acc[i].addEventListener("click", function() {
-		        this.classList.toggle("active");
-		        var panel = this.nextElementSibling;
-		        if (panel.style.display === "block") {
-		            panel.style.display = "none";
-		        } else {
-		            panel.style.display = "block";
-		        }
-		    });
-		} 	
-
-  </script>-->
 </div>
 </body>
 </html>
