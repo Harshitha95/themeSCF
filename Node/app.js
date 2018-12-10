@@ -61,7 +61,7 @@ var app = express();
 var invoke = require('./routes/invoke')
 var query = require('./routes/query')
 var postRequestHandler =require('./routes/postRequestHandle')
-//var getRequestHandler =require('./routes/getRequestHandle')
+var getRequestHandler =require('./routes/getRequestHandle')
 var http = require('http');
 var https = require('https');
 var path = require('path');
@@ -98,13 +98,17 @@ app.use(bodyParser.json());
 app.use('/invoke', invoke);
 app.use('/query', query);
 app.use('/postSender',postRequestHandler);
-//app.use('/getSender',getRequestHandler);
+app.use('/getSender',getRequestHandler);
 app.listen(3000);
 console.log("app listening at localhost:3000");
 app.use(express.static(__dirname + '/HTML'));
+app.get('/user', function(req, res){
+console.log("User ")
+//$('#results').html(data);
+	res.send("user1");
+})
 app.get('/', function(req, res){
-   // res.sendFile('index.html', { root: __dirname + "/HTML" } );
-   
+   // res.sendFile('index.html', { root: __dirname + "/HTML" } );   
 });
 //app.use('/Images', express.static(__dirname + '/HTML/Images'));
 //app.use('/js', express.static(__dirname + '/HTML/js'));
