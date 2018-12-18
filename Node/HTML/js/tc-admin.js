@@ -1133,3 +1133,19 @@ function formatDate() {
 
     return [day, month, year].join('/');
 }
+function getName() {
+	let options={};
+	options.argument="needuser";
+  
+	  $.ajax({
+		  url: "http://localhost:3000/query",
+		  datatype: "JSON",
+		  type: "Get",
+		  data: options,
+		  success: function (data) {
+		  console.log("data ", data);
+			 $("#userName").html(data);
+			  }
+	  //} 
+	  });
+  }

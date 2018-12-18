@@ -540,6 +540,7 @@ hash := sha256.New()
 	}
 	return shim.Success([]byte(instrument.PPRid))
 }
+
 func main() {
 	err := shim.Start(new(chainCode))
 	if err != nil {

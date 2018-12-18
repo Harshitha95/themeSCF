@@ -11,6 +11,9 @@ import (
 	"time"
 	"html"
 	"bytes"
+/* 	"github.com/golang/protobuf/proto"
+	"github.com/hyperledger/fabric/common/tools/protolator"
+	"github.com/hyperledger/fabric/protos/msp" */
 	"math"
 	"math/rand"
 	"github.com/hyperledger/fabric/core/chaincode/shim"
@@ -18,6 +21,9 @@ import (
 )
 
 type chainCode struct {
+}
+
+type SimpleChaincode struct {
 }
 
 type loanInfo struct {
@@ -100,7 +106,7 @@ func (c *chainCode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 	} else if function == "getLoanwithPPR" {
 		//Retrieves the existing data
 		return getLoanwithPPR(stub, args)
-	}else if function == "updateLoanInfo" {
+	} else if function == "updateLoanInfo" {
 		//Updates variables for loan structure
 		return updateLoanInfo(stub, args)
 	} else if function == "loanIDexists" {
@@ -134,7 +140,9 @@ func (c *chainCode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 		} else {
 			return shim.Success([]byte(jsonresp))
 		}
-	} /* else if function == "getLoanInfoBalTemp" {
+	} /* else if function == "getCreator" {
+		return getCreator(stub)
+	} else if function == "getLoanInfoBalTemp" {
 		//Returns the walletID for the required Loan wallet type
 		jsonrespasstruct,err1 := getLoanInfoBalTemp(stub, args)
 		if err1 != nil {
@@ -154,6 +162,30 @@ func (c *chainCode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 	}  */
 	return shim.Error("loancc: " + "No function named " + function + " in Loan")
 }
+
+
+/* func (t *chainCode) getCreator(stub shim.ChaincodeStubInterface) pb.Response {
+
+	fmt.Printf("\nBegin*** getCreator \n")
+	creator, err := stub.GetCreator()
+	if err != nil {
+		fmt.Printf("GetCreator Error")
+		return shim.Error(err.Error())
+	}
+
+	si := &msp.SerializedIdentity{}
+	err2 := proto.Unmarshal(creator, si)
+	if err2 != nil {
+		fmt.Printf("Proto Unmarshal Error")
+		return shim.Error(err2.Error())
+	}
+	buf := &bytes.Buffer{}
+	protolator.DeepMarshalJSON(buf, si)
+	fmt.Printf("End*** getCreator \n")
+	fmt.Printf(string(buf.Bytes()))
+
+	return shim.Success([]byte(buf.Bytes()))
+} */
 
 func newLoanInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Println("********************While Writing Loan *************************")
@@ -503,7 +535,7 @@ func getLoanInfo(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 }
 
 func getLoanwithPPR(stub shim.ChaincodeStubInterface, args []string) pb.Response {
-	fmt.Println(" ********* Inside getLoanwithPPR with arg * ",args[0])
+	fmt.Println(" ********* Inside getLoanwithPPR with arg 456 * ",args[0])
 	if len(args) != 1 {
 		xLenStr := strconv.Itoa(len(args))
 		return shim.Error("loancc: " + "Invalid number of arguments in getLoanInfo (required:1) given:" + xLenStr)

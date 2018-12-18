@@ -31,6 +31,7 @@ h1 { text-align: center  }
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src='tc-admin.js'></script>
   <script>
+    
  //   moment().format();
     function createLoan() {
 
@@ -194,7 +195,7 @@ function formatDate2(date) {
     console.log("Formated Time ",da+m);
     return T;
 }
-
+window.onload = getName();
   </script>
 </head>
 
@@ -209,6 +210,10 @@ function formatDate2(date) {
             src="/Images/bankWallet.png" /></li>
       </ol>
     </div>
+    <div class="top-left" style="float: right; margin-top: -117px;margin-right: 45px;overflow: hidden">
+        <img style="position: absolute;width:50px;right: 300px; margin-top: 25px" src="/Images/male.png" />
+        <div id="userName" style="position: absolute;width:50px;right: 290px; margin-top: 80px;color: white"></div>
+     </div>
   </div>
   <div></div>
   <div class="nav">

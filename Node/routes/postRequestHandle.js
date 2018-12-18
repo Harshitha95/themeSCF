@@ -107,7 +107,7 @@ var fcn_args = myArgs.slice(2);**/
 
 		// get the enrolled user from persistence, this user will sign all requests
 		return fabric_client.getUserContext('user1', true);
-	}).then((user_from_store) => {
+		}).then((user_from_store) => {
 		if (user_from_store && user_from_store.isEnrolled()) {
 			console.log('Successfully loaded user1 from persistence');
 			member_user = user_from_store;

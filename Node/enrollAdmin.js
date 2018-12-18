@@ -15,7 +15,7 @@ var path = require('path');
 var util = require('util');
 var os = require('os');
 
-//
+
 var fabric_client = new Fabric_Client();
 var fabric_ca_client = null;
 var admin_user = null;
@@ -73,3 +73,4 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 }).catch((err) => {
     console.error('Failed to enroll admin: ' + err);
 });
+

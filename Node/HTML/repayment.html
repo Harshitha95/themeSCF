@@ -60,7 +60,7 @@ h1 { text-align: center  }
 	arguments.arg4=loanId;
 	arguments.arg5=instrumentRefNo;
 	arguments.arg6=amount;
-	arguments.arg7=bankId;
+	arguments.arg7="1bank";
 	arguments.arg8=from;
 	arguments.arg9=to;
 	arguments.arg10=by;
@@ -114,7 +114,7 @@ $.ajax({
 	} 
 	});
 }
-window.onload = getLoanNo();
+window.onload = getLoanNo(),getName();
 $('#loanId').change(function() {
 	let loanId = $(this).val();
     
@@ -140,10 +140,7 @@ function getDetails(loanId){
           data1 = JSON.parse(data);
           console.log("Data1 ", data1);
 		  var today = new Date();
-		/*   var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-		  console.log("Date ",date)
-		  $("#txnDate").val(date); */
-		  var date =formatDate()
+			  var date =formatDate()
 		  console.log("Date ",date);
 		  $("#txnDate").val(date);
           $("#instrumentRefNo").val(data1.InstrumentNo);
@@ -163,6 +160,10 @@ function getDetails(loanId){
         <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -4px" src="/Images/bankConfig.png"/></li>
           <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -9px"onclick="bankWalletPage()" src="/Images/bankWallet.png"/></li></ol></div>
   </div>
+  <div class="top-left" style="float: right; margin-top: -117px;margin-right: 45px;overflow: hidden">
+        <img style="position: absolute;width:50px;right: 300px; margin-top: 25px" src="/Images/male.png" />
+        <div id="userName" style="position: absolute;width:50px;right: 290px; margin-top: 80px;color: white"></div>
+	</div>
   <div></div>
   <div class="nav">
     <img src="/Images/repaymenthead.png">
@@ -197,7 +198,7 @@ function getDetails(loanId){
 					<div class="col-md-4">Amount</div><div class="col-md-8" style="width:170px"><input type="text" id="amount"></div>
 			</div>
 	<div class="row">
-		<div class="col-md-4">Bank Id</div><div class="col-md-8" style="width:170px"><input type="text" id="bankId"></div>
+		<div class="col-md-4">Bank</div><div class="col-md-8" style="width:170px"><input type="text" id="bankId" value="HDFC" readonly="readonly"></div>
 	</div>
 	<div class="row">
 		<div class="col-md-4">Seller Id</div><div class="col-md-8" style="width:170px"><input type="text" id="from"></div>

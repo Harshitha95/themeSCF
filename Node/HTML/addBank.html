@@ -27,6 +27,7 @@
 src="https://code.jquery.com/jquery-3.3.1.js"
 integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 crossorigin="anonymous"></script>
+<script src=./js/tc-admin.js></script>
 <script>
   function addBank() {
   
@@ -73,6 +74,7 @@ $.ajax({
                 } 
               }); 
           }
+          window.onload = getName();
   </script>
   </head>
   <body>
@@ -83,6 +85,10 @@ $.ajax({
         <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top:-4px" src="/Images/bankConfig.png"/></li>
           <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -9px"onclick="bankWalletsPage()" src="/Images/bankWallet.png"/></li></ol></div>
   </div>
+  <div class="top-left" style="float: right; margin-top: -117px;margin-right: 45px;overflow: hidden">
+    <img style="position: absolute;width:50px;right: 300px; margin-top: 25px" src="/Images/male.png" />
+    <div id="userName" style="position: absolute;width:50px;right: 290px; margin-top: 80px;color: white"></div>
+ </div>
   <div></div>
   <div class="nav">
     <img src="/Images/addbankhead.png">

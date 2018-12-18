@@ -82,7 +82,7 @@
 
 </style>
 <script>
-window.onload = getLoanNo();
+window.onload = getLoanNo(),getName();
 $('#loanId').change(function() {
 let loanId = $(this).val();
 
@@ -97,13 +97,13 @@ getLoanDetails(loanId);
 		options.chaincodeId="loancc";
 		options.methodToBeCalled="getWalletsofLoan";
 		//form array of named inputs 
+		console.log("loanId inside getLoanDetails ",loanId)
 		var arguments={};
 		arguments.arg1=loanId;
 		arguments.arg2="disbursed";
 		arguments.arg3="charges";
 		arguments.arg4="accrued";
-		
-
+			
 		options.dataArguments=arguments;
 		
 		$.ajax({ 
@@ -184,6 +184,10 @@ console.log("SellerID ", data1[i].Record.SellerID); */
         <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -4px" src="/Images/bankConfig.png"/></li>
           <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -9px"onclick="bankWalletsPage()" src="/Images/bankWallet.png"/></li></ol></div>
   </div>
+  <div class="top-left" style="float: right; margin-top: -117px;margin-right: 45px;overflow: hidden">
+        <img style="position: absolute;width:50px;right: 300px; margin-top: 25px" src="/Images/male.png" />
+        <div id="userName" style="position: absolute;width:50px;right: 290px; margin-top: 80px;color: white"></div>
+	</div>
    <div class="nav">
     <img src="/Images/loanwallethead.png">
     <div class="top-right" style="float: right; margin-top: 117px;margin-right: 45px;overflow: hidden">
@@ -199,12 +203,13 @@ console.log("SellerID ", data1[i].Record.SellerID); */
 	   </div> -->
 	</br>
 	<div class="row">
-		<div class="col-md-4">Loan ID</div>
-		<div class="col-md-8" class="select" name="Instrument No">
+		<div class="col-md-4" style = "margin: 10px;">Loan ID</div>
+		<div class="col-md-4" class="select" name="Instrument No">
 			<select id="loanId" style="width:168px">
 				<option value="0">Loan</option>
 			 </select>
 		</div>
+		<div class="col-md-4"></div>
 	</div>
     </div>
     <div class="center" style="margin-left: 330px">

@@ -145,7 +145,7 @@ h1 { text-align: center  }
 		arguments.arg4=loanId;
 		arguments.arg5=instrumentRefNo;
 		arguments.arg6=amount;
-		arguments.arg7=from;
+		arguments.arg7="1bank";
 		arguments.arg8=to;
 		arguments.arg9=by;
 		arguments.arg10=pprId;
@@ -200,7 +200,7 @@ $.ajax({
 
 });
 }
-window.onload = getLoanNo();
+window.onload = getLoanNo(),getName();
 $('#loanId').change(function() {
 let loanId = $(this).val();
 
@@ -226,10 +226,9 @@ console.log("Data ", data)
 data1 = JSON.parse(data);
 console.log("Data1 ", data1);
 var date =formatDate()
-/* var today = new Date();
-var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear(); */
-	  console.log("Date ",date)
-	  $("#txnDate").val(date);
+
+console.log("Date ",date)
+$("#txnDate").val(date);
 $("#amount").val(data1.SanctionAmt);
 $("#instrumentRefNo").val(data1.InstrumentNo);
 var randomNo = Math.floor(1000 + Math.random() * 9000);
@@ -240,8 +239,7 @@ var randomNo = Math.floor(1000 + Math.random() * 9000);
 } 
 });
 }
-
-		  </script>
+  </script>
 	</head>
 	<body>
 	  <div >
@@ -251,6 +249,10 @@ var randomNo = Math.floor(1000 + Math.random() * 9000);
 			<li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -4px" src="/Images/bankConfig.png"/></li>
 			  <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -9px"onclick="bankWalletPage()" src="/Images/bankWallet.png"/></li></ol></div>
 	  </div>
+	  <div class="top-left" style="float: right; margin-top: -117px;margin-right: 45px;overflow: hidden">
+			<img style="position: absolute;width:50px;right: 300px; margin-top: 25px" src="/Images/male.png" />
+			<div id="userName" style="position: absolute;width:50px;right: 290px; margin-top: 80px;color: white"></div>
+		</div>
 	  <div></div>
 	  <div class="nav">
 		<img src="/Images/tdshead.png">
@@ -288,7 +290,7 @@ var randomNo = Math.floor(1000 + Math.random() * 9000);
 		</div>
 	
 		<div class="row">
-			<div class="col-md-4">Bank Id</div><div class="col-md-8" style="width:170px"><input type="text" id="from"></div>
+			<div class="col-md-4">Bank Id</div><div class="col-md-8" style="width:170px"><input type="text" id="from" value="HDFC" readonly="readonly"></div>
 		</div>
 	
 		<div class="row">

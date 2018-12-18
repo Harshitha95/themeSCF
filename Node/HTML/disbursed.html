@@ -92,7 +92,8 @@ h1 { text-align: center  }
 	  let loanId= $("#loanId").val();
 	  let instrumentRefNo= $("#instrumentRefNo").val();
 	  let amount= $("#amount").val();
-	  let from= $("#from").val();
+	  //let from= $("#from").val();
+	  let from= "1bank"
 	  let to= $("#to").val();
 	  let by= $("#by").val();
 
@@ -171,7 +172,7 @@ h1 { text-align: center  }
 
 });
 }
-window.onload = getLoanNo();
+window.onload = getLoanNo(),getName();
 $('#loanId').change(function() {
 	let loanId = $(this).val();
     
@@ -223,6 +224,10 @@ $('#loanId').change(function() {
         <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -4px" src="/Images/bankConfig.png"/></li>
           <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -9px"onclick="bankWalletPage()" src="/Images/bankWallet.png"/></li></ol></div>
   </div>
+  <div class="top-left" style="float: right; margin-top: -117px;margin-right: 45px;overflow: hidden">
+        <img style="position: absolute;width:50px;right: 300px; margin-top: 25px" src="/Images/male.png" />
+        <div id="userName" style="position: absolute;width:50px;right: 290px; margin-top: 80px;color: white"></div>
+     </div>
   <div></div>
   <div class="nav">
     <img src="/Images/disbursementhead.png">
@@ -230,39 +235,49 @@ $('#loanId').change(function() {
      <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -128px;margin-left: -260px" onclick="mainPage()" src="/Images/back.png"/></li></div>     
     </div>   
     <div class="nav1" id="text">
+	</br>
 	<div class="row">
 		<div class="col-md-4">Loan No</div>
 		<div class="col-md-8" class="select" name="Loan No"><select id="loanId" style="width:168px">
 			<option value="0">Loan</option>
 		 </select></div>
 	</div>
+</br>
 	<div class="row">
 		<div class="col-md-4">Instrument No</div><div class="col-md-8"><input type="text" id="instrumentRefNo"></div>
 	</div>
+</br>
     <div class="row">
         <div class="col-md-4">Transaction Id</div>
         <div class="col-md-8"><input type="text" id="txnId" readonly="readonly" ></div>
-    </div>   
+	</div>  
+</br> 
     <div class="row">
         <div class="col-md-4">Transaction Date</div>
         <div class="col-md-8"><input type="text" id="txnDate" readonly="readonly"></div>
-    </div>	 
+	</div>	
+</br> 
 	<div class="row">
         <div class="col-md-4">Transaction Type</div>
         <div class="col-md-8"><input type="text" id="txnType" value="Disbursement" ></div>
-    </div>	
+	</div>	
+</br>
 	<div class="row">
 		<div class="col-md-4">Amount</div><div class="col-md-8" style="width:170px"><input type="text" id="amount"></div>
 	</div>
+</br>
 	<div class="row">
-		<div class="col-md-4">From</div><div class="col-md-8" style="width:170px"><input type="text" id="from"></div>
+		<div class="col-md-4">From</div><div class="col-md-8" style="width:170px"><input type="text" id="from" value="HDFC" readonly="readonly" ></div>
 	</div>
+</br>
 	<div class="row">
 		<div class="col-md-4">To</div><div class="col-md-8" style="width:170px"><input type="text" id="to" readonly="readonly"></div>
 	</div>
+</br>
 	<div class="row">
 		<div class="col-md-4">By </div><div class="col-md-8" style="width:170px"><input type="text" id="by"></div>
 	</div>
+</br>
 	    <div class="center" style="margin-left: 330px">
 	     <img src="/Images/Cancel.png" onclick="cancel()">
 	      <img src="/Images/Submit.png" onclick="disbursement()">

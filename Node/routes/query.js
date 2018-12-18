@@ -4,7 +4,7 @@ var url = require('url');
 
 
 // define the home page route
-router.post('/', function (req, res) {
+router.get('/', function (req, res) {
 	'use strict';
 	'use strict';
 	/*
@@ -15,14 +15,14 @@ router.post('/', function (req, res) {
 	/*
 	 * Chaincode query
 	 */
-	var url_parts = url.parse(req.url, true);
+	/* var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
 	var myArgs = JSON.parse(query.arguments);
 	var fcn_args = myArgs.slice(2);
 
 	console.log(myArgs[0] + myArgs[1]);
 	console.log(fcn_args);
-
+ */
 	var Fabric_Client = require('fabric-client');
 	var path = require('path');
 	var util = require('util');
@@ -65,18 +65,30 @@ router.post('/', function (req, res) {
 		} else {
 			throw new Error('Failed to get user1.... run registerUser.js');
 		}
-
+		console.log("Username from Query js "+member_user.getName())
+		//return member_user.getName();
+		res.status(200);
+	res.send(member_user.getName());
 		// queryCar chaincode function - requires 1 argument, ex: args: ['CAR4'],
 		// queryAllCars chaincode function - requires no arguments , ex: args: [''],
+		//user.getName() bypasss the request object
+/* 		if (myArgs[0] != nil && myArgs[1] == nill) {
+			myArgs[0] == 'needuser'
+			return member_user.getName();
+		}
+		if (myArgs[0] != nil && myArgs[1] == nill) {
+		var reqbool = true;
+		}
+        if (reqbool == true) {
 		const request = {
 			//targets : --- letting this default to the peers assigned to the channel
 			chaincodeId: myArgs[0],
 			fcn: myArgs[1],
 			args: fcn_args
 		};
-
+	} */
 		// send the query proposal to the peer
-		return channel.queryByChaincode(request);
+		/* return channel.queryByChaincode(request);
 	}).then((query_responses) => {
 		console.log("Query has completed, checking results");
 		// query_responses could have more than one  results if there multiple peers were used as targets
@@ -88,7 +100,7 @@ router.post('/', function (req, res) {
 			}
 		} else {
 			console.log("No payloads were returned from query");
-		}
+		} */
 	}).catch((err) => {
 		console.error('Failed to query successfully :: ' + err);
 	});

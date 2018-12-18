@@ -62,7 +62,7 @@ $.ajax({
 	} 
 	});
 }
-window.onload = getLoanNo();
+window.onload = getLoanNo(),getName();
 $('#loanId').change(function() {
 	let loanId = $(this).val();
     
@@ -121,12 +121,12 @@ function getDetails(loanId){
 	
 	var arguments={};
 	arguments.arg1=txnId;
-	arguments.arg2=txnType;
-	arguments.arg3=txnDate;
+	arguments.arg2=txnDate;
+	arguments.arg3= txnType;
 	arguments.arg4=loanId;
 	arguments.arg5=instrumentRefNo;
 	arguments.arg6=amount;
-	arguments.arg7=from;
+	arguments.arg7="1bank";
 	arguments.arg8=to;
 	arguments.arg9=by;
 	//arguments.arg10=pprId;
@@ -172,6 +172,10 @@ function getDetails(loanId){
         <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -4px" src="/Images/bankConfig.png"/></li>
           <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -9px"onclick="bankWalletPage()" src="/Images/bankWallet.png"/></li></ol></div>
   </div>
+  <div class="top-left" style="float: right; margin-top: -117px;margin-right: 45px;overflow: hidden">
+        <img style="position: absolute;width:50px;right: 300px; margin-top: 25px" src="/Images/male.png" />
+        <div id="userName" style="position: absolute;width:50px;right: 290px; margin-top: 80px;color: white"></div>
+	</div>
   <div></div>
   <div class="nav">
     <img src="/Images/marginrefundhead.png">
@@ -206,7 +210,7 @@ function getDetails(loanId){
 		<div class="col-md-4">Amount</div><div class="col-md-8" style="width:170px"><input type="text" id="amount"></div>
 	</div>
 	<div class="row">
-		<div class="col-md-4">From Id</div><div class="col-md-8" style="width:170px"><input type="text" id="from"></div>
+		<div class="col-md-4">From Id</div><div class="col-md-8" style="width:170px"><input type="text" id="from" value="HDFC" readonly="readonly"></div>
 	</div>
 	<div class="row">
 		<div class="col-md-4">To Id</div><div class="col-md-8" style="width:170px"><input type="text" id="to"></div>

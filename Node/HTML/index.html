@@ -1,4 +1,5 @@
 <html>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head><title>Themechain</title>
 <style>
 table {
@@ -72,6 +73,18 @@ hr {
     padding: 0;
     margin: 0;
 }**/
+@media screen and (min-width: 1366px) {
+#gallery-1 img {width:375px;}
+}
+@media screen and (min-width: 1440px) {
+#gallery-1 img {width:428px;}
+}
+@media screen and (min-width: 1600px) {
+#gallery-1 img {width:434px;}
+}
+@media screen and (min-width: 1920px) {
+#gallery-1 img {width:540px;}
+}
 .grid-container {
 	display: grid;
 	grid-gap: 10px;
@@ -105,30 +118,13 @@ button {
 }
 </style>
 <script>
-
 </script>
-
 <script src=./js/tc-admin.js></script>
 <script src = ./js/jquery-3.1.0.js> </script>
 <script src = ./js/jquery-3.1.0.min.js> </script>
 <script src = ./js/watson-speech.js> </script>
 <script>
-function getName() {
-	
-	$.ajax({
-		url: "http://localhost:3000/user",
-		datatype: "JSON",
-		type: "Get",
-		//data: options,
-		success: function (data) {
-		console.log("data ", data)
-		
-		$("#userName").html(data);
-		
-		}
-	//} 
-	});
-}
+
 window.onload = getName();
 </script>
 <!--<script type = "text/javascript" src = "./js/bootstrap.js"> </script> -->
@@ -139,18 +135,23 @@ window.onload = getName();
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
 <body><div>
-<div  id="body" class="container" style="overflow: hidden"; > 
+<div  id="body" class="container"> 
  <div class="nav">
- 		<img src="/Images/headleft.png">
- 		<div class="top-right" style="float: right; margin-top: -117px;margin-right: 45px;overflow: hidden">
- 			<ol style="overflow: hidden"><li style="padding: 10px"><img style="position: absolute;width:134px" onclick="addBankParticipant()"src="/Images/BAdd.png"/></li>
+     <img src="/Images/headleft.png">
+      <div class="top-right" style="float: right; margin-top: -117px;margin-right: 45px;overflow: hidden">
+      <ol style="overflow: hidden">
+        <li style="padding: 10px"><img style="position: absolute;width:134px" onclick="addBankParticipant()"src="/Images/BAdd.png"/></li>
  				<li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -4px" src="/Images/bankConfig.png"/></li>
- 					<li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -9px" onclick="bankWalletPage()" src="/Images/bankWallet.png"/></li></ol></div>
- 	</div>
+         <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -9px" onclick="bankWalletPage()" src="/Images/bankWallet.png"/></li>
+      </ol>
+    </div> 
+    <div class="top-left" style="float: right; margin-top: -117px;margin-right: 45px;overflow: hidden">
+       <img style="position: absolute;width:50px;right: 300px; margin-top: 25px" src="/Images/male.png" />
+       <div id="userName" style="position: absolute;width:50px;right: 290px; margin-top: 80px;color: white"></div>
+    </div>
 <div></div>
-<div id="userName"></div>
  <h2 class="text-danger">Set Up</h2>
- <hr></hr>
+ <hr>
  <div class="row">
  <div class="nav">
   <div class="col-md-4">
@@ -190,7 +191,7 @@ window.onload = getName();
   </div>
   <div></div>
  <h2 class="text-danger">Assets</h2>
- <hr></hr>
+ <hr>
  <div class="row">
  <div class="nav">
   <div class="col-md-6">
@@ -243,7 +244,6 @@ window.onload = getName();
      <div class="col-md-2"><img  onclick="penalInterestCollectionPage()" src="/Images/Ledg_Charge Collection.png"/></div>
    </div>
     <h3 class="text-danger">EOD</h3>
-    <hr></hr>
    <div class="row">  
     <div class="col-md-2"><img  src="/Images/EOD_Daily Settlement.png"/></div>
       <div class="col-md-2"><img onclick="loanStatusPage()"  src="/Images/EOD_Invoice Due.png"/></div>

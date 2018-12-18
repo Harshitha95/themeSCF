@@ -34,45 +34,44 @@ h1 { text-align: center  }
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous"></script>
 	<script>
+
 	  function interestInAdvance() {
 	  
-	  let txnId= $("#txnId").val();
-	  let txnDate= $("#txnDate").val();
-	  let txnType= $("#txnType").val();
-	  let loanId= $("#loanId").val();
-	  let instrumentRefNo= $("#instrumentRefNo").val();
-	  let amount= $("#amount").val();
-	  let from= $("#from").val();
-	  let to= $("#to").val();
-	  let by= $("#by").val();
-	  let pprId= $("#pprId").val();
+		let txnId= $("#txnId").val();
+		let txnDate= $("#txnDate").val();
+		let txnType= $("#txnType").val();
+		let loanId= $("#loanId").val();
+		let instrumentRefNo= $("#instrumentRefNo").val();
+		let amount= $("#amount").val();
+		let from= $("#from").val();
+		let to= $("#to").val();
+		let by= $("#by").val();
+		let pprId= $("#pprId").val();
 
-	  let options = {};
-	 options.chaincodeId="interest_in_advancecc";
-	 options.methodToBeCalled="newInterestInAdvInfo";
-	
-	//form array of named inputs 
-	
-	var arguments={};
-	arguments.arg1=txnId;
-	arguments.arg2=txnType;
-	arguments.arg3=txnDate;
-	arguments.arg4=loanId;
-	arguments.arg5=instrumentRefNo;
-	arguments.arg6=amount;
-	arguments.arg7=from;
-	arguments.arg8=to;
-	arguments.arg9=by;
-	arguments.arg10=pprId;
-	
-	options.dataArguments=arguments;
-	  
-	$.ajax({ 
-	   url: "http://localhost:3000/postSender",
-	   datatype: "JSON", 
-	   data: options,
-	   type: "Post", 
-	   success: function (data) { 
+		let options = {};
+		options.chaincodeId="interest_in_advancecc";
+		options.methodToBeCalled="newInterestInAdvInfo";
+		
+		var arguments={};
+		arguments.arg1=txnId;
+		arguments.arg2=txnType;
+		arguments.arg3=txnDate;
+		arguments.arg4=loanId;
+		arguments.arg5=instrumentRefNo;
+		arguments.arg6=amount;
+		arguments.arg7="1bank";
+		arguments.arg8=to;
+		arguments.arg9=by;
+		arguments.arg10=pprId;
+		
+		options.dataArguments=arguments;
+			
+			$.ajax({ 
+			url: "http://localhost:3000/postSender",
+			datatype: "JSON", 
+			data: options,
+			type: "Post", 
+			success: function (data) { 
 				  //debugger;                           
 				  console.log("data "+data );
 				  //console.log("data.length "+data.length )
@@ -83,47 +82,39 @@ h1 { text-align: center  }
 				  }); 
 			  }
 			  setTimeout(function(){
-	  $('#messages').remove();
-	}, 50000);
+				$('#messages').remove();
+			}, 50000);
+
 	function getLoanNo() {
+		let options = {};
+		options.chaincodeId = "loancc";
+		options.methodToBeCalled = "queryLoan";
+		let arguments = {};
 
-let options = {};
-options.chaincodeId = "loancc";
-options.methodToBeCalled = "queryLoan";
-let arguments = {};
-
-arguments.arg1 = '{"selector":{ "$or" :	[{"LoanStatus":"disbursed"} ,{"LoanStatus":"part disbursed"}]}}';
-//let arguments='{"selector":{"Status":"open"}}';
-options.dataArguments = arguments;
-console.log("options ", options)
-$.ajax({
-	url: "http://localhost:3000/postSender",
-	datatype: "JSON",
-	type: "Post",
-	data: options,
-	success: function (data) {
-		console.log("data ", data)
-		data1 = JSON.parse(data);
-		//JSON.stringify(data)
-		console.log("data1 ", data1)
-		for (var i in data1) {
-		let opt =new Option(data1[i].Key);
-		$("#loanId").append(opt);
+		arguments.arg1 = '{"selector":{ "$or" :	[{"LoanStatus":"disbursed"} ,{"LoanStatus":"part disbursed"}]}}';
+		//let arguments='{"selector":{"Status":"open"}}';
+		options.dataArguments = arguments;
+		console.log("options ", options)
+		$.ajax({
+			url: "http://localhost:3000/postSender",
+			datatype: "JSON",
+			type: "Post",
+			data: options,
+			success: function (data) {
+			console.log("data ", data)
+			data1 = JSON.parse(data);
+			//JSON.stringify(data)
+			console.log("data1 ", data1)
+			for (var i in data1) {
+			let opt =new Option(data1[i].Key);
+			$("#loanId").append(opt);
 	
-/*  opt.RefNo = new Option(data1[i].Record.RefNo);
-opt.SellerID = new Option(data1[i].Record.SellerID); 
-$("#instrumentNo").append(opt.RefNo); 
-$("#sample").val(opt.SellerID); */
-//   $("#instrumentNo").append('<option value= '+data1[i].Record.SellerID+'>'+data1[i].Record.InstrumentRefNo+'</option>');
-//$("#sample").val(opt.SellerID);    
-/*   console.log("InstrumentRefNo ", data1[i].Record.InstrumentRefNo);
-console.log("SellerID ", data1[i].Record.SellerID); */
-}
-} 
+		}
+	} 
 
-});
+	});
 }
-window.onload = getLoanNo();
+window.onload = getLoanNo(),getName();
 $('#loanId').change(function() {
 let loanId = $(this).val();
 
@@ -185,6 +176,10 @@ function formatDate() {
         <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -4px" src="/Images/bankConfig.png"/></li>
           <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -9px"onclick="bankWalletPage()" src="/Images/bankWallet.png"/></li></ol></div>
   </div>
+  <div class="top-left" style="float: right; margin-top: -117px;margin-right: 45px;overflow: hidden">
+        <img style="position: absolute;width:50px;right: 300px; margin-top: 25px" src="/Images/male.png" />
+        <div id="userName" style="position: absolute;width:50px;right: 290px; margin-top: 80px;color: white"></div>
+	</div>
   <div></div>
   <div class="nav">
     <img src="/Images/advancecollectionhead.png">
@@ -222,7 +217,7 @@ function formatDate() {
 	</div>
 
 	<div class="row">
-		<div class="col-md-4">Bank</div><div class="col-md-8" style="width:170px"><input type="text" id="from"></div>
+		<div class="col-md-4">Bank</div><div class="col-md-8" style="width:170px"><input type="text" id="from" value="HDFC" readonly="readonly"></div>
 	</div>
 
 	<div class="row">

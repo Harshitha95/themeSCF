@@ -27,7 +27,9 @@ h1 { text-align: center  }
 src="https://code.jquery.com/jquery-3.3.1.js"
 integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 crossorigin="anonymous"></script>
+<script src=./js/tc-admin.js></script>
 <script>
+    window.onload = getName();
   function addProgram() {
   
   let programId = $("#programId").val();
@@ -107,6 +109,10 @@ function formatDate(program_EndDate) {
         <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -4px" src="/Images/bankConfig.png"/></li>
           <li style="padding: 10px"><img style="position: absolute;width:134px;margin-top: -9px"onclick="bankWalletsPage()" src="/Images/bankWallet.png"/></li></ol></div>
   </div>
+  <div class="top-left" style="float: right; margin-top: -117px;margin-right: 45px;overflow: hidden">
+        <img style="position: absolute;width:50px;right: 300px; margin-top: 25px" src="/Images/male.png" />
+        <div id="userName" style="position: absolute;width:50px;right: 290px; margin-top: 80px;color: white"></div>
+     </div>
    <div class="nav">
     <img src="/Images/addprogramhead.png">
     <div class="top-right" style="float: right; margin-top: 117px;margin-right: 45px;overflow: hidden">
@@ -130,10 +136,6 @@ function formatDate(program_EndDate) {
         <div class="row">
         <div class="col-md-4">Program Type</div><div class="col-md-8"><input type="text" id="programType"></div>
     </div>
- <!--    </br>
-        <div class="row">
-        <div class="col-md-4">Program Start_Date</div><div class="col-md-8"><input type="date" id="program_StartDate"></div>
-    </div> -->
     </br>
         <div class="row">
         <div class="col-md-4">Program End_Date</div><div class="col-md-8"><input type="date" id="program_EndDate"></div>
@@ -175,29 +177,6 @@ function formatDate(program_EndDate) {
      </div> 
 </body>
 </html>
-<!--<h1>Add Program</h1>
-    <table width=75% id="bussiness">
-		<tr><td>Program Id</td><td><input type="text" id="programId"></td></tr>
-		<tr><td>Program Name</td><td><input type="text" id="programName"></td></tr>
-        <tr><td>Program Anchor</td><td><input type="text" id="programAnchor"></td></tr>
-		<tr><td>Program Type</td><td><input type="text" id="programType"></td></tr>
-        <tr><td>Program Start_Date</td><td><input type="date" id="program_StartDate"></td></tr>
-		<tr><td>Program End_Date</td><td><input type="date" id="program_EndDate"></td></tr>
-		<tr><td>Program Limit</td><td><input type="text" id="programLimit"></td></tr>
-		<tr><td>Program ROI</td><td><input type="text" id="programROI"></td></tr>
-        <tr><td>Program Exposure</td><td><input type="text" id="programExposure"></td></tr>
-		<tr><td>Discount Percentage</td><td><input type="text" id="discountPercentage"></td></tr>
-		<tr><td>Discount Period</td><td><input type="text" id="discountPeriod"></td></tr>
-        <tr><td>Sanction Authority</td><td><input type="text" id="sanctionAuthority"></td></tr>
-		<tr><td>Sanction Date</td><td><input type="date" id="sanctionDate"></td></tr>
-		<tr><td>Repayment Account No</td><td><input type="text" id="repaymentAccountNo"></td></tr>
-    </table>
-</div>
-<div>
-    <button class-"wide" onclick="cancelBusiness()"  id="cancel" >Cancel</button> 
-    <button class-"wide" onclick="addProgram()"  id="submit">Submit</button>
- <button class-"wide" onclick="mainPage()"  id="back">Back</button>
-<div id="messages"></div> -->
 </div>
 </html>
 
